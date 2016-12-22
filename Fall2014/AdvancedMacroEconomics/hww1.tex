@@ -1,0 +1,794 @@
+%\documentclass[a4paper,10pt]{article}
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{wrapfig}
+%\usepackage{color}
+%\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{fancyhdr}
+\usepackage{fullpage}
+%\usepackage[top=tlength, bottom=blength, left=llength, right=rlength]{geometry}
+%\usepackage{geometry}
+%\usepackage[a4paper]{geometry}
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{mathtools}
+\usepackage{listings}
+\lstset{language=C++}
+%===========================================================================================
+% Numbering Equations
+%\numberwithin{equation}{section} %sets equation numbers <chapter>.<section>.<index>
+\numberwithin{equation}{subsection} %sets equation numbers <chapter>.<section>.<subsection>.<index>
+%\numberwithin{equation}{subsubsection} %sets equation numbers <chapter>.<section>.<subsection>.<subsubsection>.<index>
+
+
+%===================================================================================================================
+% Basic Commands for Page settings,Chapters, Appendices, Sections, etc..
+%====================================================================================================================
+%\setlength{\oddsidemargin}{.5in} \setlength{\topmargin}{0in}
+%\setlength{\headheight}{.2in} \setlength{\headsep}{.2in}
+%\setlength{\textwidth = 6.0in} \setlength{\textheight = 8.3in}
+
+\setlength{\oddsidemargin}{0.6in} \setlength{\topmargin}{-0.3in} %adjust side margins and top margins
+\setlength{\headheight}{.2in} \setlength{\headsep}{.2in}
+\setlength{\textwidth = 6.0in} \setlength{\textheight = 8.3in}
+
+
+
+\def\thebiblio#1{\list
+{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+\advance\leftmargin\labelsep
+\usecounter{enumi}}
+\def\newblock{\hskip .11em plus .33em minus .07em}
+\sloppy\clubpenalty4000\widowpenalty4000
+\sfcode`\.=1000\relax}
+\let\endthebiblio=\endlist
+
+\newcommand{\sect}[1]{% Basic settings for general chapters
+\cleardoublepage
+\clearpage
+\newpage
+\begin{center}
+\addtocounter{section} {1}
+\setcounter{subsection} {0}
+\section* {\normalsize \bf{CHAPTER \thesection \\ #1}}
+\addcontentsline{toc}{section}{CHAPTER
+\protect\numberline{\thesection : } #1\dotfill}
+\end{center}
+\thispagestyle{myheadings} }
+
+\newcommand{\appen}[1]{% Basic settings for appendix chapters
+\cleardoublepage
+\clearpage
+\newpage
+\begin{center}
+\addtocounter{section} {1}
+\renewcommand{\thesection}{\Alph{section}}
+\setcounter{subsection} {0}
+\setcounter{table}{0}
+\section* {\normalsize \bf{APPENDIX \thesection \\ #1}}
+\addcontentsline{toc}{section}{APPENDIX
+\protect\numberline{\thesection : } #1\dotfill}
+\end{center}
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
+\renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
+\renewcommand{\thetable}{\Alph{section}.\arabic{table}}
+
+\thispagestyle{myheadings} }
+
+%===================================================================================================================
+% Basic Commands for Theorem, Lemma,Proposition,etc.....
+
+\renewcommand{\baselinestretch}{2}
+\renewcommand{\arraystretch}{.5}
+\newcommand{\qed}{\hfill$\Box$}
+\newtheorem{fact}{Theorem}[section]
+\newtheorem{claim}{Claim}
+\newtheorem{theorem}[fact]{Theorem}
+\newtheorem{word}[fact]{Definition}
+\newtheorem{prop}[fact]{Proposition}
+\newtheorem{ob}[fact]{Observation}
+\newtheorem{Corollary}[fact]{Corollary}
+\newtheorem{corollary}[fact]{Corollary}
+\newtheorem{lemma}[fact]{Lemma}
+\newtheorem{Guess}[fact]{Conjecture}
+\newtheorem{conj}[fact]{Conjecture}
+\def\theotheorem{A\arabic{theorem}}
+\newtheorem{mydef}{Definition}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}[thm]
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{cor}[theorem]{Corollary}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%================================================================================
+%%%%%%%%%%%commands for problem
+%================================================================================
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+%
+%Fancy-header package to modify header/page numbering
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\lhead{Problem \thesection} \chead{} \rhead{\thepage}
+\lfoot{\small\scshape course name} \cfoot{} \rfoot{\footnotesize
+PS\#}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in} \setlength\textheight{648pt} \maketitle
+%\maketitle
+ %\thispagestyle{empty}
+
+
+
+%===========================================================================
+% commands for displaying codes in appendix
+%============================================================================
+\lstloadlanguages{Matlab}%
+\lstset{language=Matlab,                        % Use MATLAB
+        %frame=single,                           % Single frame around code
+        basicstyle=\small\ttfamily,             % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf,        % MATLAB functions bold and blue
+        keywordstyle=[2]\color{Purple},         % MATLAB function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar,  % User functions underlined and blue
+        identifierstyle=,                       % Nothing special about identifiers
+                                                % Comments small dark green courier
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
+        stringstyle=\color{Purple},             % Strings are purple
+        showstringspaces=false,                 % Don't put marks in string spaces
+        tabsize=5,                              % 5 spaces per tab
+        %
+        %%% Put standard MATLAB functions not included in the default
+        %%% language here
+        morekeywords={xlim,ylim,var,alpha,factorial,poissrnd,normpdf,normcdf},
+        %
+        %%% Put MATLAB function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        %%% Put user defined functions here
+        morekeywords=[3]{FindESS, homework_example},
+        %
+        morecomment=[l][\color{Blue}]{...},     % Line continuation (...) like blue comment
+        numbers=left,                           % Line numbers on left
+        firstnumber=1,                          % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue},          % Line numbers are blue
+        stepnumber=5                            % Line numbers go in steps of 5
+        }
+
+% Includes a MATLAB script.
+% The first parameter is the label, which also is the name of the script
+%   without the .m.
+% The second parameter is the optional caption.
+\newcommand{\matlabscript}[2]
+  {\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1]{#1.m}\end{itemize}}
+
+
+
+
+
+\begin{document}
+\pagestyle{empty}
+\pagenumbering{roman}
+
+%================================================ Approval Page ===================================================
+
+
+\newpage
+%================================================ Title Page ======================================================
+\begin{center}
+\thispagestyle{empty} % takes out page numbering
+  {ADVANCED MACROECONOMICS\\ [.07in]} \rm
+\rule{1.25in}{.01in}\\[.0 in]
+\today
+\vspace{.6in}
+
+
+
+\vspace{.6in}
+
+\vspace{.6in}
+
+by  \\ [.06in]
+{Nana  Akwasi Abayie Boateng} \\[.06in]
+\end{center}
+\author{Nana Akwasi Abayie Boateng\footnotemark[1]}
+
+
+
+
+
+
+
+
+
+
+
+
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\la{\langle}
+\def\ra{\rangle}
+
+\def\dist{{\rm dist}}
+\def\X{{\bf X}}
+\def\C{{\bf C}}
+\def\D{{\bf D}}
+\def\I{{\bf I}}
+\def\J{{\bf J}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\z{{\bf z}}
+\def\W{{\bf W}}
+\def\g{{\bf g}}
+\def\e{{\bf e}}
+\def\b{{\bf b}}
+\def\u{{\bf u}}
+\def\Beta{{\bf \beta}}
+\def\pen{{\rm pen}}
+\def\argmin{{\rm argmin}}
+\def\diag{{\rm diag}}
+\def\sgn{{\rm sgn}}
+\def\supp{{\rm\rm supp}}
+
+
+\vspace*{1cm}
+%============================================= Appendix Separation Page  ===============================================
+\newcommand{\Appendixpage}{
+    \setcounter{section}{0}
+    \renewcommand{\baselinestretch}{1}\small\normalsize
+    \thispagestyle{myheadings}
+    \addcontentsline{toc}{section}{APPENDICES\dotfill}
+    \mbox{}
+    \vfil
+    \begin{center}%
+    APPENDICES
+    \vfil
+    \end{center}%
+    \renewcommand{\baselinestretch}{1.66} \small\normalsize%
+    \cleardoublepage
+  }
+
+%================================================ Chapter 1 ==============================================================
+
+\newpage
+\section{Question 1}
+\subsection{Decentralized Version of the Neoclassical Growth Model}
+%section{Descentralized version of the Neoclassical growth model}
+\subsection{Firm}
+\begin{equation} \label{eqGEW}
+Y_t=F(K_{t,}A_{t }N_{t})
+\end{equation}
+\begin{enumerate}
+  \item {Firm's maximization Problem}
+$$
+ \underset{(k_{t},N_{t})}{max} \Pi=F(K_{t},A_{t }N_{t}) - r_{t} K_{t}- \omega_{t} \tilde{N_{t}}
+$$
+
+FOC
+$$
+\frac{\partial \Pi}{\partial K}=F_{k}(K_{t},A_{t} N_{t}) - r_{t }=0
+$$
+
+$$
+F_{K}= r_{t}
+$$
+
+$$
+\frac{\partial \Pi}{\partial N_{t}}=F_{N}(K_t,A_{t} N{_t}) - w_t =0
+$$
+
+$$
+F_{N}=\frac{ W_t}{A_t}
+$$
+\item {illustration of  equilibruim profits to be  zero}\\
+
+
+Based on Euler's theorem
+$$
+F(K,L)= KF_{k} + LF_{L}
+$$
+
+$$
+F(K_t,A_t N_t)= KF_{k }+ANF_{N}
+$$
+
+$$
+= Kr_{t} + AN\frac{W_{t}}{A}
+$$
+
+$$
+= Kr_{t }+N\omega_{t}
+$$
+
+$$
+\Pi= Kr_{t} + N\omega_{t} - rK_{t }- \omega_{t }N_{t}
+$$
+
+$$
+\Pi= 0
+$$
+
+\subsection{Household}
+\item \textbf{Let's set up the  Lagrangean} \\
+The household maximization problem is
+
+$$
+\underset{K_{t}}{max} \sum_{t=0}^{\infty} \beta^t U(c_t)
+$$
+
+
+s.t
+$$
+C_{t }+I_{t}= r_{t }K_{t }+ \omega_{t }N_{t}  +\Pi_{t}
+$$
+
+$$
+K_{t+1}= (1-\delta)K_{t }+I_{t}
+$$
+by substitution we will have one constraint
+$$
+K_{t+1}= ( r+1-\delta) K_{t }+ \omega_{t} N_{t }+\pi_{t} - C_{t}
+$$
+\item The FOC \\
+
+$$
+L=\sum_{t=0}^{\infty} \beta^{t }U(c_{t}) + \sum_{t=0}^{\infty} \lambda_{t}[  ( r+1-\delta) K_{t} + \omega_{t} N_{t} +\pi_{t} - C_{t} -K_{t+1}]
+$$
+
+$$
+[C_t] : \beta^t U'(C_{t})- \lambda_t =0
+$$
+
+$$
+[K_{t+1}]: -\lambda_{t }+ \lambda_{t+1} ( r+1-\delta) =0
+$$
+
+$$
+[\lambda_{t}]:  ( r+1-\delta) K_{t} + \omega_{t }N_{t} +\pi_{t} - C_{t} -K_{t+1} =0
+$$
+\item \textbf{Euler Equation}\\
+$$
+[ C_{t+1}] : \beta^{t+1} U\prime( C_{t+1})= \lambda_{t+1}
+$$
+let replace  $\lambda_t$  and  $\lambda_{t+1}$ in equation 2 . We will have
+$$
+ \frac{U\prime( C_t)}{\beta U\prime( C_{t+1} }= r_{t }+1-\delta
+$$
+\subsection{Dynamic competitive equilibrium}
+%\subsubsection{Characterization of equilibrium}
+\item {Three equations to characterize equilibrium}\\
+
+$$
+  F( K_{t}, A_{t} N_{t})
+$$
+
+$$
+F \left( \frac{ K_{t}}{A_{t} N_{t}, 1} \right)= F(k,1)= F(k)
+$$
+$$
+\Pi= F(k)- r_t k_t - \frac{\omega_{t}}{A_{t}}
+$$
+FOC
+$$
+F\prime(k)= r_{t}
+$$
+$$
+F(N)\prime=0
+$$
+$$
+ \frac{U\prime( C_{t})}{\beta U\prime( C_{t+1} }= r_{t} +1-\delta
+$$
+$$
+Lom:  ( r+1-\delta) K_{t }+ \omega_{t }N_{t }+\pi_{t }- C_{t }-K_{t+1} =0.
+$$
+At the end we will have
+
+$$
+ \frac{U\prime( C_t)}{\beta U^( C_{t+1} }= f(k)\prime +1-\delta
+$$
+
+No the only difference here is that the growth rate $\gamma(A)$ and $\gamma(N)$ is zero 
+
+\item  \textbf{Equilibrium Wage} 
+$$
+\Pi =0  \implies \Pi= f(k)- r_{t} k_{t}- \frac{w_{t}}{A_{t}}
+$$
+
+$$
+\omega_{t}=A_{t}( r_{t} k_{t}-f(k)
+$$
+\end{enumerate}
+1.1\\
+1\\
+$\underset{(Y_{T},K_{T},N_{T})}{\max} |^{\infty}_{t=0} \sum_{t=0}^{\infty} p_{t}(Y_{t}-\omega_{t}N_{t}-r_{t}K_{t})$\\
+
+s.t.\\
+
+$Y_{t}=F(K_{t},A_{t}N_{t})$\\
+
+By setting $p_{t}=1$ in the last period,we have\\
+
+$\underset{K,N}{\max}=F(K,AN)-rK-\omega N$\\
+
+This gives the first order conditions
+
+$F_{K}(K,AN)-r=0$\\
+$F_{N}=r$\\
+$F_{N}(K,AN)-\omega=0$\\
+$F_{N}=\omega$\\
+The optimal choice of of capital  $K^{*}$  and $N^{*}$ is equal to  their  marginal product  which is equal to their prices.\
+
+2\\
+
+
+1.2\\
+\subsection{Household}
+$r_{t}K_{t}+\omega_{t}\tilde{N_{t}}+\pi_{t}$
+
+$C_{t}+I_{t}=r_{t}K_{t}+\omega \tilde{N_{t}} +\pi_{t}$\\
+
+The law of motion of capital is\\
+$K_{t+1}=(1-\delta)\tilde{K_{t}}+I_{t}$\\
+
+For a discount rate $0<\beta<1$ and initial capital endowment $K_{0}$,The household's utility maximization problem is \\
+
+$\underset{C_{t},I_{t},K_{t}}{max}|_{t=0}^{\infty} \sum_{t=0}^{\infty}\beta^{t}u(c_{t})$\\
+s.t.
+$K_{t+1}=(1-\delta)\tilde{K_{t}}+I_{t}$\\
+$r_{t}\tilde{K_{t}}+\omega_{t}\tilde{N_{t}}+\pi_{t}=C_{t}+I_{t}$\\
+$K_{0}$ given\\
+
+
+which simplifies to\\
+$r_{t}\tilde{K_{t}}+\omega_{t}\tilde{N_{t}}+\pi_{t}-C_{t}-K_{}+(1-\delta)\tilde{K_{t}}=0$\\
+
+Let the lagrange multiplier be $\lambda$ .Then the Lagrange multiplier is \\
+
+$\mathcal{L}_{C_{t},I_{t},K_{t+1},\lambda}:=\sum_{t=0}^{\infty}\beta^{t}u(c_{t})+sum_{t=0}^{\infty}\lambda_{t}(r_{t}\tilde{K_{t}}+\omega_{t}\tilde{N_{t}}+\pi_{t}-C_{t}-K_{}+(1-\delta)\tilde{K_{t}})$
+
+$\frac{\partial \mathcal{L}}{\partial C_{t}}=\beta ^{t}u^{\prime}(C_{t})-\lambda_{t}=0$
+
+$\frac{\partial \mathcal{L}}{\partial K_{t+1}}=\lambda_{t+1}(r_{t+1}+(1-\delta)))-\lambda_{t}=0$
+
+$\beta^{t+1} u^{\prime}(C_{t+1})=\lambda_{t+1}$
+
+The Euler Equation   is obtained as\\
+$\lambda_{t}=\lambda_{t+1}(r_{t+1}+(1-\delta)))$\\
+
+$\beta^{t} u^{\prime}(C_{t})=\beta^{t+1} u^{\prime}(C_{t+1})(r_{t+1}+(1-\delta)))$\\
+
+$\frac{u^{\prime}(C_{t})}{u^{\prime}(C_{t+1})}=\beta(r_{t+1}+(1-\delta))$
+
+%\subsection{Dynamic Competitive Equilibrium}
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Question 2}
+\pagestyle{myheadings} \markboth{  } {  }
+\pagenumbering{arabic}
+%-------------------------------------------------------------------------------------------------------------------------
+$U(c_{t},L_{t})=\mu \ln c_{t}+(1-\mu)\ln(\bar{L}-L_{t})$\\
+
+1 $ \underset{(y_{t},K_{t},L_{t})}{\max}  \sum_{t=0}^{\infty}\beta^{t}U(c_{t},k_{t})$\\
+s. t.\\
+$y_{t}=c_{t}+i_{t}$\\
+
+$i_{t}=y_{t}+-c_{t}$\\
+
+LOM :$k_{t+1}+(1-s)k_{t}+i_{t}$\\
+
+$y_{t}=c_{t}+k_{t+1}-(1-\delta)k_{t}$\\
+
+$\mathcal{L}=\sum_{t=0}^{\infty}\beta^{t}\left(\mu \ln c_{t} +(1-\mu)\ln(\bar{L}-L_{t}) \right)+\sum_{t=0}^{\infty}\lambda_{t}\left((1-\delta)k_{t}-k_{t+1}-c_{t}+AK_{t}^{\alpha}L_{t}^{1-\alpha}\right)$\\
+
+ %\begin{equation) 
+ 2\\
+
+$[c_{t}]: \frac{\beta^{t}\mu}{c_{t}}-\lambda_{t}=0$\\
+
+%\end{equation)
+
+$[k_{t+1}]:=-\lambda_{t}+\lambda_{t+1}\left( (1-\delta)+\alpha Ak_{t+1}^{\alpha-1}L_{t+1}^{1-\alpha}   \right)$\\
+
+$[L_{t}]: \frac{-\beta^{t}(1-\mu)}{\bar{L}-L_{t}}+\lambda_{t}(1-\alpha)Ak_{t}^{\alpha}L_{t}^{-\alpha}$\\
+
+3\\
+Eulers Equation\\
+$\frac{\beta^{t}\mu}{c_{t}}=\frac{\beta^{t+1}\mu}{c_{t+1}}\left( 1-\delta+\alpha A k_{t+1}^{\alpha-1}L_{t+1}^{1-\alpha} \right)$\\
+
+$\frac{c_{t+1}}{c_{t}}=\beta \left(1-\delta+ \alpha A k_{t+1}^{\alpha-1} L_{1-\alpha}^{t+1} \right)$\\
+
+
+$k^{*}=\left (\frac{\frac{1}{\beta}-1+\delta}{A \alpha L^{*(1-\alpha)}}  \right)^{\frac{1}{\alpha-1}}$
+The steady state capital is given by\\
+
+$k^{*}=\left(\frac{A \alpha L^{*1-\alpha}}{\frac{1}{\beta} -1+\delta} \right)^{\frac{1}{1-\alpha}}$\\
+
+
+
+%$\lambda_{t}=\lambda_{t+1}(1-\delta+\alpha k_{t+1}^{\alpha-1}l_{t+1}^{1-\alpha})$\\
+
+
+%$\frac{c_{t+1}}{c_{t}}=\beta (1-\delta+\alpha k_{t+1}^{\alpha-1}l_{t+1}^{1-\alpha})$\\
+
+$\beta^{t}(1-\mu)=\lambda_{t}(1-\alpha)Ak_{t}^{\alpha}L_{t}^{-\alpha}(\bar{L}-L_{t})$
+%=\lamba_{t}(1-\alpha)Ak_{t}^{\alpha}L_{t}^{-\alpha}(\bar{L}-L_{t})$\\
+
+%$\frac{\beta^{t}(1-\mu)}{\lamba_{t}(1-\alpha)Ak_{t}^{\alpha}}=\frac{\bar{L}-L_{t}}{L_{t}}$\\
+
+$\frac{\beta^{t}(1-\mu)}{\lambda_{t}(1-\alpha)Ak_{t}^{\alpha}}=\frac{\bar{L}-L_{t}}{L_{t}^{\alpha}}$\\
+
+$L_{t}^{\alpha}\frac{\beta^{t}(1-\mu)}{\lambda_{t}(1-\alpha)Ak_{t}^{\alpha}}+L_{t}-\bar{L}=0$\\
+
+$L_{t}^{\alpha}\frac{\beta^{t}(1-\mu)}{\frac{\beta^{t}\mu}{c_{t}}(1-\alpha)Ak_{t}^{\alpha}}+L_{t}-\bar{L}=0$\\
+
+The steady state labor\\
+
+$L^{*\alpha}\left(\frac{C^{*}(1-\mu)}{\mu(1-\alpha)A k^{*\alpha}} \right)+L^{*}-\bar{L}=0$
+
+
+$L^{*\alpha}\left( (\frac{1}{\mu}-1)\frac{c^{*}}{(1-\alpha)Ak^{*\alpha}}  \right)+L^{*}-\bar{L}=0$\\
+The steady state consumption is \\
+$c^{*}=(1-\delta)k^{*}-k^{*}+Ak^{*\alpha}L^{* 1-\alpha}$\\
+$c^{*}=k^{*}-\delta k^{*}-k^{*}+Ak^{*\alpha}L^{* 1-\alpha}$\\
+$c^{*}=-\delta k^{*}+Ak^{*\alpha}L^{* 1-\alpha}$\\
+
+4\\
+An increase in A raises the steady state consumption ,capital and consumption
+
+5\\
+An incease in the  the number of hours available $\bar{L}$ causes a decrease in the levels of steady state labor.The decrease in  steady state labor causes the steady state capital to also decrease.The  the decrease  in capital results in a decrease in consumption.
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Question 3}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{31ia.png}
+\caption{3.1.ii  Phase Diagram\label{overflow}}
+
+3.1.i\\
+$k_{t+1}=\frac{(1-\delta)k_{t}+sf(k_{t})}{(1+\gamma_{N})(1+\gamma_{A})}$\\
+
+$(1+\gamma_{N})(1+\gamma_{A})k_{t+1}-(1-\delta)k_{t}=sf(k_{t})$\\
+
+$(1+\gamma_{N})(1+\gamma_{A})k_{t+1}-(1-\delta)k_{t}=sk^{\alpha}_{t}$\\
+
+$(1+\gamma_{N})(1+\gamma_{A})k^{*}-(1-\delta)k^{*}=sk^{* \alpha}$\\
+
+$(1+\gamma_{N})(1+\gamma_{A})-(1-\delta)=sk^{* \alpha-1}$\\
+
+$k^{\alpha-1}_{t}=\frac{(1+\gamma_{N})(1+\gamma_{A})-(1-\delta)}{s}$\\
+
+$k^{*}=\left(\frac{(1+\gamma_{N})(1+\gamma_{A})-(1-\delta)}{s}\right)^{\frac{1}{\alpha-1}}$\\
+
+
+$k^{*}=\left(\frac{s}{(1+\gamma_{N})(1+\gamma_{A})-(1-\delta)}    \right)^{\frac{1}{1-\alpha}}$\\
+
+
+
+$k^{*gold}=3.4867$\\
+
+$c^{*gold}=1.0182$\\
+
+$i^{*gold}=0.43364$\\
+
+$s^{*gold}=0.3$\\
+
+\end{figure}
+3.1.ii\\
+$\frac{Y_{t}}{A_{t}N_{t}}=\frac{K_{t}^{\alpha}}{A_{t}N_{t}}(\frac{A_{t}N_{t}}{A_{t}N_{t}})^{1-\alpha}$\\
+$y_{t}=k_{t}^{\alpha}$\\
+
+
+
+\newpage
+3.2.i\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{32i.png}
+\caption{3.1.i  growth of normalized capital stock\label{overflow}}
+\end{figure}
+
+3.2.i\\
+$k_{t+1}=\frac {(1-\delta)k_{t}+sf(k_{t})}{(1+\gamma_{N})(1+\gamma_{A})}$\\
+
+
+
+
+
+
+\newpage
+3.2.ii\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{32ii.png}
+\caption{3.1.i  growth of non-normalized capital stock\label{overflow}}
+\end{figure}
+3.2.ii\\
+$K_{t}=k_{t}((1+\gamma_{A})^{t}(1+\gamma_{N})^{t}$\\
+
+$K_{t-1}=k_{t-1}((1+\gamma_{A})^{t-1}(1+\gamma_{N})^{t-1}$\\
+
+\newpage
+3.2.iii\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{32iii.png}
+\caption{3.1.i  growth of non-normalized capital stock\label{overflow}}
+\end{figure}
+3.2.iii\\
+$Y_{t}=K_{t}^{\alpha}(A_{t}N_{t})^{1-\alpha}$\\
+
+Non-normalized output\\
+$Y_{t}=K_{t}^{\alpha}((1+\gamma_{A})^{t}(1+\gamma_{N})^{t}A_{0}N_{0})^{1-\alpha}$\\
+%At the steady state
+Non-normalized consumption\\
+$C_{t}=(1-s)Y_{t}=(1-s)K_{t}^{\alpha}((1+\gamma_{A})^{t}(1+\gamma_{N})^{t}A_{0}N_{0})^{1-\alpha}$
+
+
+Non-normalized Investment\\
+$I_{t}=sY_{t}=sK_{t}^{\alpha}((1+\gamma_{A})^{t}(1+\gamma_{N})^{t}A_{0}N_{0})^{1-\alpha}$\\
+
+
+\newpage
+3.3.i\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{33i.png}
+\caption{3.1.i  normalized capital stock\label{overflow}}
+\end{figure}
+3.3.i\\
+normalized capital stock\\
+$k_{t+1}=\frac{(1-\delta)k_{t}+sf(k_{t})}{(1+\gamma_{A})(1+\gamma_{N})}$\\
+
+$k_{t+1}=\frac{(1-\delta)k_{t}+sk_{t}^{\alpha}}{(1+\gamma_{A})(1+\gamma_{N})}$
+
+normalized consumption\\
+$C_{t}=(1-s)Y_{t}$\\
+$C_{t}=(1-s)K_{t}^{\alpha}(A_{t}N_{t})^{1-\alpha}$\\
+
+$\frac{C_{t}}{A_{t}N_{t}}=(1-s)\frac{K_{t}^{\alpha}}{A_{t}N_{t}}(\frac{A_{t}N_{t}}{A_{t}N_{t}})^{1-\alpha}$\\
+$c_{t}=(1-s)k_{t}^{\alpha}$\\
+\newpage
+3.3.ii\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{33ii.png}
+\caption{3.1.i  normalized output \label{overflow}}
+\end{figure}
+
+
+3.3.ii
+normalized output\\
+$\frac{Y_{t}}{A_{t}N_{t}}=\frac{K_{t}^{\alpha}}{A_{t}N_{t}}(\frac{A_{t}N_{t}}{A_{t}N_{t}})^{1-\alpha}$\\
+$y_{t}=k_{t}^{\alpha}$\\
+
+\newpage
+3.3.iii\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{33iii.png}
+\caption{3.1.i  normalized capital stock\label{overflow}}
+\end{figure}
+
+
+\newpage
+3.3.iv\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{33iv.png}
+\caption{3.1.i  normalized capital stock\label{overflow}}
+\end{figure}
+
+\cleardoublepage
+
+%=================================================BIBLIOGRAPHY==============================================================
+%\newpage
+%\begin{center}
+%{\bf BIBLIOGRAPHY}
+%\end{center}
+%\addcontentsline{toc}{section}{\rm BIBLIOGRAPHY \dotfill}
+%\begin{thebiblio}{99}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+%\bibitem{PSJ}
+%Paul Wilmott,Sam Howson,Jeff Dewynne  \emph{The Mathematics of
+%Financial Derivatives}. A Student Introduction, Cambridge university
+%press.
+
+%\bibitem{CF}
+%Omur Ogur \emph{An Introduction to Computational Finance}.Imperial
+%College press
+
+
+
+
+%\bibitem{GEF}
+%G.E. Fasshauer,\emph{Meshfree Methods}.Handbook of Theoretical and
+%Computational Nanotechnology,M.Rieth and W.Schommers(eds.).American
+%Scientific Publishers .(2006)
+%\end{thebiblio}
+\newpage
+%=================================Appendix separation page ===========================================================
+%\Appendixpage
+%---------------------------------------------------------------------------------------------------------------------
+
+%%================================================= Appendix A =========================================================
+%\appen{\uppercase{ Sample Appendix}}\label{app1}
+%%-------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+%=========================Appendix ===================================================================================
+%\appen{\uppercase{Computer Programming Codes}}\label{app2}
+%----------------------------------------------------------------------------------------------------------------------
+
+\subsection{Computer Programming Codes}
+\subsubsection{Tridiagonal solver}
+\lstinputlisting{hw1.m}
+%\subsubsection{Theta method codes}
+%\lstinputlisting{RBasis3GaussianG.m}
+%\lstinputlisting{RBasis3GaussianMQ.m}
+%\lstinputlisting{RBasis3GaussianIMQ.m}
+%\lstinputlisting{tridiagonal.m}
+
+
+
+
+\end{document}

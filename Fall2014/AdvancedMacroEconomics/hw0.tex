@@ -1,0 +1,456 @@
+
+\documentclass[11pt]{article}
+
+\usepackage{ifpdf}
+\ifpdf 
+    \usepackage[pdftex]{graphicx}   % to include graphics
+    \pdfcompresslevel=9 
+    \usepackage[pdftex,     % sets up hyperref to use pdftex driver
+            plainpages=false,   % allows page i and 1 to exist in the same document
+            breaklinks=true,    % link texts can be broken at the end of line
+            colorlinks=true,
+            pdftitle=My Document
+            pdfauthor=My Good Self
+           ]{hyperref} 
+    \usepackage{thumbpdf}
+\else 
+    \usepackage{graphicx}       % to include graphics
+    \usepackage{hyperref}       % to simplify the use of \href
+\fi 
+
+\title{Advanced Macroeconomic II}
+\author{Nana Boateng}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Question 1}
+$u(c,l)=c^{\gamma}(1-l)^{1-\gamma}$\\
+
+$y=Al^{\alpha}$\\
+
+Max $u(c,l)=c^{\gamma}(1-l)^{1-\gamma}$\\
+
+$y=Al^{\alpha}$\\
+
+$u(l)=(Al^{\alpha})^{\gamma}(1-l)^{1-\gamma}$\\
+
+
+$u^{\prime}(l)=A^{\gamma}\alpha\gamma l^{\alpha\gamma-1}(1-l)^{1-\gamma}+A^{\gamma}l^{\alpha\gamma}(\gamma-1)(1-l)^{-\gamma}=0$\\
+
+$\alpha\gamma l^{-1}(1-l)+\gamma-1=0$\\
+
+$\alpha\gamma l^{-1}-\alpha \gamma+\gamma-1=0$\\
+
+$\alpha\gamma l^{-1}=\gamma(\alpha-1)+1$\\
+
+$l^{*}=\frac{\alpha\gamma}{1+(\alpha-1)\gamma}$\\
+
+$c^{*}=Al^{*\alpha}$
+
+$c^{*}=A\left( \frac{\alpha\gamma}{1+(\alpha-1)\gamma}\right)$
+
+%$u^{\prime}(l)$=$A^{\gamma}\alpha\gamma l^{\alpha \gamma-1}(1-l)^{1-\gamma}}$
+%$+A^{\gamma}l^{\alpha\gamma}(\gamma-1)(1-l)^{\gamma$
+
+\subsection{1.2}
+Labor market equilibrium\\
+
+$u(c,l_{s})=c^{\gamma}(1-l_{s})^{1-\gamma}$\\
+
+$c=wl_{s}+\pi^{*}$\\
+
+\section{Question 2}
+
+Max $u(c,l_{s})= $Max  $c^{\gamma}(1-l_{s})^{}1-\gamma$\\
+
+$c=wl_{s}+\pi^{*}$\\
+
+$u(l_{s})=(wl_(s)+\pi^{*})^{\gamma}$\\
+
+
+FOC:
+
+$U^{\prime}(l_{s})=w\gamma(wl_{s}+\pi^{*})^{\gamma-1}(1-l_{s})^{1-\gamma}+(wl_{s}+\pi^{*})^{\gamma}(\gamma-1)(1-l_{s})^{-\gamma}$\\
+
+$w\gamma(wl_{s}+\pi*{*})^{-1}(1-l_{s})+(\gamma-1)=0$\\
+
+$w\gamma(1-l_{s})+(\gamma-1)(wl_{s}+\pi^{*})=0$\\
+
+$w\gamma-w\gamma l_{s}+\gamma w l_{s}+\gamma \pi^{*}-w l_{s}-\pi^{*}=0$\\
+
+$wl_{s}=w\gamma+\gamma\pi^{*}-\pi^{*}=\gamma w +(\gamma-1)\pi^{*}$\\
+
+$l*{*}_{s}=\frac{\gamma w +(\gamma-1)\pi^{*}}{w}$\\
+
+$c^{*}=wl_{s}^{*}+\pi^{*}$\\
+
+$=\gamma w+(\gamma-1)\pi^{*}+\pi^{*}$\\
+
+$c^{*}=\gamma(w+\pi^{*})$\\
+
+
+labour and firm
+
+$f(l_{d})=Al_{d}^{\alpha}$\\
+
+$\pi(l_{d})=f(l_{d})-wl_{d}$
+
+
+\subsection{Question 3}
+
+Max $\pi(l_{d})= Max f(l_{d})-wl_{d}$\\
+
+$Max Al_{d}^{\alpha}-wl_{d}$\\
+
+FOC:\\
+$\alpha Al_{d}^{\alpha-1}-w=0$\\
+
+
+$\gamma(w+\pi^{*})=A\left(  \frac{w}{\alpha A} \right)^{\frac{\alpha}{\alpha-1}}$\\
+
+$\left(\frac{w}{\gamma A}\right)^{\frac{1}{\alpha-1}}=\frac{\gamma w+(\gamma-1)\pi^{*}}{w}$\\
+
+In a competive market $\pi^{*}=0$\\
+
+$\gamma w=A\left(  \frac{w}{\alpha A} \right)^{\frac{\alpha}{\alpha-1}}$\\
+
+$\left(  \frac{w}{\alpha A} \right)^{\frac{1}{\alpha-1}}=\gamma$\\
+
+$w^{*}=\gamma^{\gamma-1}\alpha A$\\
+
+$\pi^{*}=0$\\
+
+$w^{*}=\alpha A \gamma^{\alpha-1}$\\
+
+$l_{d}^{*}=\left(  \frac{w}{\alpha A} \right)^{\frac{1}{\alpha-1}}$\\
+
+Therefore\\
+
+$\pi^{*}=A\left(  \frac{w}{\alpha A} \right)^{\frac{1}{\alpha-1}}-w\left(  \frac{w}{\alpha A} \right)^{\frac{1}{\alpha-1}}$\\
+
+Market clears:\\
+$c^{*}=f(l_{d}^(*))$\\
+
+$l_{d}^{*}=l_{s}^{*}$\\
+
+\subsection{Question 4}
+
+$\gamma(w+\pi^{*})=Al_{d}^{\alpha}$\\
+
+$\left(  \frac{w}{\alpha A} \right)^{\frac{1}{\alpha-1}}=\frac{\gamma w +(\gamma-1)\pi^{*}}{w}$\\
+
+
+\subsection{Question 5}
+$l_{d}^{*}+\left(  \frac{w}{\alpha A} \right)^{\frac{1}{\alpha-1}}$\\
+
+
+$=\left(  \frac{\alpha A \gamma^{\alpha-1}}{\alpha A} \right)^{\frac{1}{\alpha-1}}$\\
+
+$l^{*}_{d}=\gamma$\\
+
+$l^{*}_{s}=\gamma$\\
+
+
+$c^{*}=A\gamma^{\alpha}$\\
+
+
+\section{question 2}
+
+Intemporal Consumption\\
+
+$u(c_{1},c_{2})=\beta \log c_{1}+(1-\beta )\log c_{2}$\\
+
+$p_{1}c_{1}+p_{2}c_{2}=\alpha-b_{1}+1-\alpha-b_{2}+(1+\gamma)b_{1}$\\
+
+$p_{1}c_{1}+p_{2}c_{2}=1+\gamma b_{1}-b_{2}$\\
+
+
+\subsection{1}
+budget constraint is\\
+$p_{1}c_{1}+p_{2}c_{2}=1+\gamma b_{1}-b_{2}$\\
+
+\subsection{2}
+
+Lagrangian\\
+$\mathcal{L}=\beta \log c_{1}+(1-\beta )\log c_{2} +\lambda(\gamma b_{1}-b_{2}p_{1}c_{1}-p_{2}c_{2})$
+
+\subsection{3}
+FOC and Euler Equation\\
+
+$\frac{ \partial \mathcal{L}}{\partial c_{1}}=\frac{\beta}{c_{1}}-\lambda p_{1}=0$\\
+
+
+$\frac{ \partial \mathcal{L}}{\partial c_{2}}=\frac{1-\beta}{c_{2}}-\lambda p_{2}=0$\\
+
+$\frac{ \partial \mathcal{L}}{\partial \lambda}=\gamma b_{1}-b_{2}-p_{1}c_{1}-p_{2}c_{2}=0$\\
+
+Therefore:\\
+
+$\frac{\beta}{c_{1}}-\lambda p_{1}=0$\\
+
+$\frac{1-\beta}{c_{2}}-\lambda p_{2}=0$\\
+
+$p_{1}c_{1}+p_{2}c_{2}=\gamma b_{1}-b_{2}$\\
+
+$\frac{\beta}{c_{1}}-\lambda p_{1}=0$\\
+
+
+$\frac{\beta c_{2}}{(1-\beta) c_{1}}=\frac{p_{1}}{p_{2}}$\\
+
+$p_{1}c_{1}+p_{2}c_{2}=\gamma b_{1}-b_{2}+1$\\
+
+
+\subsection{4}
+
+Optimal Holding of bonds $b_{1},b_{2}$\\
+
+
+$\beta p_{2} c_{2}=(1-\beta)p_{1}c_{1}$\\
+
+
+$p_{1}c_{1}+p_{2}c_{2}=\gamma b_{1}-b_{2}+1$\\
+
+
+$p_{1}c_{1}+p_{2}c_{2}=\gamma b_{1}-b_{2}+1$\\
+
+
+$p_{1}c_{1}+\frac{(1-\beta)p_{1}c_{1}}{\beta}=\gamma b_{1}-b_{2}+1$\\
+
+
+$p_{1}c_{1}+1-\beta)p_{1}c_{1}=\beta\gamma b_{1}-\beta b_{2}+\beta$\\
+
+
+$\beta p_{2} c_{2}=(1-\beta)p_{1}c_{1}$\\
+
+
+$p_{1}c_{1}=\beta\gamma b_{1}-\beta b_{2}+\beta$
+
+
+$\beta p_{2} c_{2}=(1-\beta)p_{1}c_{1}$\\
+
+$c_{1}=\frac{\beta\gamma b_{1}-\beta b_{2}+\beta}{\beta p_{1}}$\\
+
+$c_{2}=\frac{(1-\beta)\beta\gamma b_{1}-\beta b_{2}+\beta}{\beta p_{2}}$\\
+
+
+
+$c_{1}=\frac{\beta(\gamma b_{1}- b_{2}+1)}{\beta p_{1}}$\\
+
+
+setting  $b_{2}=0$\\
+
+
+$c_{2}=\frac{}{\beta p_{2}}$\\
+
+
+
+$c_{1}=\frac{\beta+\beta\gamma b_{1}}{p_{1}}$\\
+
+$c_{1}=\frac{\alpha-b_{1}}{p_{1}}$\\
+
+$\alpha-b_{1}=\beta+\beta \gamma b_{1}$\\
+
+
+$b_{1}=\frac{\alpha-\beta}{1+\beta\gamma}$\\
+
+$b_{1}^{*}=\frac{\alpha-\beta}{1+\beta\gamma}$\\
+
+
+$b_{1}^{*}=0$\\
+
+\subsection{5}
+
+Optimal value of $c_{1}$ and $c_{2}$\\
+
+
+$c_{1}^{*}=\frac{\alpha-\frac{\alpha-\beta}{1+\beta \gamma}}{p_{1}}$\\
+
+
+$=\frac{\alpha+\beta \gamma-\alpha +\beta}{p_{1}(1+\beta \gamma)}$\\
+
+
+$c_{1}^{*}=\frac{\beta( \gamma +1)}{p_{1}(1+\beta \gamma)}$\\
+
+$c_{2}^{*}=\frac{(1-\beta)(\beta+\gamma \beta (\frac{\alpha-\beta}{1+\beta \gamma}))}{\beta p_{2}}$\\
+
+
+
+$c_{2}^{*}=\frac{(1-\beta)(\beta+\beta^{2}\gamma+\gamma\beta\alpha-\gamma\beta^{2})}{\beta p_{2}(1+\beta \gamma)}$\\
+
+$c_{2}^{*}=\frac{(1-\beta)(\beta+\gamma\beta\alpha)}{\beta p_{2}(1+\beta \gamma)}$\\
+
+
+$c_{2}^{*}=\frac{(1-\beta)(1+\gamma\alpha)}{ p_{2}(1+\beta \gamma)}$\\
+
+\subsection{8}
+
+$movement of savings rate $\\
+
+$b_{1}^{*}=\frac{\alpha-\beta}{1+\beta \gamma}$\\
+
+when r$\uparrow$   $b_{1}^{*}$ $\uparrow$ if $\beta >\alpha$\\
+
+$b_{1}^{*}(\gamma)=\frac{\beta(\beta-\alpha)}{(1+\beta \gamma)^{2}}$\\
+
+when r$\uparrow$   $b_{1}^{*}$ $\downarrow$ if $\beta <\alpha$\\
+
+\subsection{9}
+
+when $b_{1}^{*}=b_{2}^{*}=0$\\
+
+$\alpha-\beta=0$\\
+
+$\alpha=\beta$\\
+
+\section{Question 3}
+\title{Intertemporal Budget Constraints}
+
+$b_{0},b_{1}\cdots,b_{t},b_{t+1} $are bonds\\
+
+$w_{1}n_{1}+rb_{0}=p_{1}c_{1}$\\
+
+
+$w_{2}n_{2}+rb_{0}+rb_{1}=p_{2}c_{2}$\\
+
+$w_{3}n_{3}+rb_{0}+rb_{1}+rb_{2}=p_{3}c_{3}$\\
+
+$\vdots$
+
+$w_{t}n_{t}+r(b_{0}+b_{1}+b_{2}\cdots b_{t-1}) =p_{t}c_{t}$\\
+
+\subsection{q1}
+$w_{t}n_{t}+r(b_{0}+b_{1}+b_{2}\cdots b_{t-1}) =p_{t}c_{t}$\\ is the dynamic budget constraint
+
+\subsection{q2}
+
+$w_{1}n_{1}+rb_{0}=p_{1}c_{1}$\\
+
+
+$w_{2}n_{2}+rb_{0}+rb_{1}=p_{2}c_{2}$\\
+
+
+
+$\vdots$
+
+$w_{T}n_{T}+r(b_{0}+b_{1}+b_{2}\cdots b_{T-1}) =p_{T}c_{T}$\\
+
+
+\subsection{q3}
+
+$w_{1}n_{1}+rb_{0}=p_{1}c_{1}$\\
+
+$+$
+
+$w_{2}n_{2}+rb_{0}+rb_{1}=p_{2}c_{2}$\\
+
+$+$
+
+$ \underline {w_{T}n_{T}+r(b_{0}+b_{1}+b_{2}\cdots b_{T-1}) =p_{T}c_{T} }$\\
+
+%\underline
+
+$\sum_{t=1}^{T}w_{t}n_{t}+rTb_{0}+r(T-1)b_{1}+\cdots+rb_{T-1}=\sum_{t=1}^{T}p_{t}c_{t}$
+
+\section{Question 4 }
+
+\title{Intertemporal Crusoe}\\
+
+
+$u(c,l)=\ln(c_{1})+\ln(1-l_{1})+\beta \left(\ln c_{2}+\ln(1-l_{2})\right)$\\
+
+
+\subsection{q1}
+Robinson's Constraint
+
+$c_{1}=2l_{1}-s$\\
+
+$c_{2}=l_{2}+R-s$\\
+
+\subsection{q2}
+Robinson's Tax Problem\\
+
+Max $u(c,l)=\ln(c_{1})+\ln(1-l_{1})+ \left(\ln c_{2}+\ln(1-l_{2})\right)$\\
+
+$c_{1}+c_{2}=2l_{1}+l_{2}-s+Rs$\\
+
+
+\subsection{q3}
+Euler Equation\\
+
+$\mathcal{L}=\ln c_{1}+\ln(1-l_{1}) +\ln c_{2}+\ln(1-l_{2}) +\lambda \left(2l_{1}+l_{2}-s+Rs-c_{1}-c_{2} \right)$\\
+
+
+
+
+$\frac{\partial \mathcal{L}}{\partial c_{1}}=\frac{1}{c_{1}}-\lambda=0$\\
+
+
+$\frac{\partial \mathcal{L}}{\partial c_{2}}=\frac{1}{c_{2}}-\lambda=0$\\
+
+
+$\frac{\partial \mathcal{L}}{\partial \lambda}=2l_{1}+l_{2}-s+Rs-c_{1}-c_{2}=0$\\
+
+Euler Equation of Consumption\\
+
+$\frac{c_{2}}{c_{2}}=1$\\
+
+$2l_{1}+l_{2}-s+Rs=c_{1}+c_{2}$\\
+
+$\frac{\partial \mathcal{L}}{\partial l_{1}}=\frac{-1}{1-l_{1}}+2\lambda=0$\\
+
+
+$\frac{\partial \mathcal{L}}{\partial l_{1}}=\frac{-1}{1-l_{2}}+\lambda=0$\\
+
+
+$\frac{\partial \mathcal{L}}{\partial \lambda}=2l_{1}+l_{2}-s+Rs-c_{1}-c_{2}=0$
+
+leisure Euler Equation
+
+$\frac{1-l_{2}}{1-l_{2}}=2$\\
+
+$2l_{1}+l_{2}-s+Rs=c_{1}+c_{2}$\\
+
+
+$\lambda=\frac{1}{c_{1}}$\\
+
+$\lambda=\frac{1}{c_{2}}$\\
+
+$\lambda=\frac{1}{2(1-l_{1})}$\\
+
+
+$\lambda=\frac{1}{(1-1_{2})}$\\
+
+Eulers Intemporal between consumption and leisure\\
+
+$\frac{c_{2}}{c_{1}} \times \frac {1-l_{2}}{1-l_{2}}=2$
+
+
+\subsection{q4}
+
+$1-l_{2}=2-l_{1}$\\
+
+$c_{2}=c_{1}$\\
+
+$2l_{1}+l_{2}-s+Rs=c_{1}+c_{2}$\\
+
+$1+l_{2}=-1+2l_{2}$\\
+
+$c_{2}=c_{1}$\\
+
+$2l_{1}-1+2l_{1}-s+Rs=c_{1}$\\
+
+
+$l_{2}=-1+2l_{2}$\\
+
+$c_{2}=c_{1}$\\
+
+$24_{1}-1-s+Rs-1=2c_{1}$\\
+
+$c_{1}=2l_{1}-s$\\
+
+
+
+
+
+\end{document}  

@@ -1,0 +1,33 @@
+
+\documentclass[11pt]{article}
+
+\usepackage{ifpdf}
+\ifpdf 
+    \usepackage[pdftex]{graphicx}   % to include graphics
+    \pdfcompresslevel=9 
+    \usepackage[pdftex,     % sets up hyperref to use pdftex driver
+            plainpages=false,   % allows page i and 1 to exist in the same document
+            breaklinks=true,    % link texts can be broken at the end of line
+            colorlinks=true,
+            pdftitle=My Document
+            pdfauthor=My Good Self
+           ]{hyperref} 
+    \usepackage{thumbpdf}
+\else 
+    \usepackage{graphicx}       % to include graphics
+    \usepackage{hyperref}       % to simplify the use of \href
+\fi 
+
+\title{Advanced Macroeconomic II}
+\author{Nana Boateng}
+\date{}
+
+\begin{document}
+\maketitle
+%\section{}
+
+$V_{\hat{w}}^{E}=\frac{(1-\lambda^{t}) \hat{w}}{1-\beta}+\sum_{t=0}^{\infty}\lambda^{t}\left[ b-c(\pi)+\beta \left ((1-\pi)V(0)+\pi\int_{0}^{\bar{w}}V(\hat{w}) F(\hat{w})d\hat{w} \right)\right]$\\
+
+$V^{u}=\left[ b-c(\pi)+\beta \left ((1-\pi)V(0)+\pi\int_{0}^{\bar{w}}V(\hat{w}) F(\hat{w})d\hat{w} \right)\right]$\\
+
+\end{document}  

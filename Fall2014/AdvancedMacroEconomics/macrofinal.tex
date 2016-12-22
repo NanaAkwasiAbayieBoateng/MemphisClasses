@@ -1,0 +1,187 @@
+
+\documentclass[11pt]{article}
+
+\usepackage{ifpdf}
+\ifpdf 
+    \usepackage[pdftex]{graphicx}   % to include graphics
+    \pdfcompresslevel=9 
+    \usepackage[pdftex,     % sets up hyperref to use pdftex driver
+            plainpages=false,   % allows page i and 1 to exist in the same document
+            breaklinks=true,    % link texts can be broken at the end of line
+            colorlinks=true,
+            pdftitle=My Document
+            pdfauthor=My Good Self
+           ]{hyperref} 
+    \usepackage{thumbpdf}
+\else 
+    \usepackage{graphicx}       % to include graphics
+    \usepackage{hyperref}       % to simplify the use of \href
+\fi 
+
+\title{Advanced Macroeconomic II}
+\author{Nana Boateng}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Question 2}
+
+1)\\
+
+The Bellman is given as:\\
+
+$v(a,w)=\max  \limits_{a^{\prime} \geq 0} \ [ u(c)+\beta\sum_{j=1}^{N} q_{ij}v(a\prime 
+,w)]$\\
+
+s.t. to the budget constraint\\
+
+$(w+a-c)(1+r)=a^{\prime}$\\
+
+state space $s=[0,\cdots ,a_{max}]$\\
+                    $x=[w,\cdots,w]$\\
+   
+   
+ The value function$v$ inherits the properties of $u$ such as\\
+ 
+1)  The value function is bounded on s\\
+2) It is continuos,strictly increasing,strictly concave and twice 
+differentiable.\\
+3)Monotonically increasing in a
+
+
+
+2)\\
+$c=w+a-\frac{a\prime}{1+r}$\\
+
+FOC: w.r.t. $a^{\prime}$\\
+
+$-\frac{1}{1+r} u^{\prime}\left(  w+a-\frac{a^{\prime}}{1+r}\right)+\beta\sum_{j=1}^{N}q_{ij}v_{1}(a^{\prime},w) \geq 
+0$\\
+
+ Envelope condition:\\
+ 
+ $v_{a}(a,w)=u^{\prime}\left( w+a-\frac{a^{\prime}}{1+r} \right)$
+ 
+ Euler condition in terms of c:\\
+ 
+ $u^{\prime}(c)=\beta (1+r) \sum_{j=1}^{N}q_{ij}u^{\prime}(c^\prime)$\\
+ 
+ 3)\\
+ 
+ If the individual starts  with a high initial wealth endowment $w$above the 
+ borrowing constraint zero ,$a^{\prime}>0$,it will never be binding because the endowment 
+ will perpetuate itself and smooth out consumption.\\
+ In the case of realization of low income $a^{\prime}=0$,the individual has to 
+ borrow to finance consumption,but the Zero borrowing constraint becomes 
+ binding.\\
+ Growth of assets is negatively related to future expected growth of income,If 
+ the individual starts above the borrowing constraint
+ If the income process is  i.i.d. ,we have $\Delta a_{t}=\epsilon$  which means  that  
+ wealth  and a random walk and as a result ,any constraint on asset holdings 
+ will be binding with probability of 1.Borrowing becomes binding or not 
+ depending on the income process.\\
+ 
+ $u^{\prime}(c)=Eu^{\prime}(c^{\prime}) \hspace{5mm}$ if $a^{\prime}>0$\\
+                
+   $c_{t}=w_{t}+a \hspace{5mm}$ if $a^{\prime}=0$\\             
+                
+4)   The optimal policies for consumption and asset accumulation $\gamma(a,\theta)$     and $s(a,\theta)$
+    as functions of $a$ increase in $a$         
+    The optimal policies for consumption and asset accumulation $\gamma(a,\theta)$     and $s(a,\theta)$
+    as functions of $a$ are the optimal policy functions which solves the consumption-savings solves the 
+    consumption savings problem.
+           
+ 5)
+ If $\theta$ is i.i.d\\
+ The bellman becomes 
+       $v(a)=\max  \limits_{a^{\prime} \geq 0} \ [ u(c)+\beta\sum_{i=1}^{N} q_{i}v(a\prime 
+)]$\\       
+              
+  the transition matrix is no longer stochastic.The probability of moving from on state to the other does not depend on the
+  previous state but random.\\            
+              
+              
+6)
+
+$w_{t}>c_{t}$
+                           
+                             
+  \section{Question 1}              
+ 
+ 1)\\
+ $v^{u}=\max  \limits_{\pi} \left[ b-c(\pi)+\beta((1-\pi)v^{u}+\pi \int_{0}^{\bar{w}}v^{E}(w)f(w)dw) \right]$  \\
+ 
+ 
+$0=-c^{\prime}(\pi^{*})+\beta v^{u}+\beta \int_{0}^{\bar{w}}v^{E}(w)f(w)dw-\beta v^{u}$ \\
+  
+$c^{\prime}(\pi^{*})=\beta v^{u}+\beta \int_{0}^{\bar{w}}v^{E}(w)f(w)dw-\beta v^{u}$\\
+
+$v^{E}(\hat{w}) = \left\{ \begin{array}{rcl}v^{u}   \mbox{\hspace{5mm}if  $\hat{w} \leq w_{R}$}
+& \\ \hat{w} +\beta[\lambda v^{u}+(1-\lambda)v^{E}(w)]& \mbox{if $\hat{w} \geq w_{R}$} &\\\end{array}\right.$\\
+
+Let $w_{R}$ be the reservation wage,if $w_{R} \leq \hat{w}$\\
+
+$\frac{v^{E}(\hat{w})}{\beta}=\frac{\hat{w}}{\beta}+\lambda 
+v^{u}+(1-\lambda)v^{E}(\hat{w})$\\
+
+$\frac{w_R}{\beta}=\frac{v^{E}(\hat{w})}{\beta}-\lambda v^{E}(\hat{w})+v^{E}(\hat{w})+\lambda 
+v^{u}$\\
+
+$\frac{w_{R}}{\beta}=\left()\frac{1+\beta}{\beta} 
+\right)v^{E}(\hat{w})+\lambda(v^{u}-v^{E})$\\
+
+$w_{R}=v^{E}(\hat{w})(1+\beta)+\lambda\beta(v^{u}-v^{E})$\\
+
+$w_{R}=v^{E}(\hat{w})[1+\beta(1-\lambda)]+\beta\lambda v^{u}$\\
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm,height=100mm]{macro.jpg}
+%\caption{Demand function for popcorn\label{overflow}}
+\end{figure}                           
+
+2)\\
+
+$\frac{\partial w_{R}}{\partial \beta}=v^{E}(\hat{w})[1+(1-\lambda)]+\lambda v^{u}  
+>0$\\
+
+
+
+As $\beta$ increases,$c^{\prime}(\pi)$ also increases.$C$ is a strictly convex 
+function.$\pi$,$v^{E}(\hat{w})$ and $v^{u}$ increases accordingly.\\
+
+3)\\
+$\frac{\partial w_{R}}{\partial \lambda}=-\beta v^{E}(\hat{w})+\beta v^{u}$\\
+
+As the probability of becoming unemployed in the next period $\lambda$ increases ,$v^{E}$ decreases 
+ whereas $v^{u}$ increases.A change in $\lambda$ has not directly  affect $\pi^{*}$\\
+
+4) 
+$F \succeq_{FOSD} G $ if and only if $F(\hat{w}) $ $\leq G(\hat{w})$ for all $\hat{w}$.F is an 
+non decreasing function.
+A shift in the wage distribution from $F$ to $G$  causes ,$\pi$,$v^{E}(\hat{w})$ and $v^{u}$ 
+all decrease.
+
+5)$G$ is mean preserving spread of $F$ if and only if $y=x+\epsilon$ for some $x\sim 
+F$,$y\sim G$ and $\epsilon$ such that $E(\epsilon|x)=0$ for all $x$.
+Since $G$ is mean preserving spread$F(\hat{w})=G(\hat{w})$,it does not cause a change in the solution 
+of $\pi$,$v^{E}(\hat{w})$ and $v^{u}$.\\
+
+6)\\
+$F \succeq_{SOSD} G $ if and only if\\
+
+$\int_{0}^{\bar(x)}F(\hat{w})d\hat{w} \leq \int_{0}^{\bar(x)}G(\hat{w})d\hat{w} $ 
+for all $\bar{x} \in [0,\infty]$\\
+
+A shift in the wage distribution from $F$ to $G$  causes ,$\pi$,$v^{E}(\hat{w})$ and $v^{u}$ 
+all decrease.
+
+
+
+
+
+
+
+
+
+\end{document}  
