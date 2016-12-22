@@ -1,0 +1,250 @@
+
+Boateng
+The program does well in terms of correctness, clarity, documentation and generalizability. The many for loops could be improved by some 
+vectorization to increase the programs efficiency. The program is generally strong.
+Boateng:
+The use of cumsum minimized 'for' loops and made the code efficient. Reference Ngutu for a good approach to tmr and sd.tmr code.
+BOATENG	Code does not calculate median remaining lifetime at time ti, tmri, nor its standard deviation, but these two are hard coded to the example.  
+Therefore, tmri and its std do not change as the input changes, and the function breaks when the input has more or less than 16 observations.  
+Readability of code could be improved with more consistent use of spacing and new lines.  Code correctly calculates columns of Table 4.7 except for 
+tmri and its std.
+Boateng,
+The code looks professional because R usually is to be coded as a function and then import the data. And it runs smoothly and is clear to follow 
+step by step under the directions. But I think we do not need to print out the results of every step in the final answer which may be required when 
+you program the code. Also the results still need to be rounded as we see in the book.
+Boateng:
+1. the first column does not show the intervals and just show the beginning of interval
+2. The table misses 'nLost', 'nwithdraw', and 'ndeath'
+3. it is very specific and manual, lots of things need to be changed if we have a new data set.
+BOATENG
+Generally, a good code, not too difficult to follow and produces the right values for the data frame.
+Boateng-	 The code ran perfectly in R when I loaded it and the life table was displayed.  He spaced out his codes separately so it was easy to 
+see which piece gave which column.
+9: Nana: The codes are followed by the instructions provided by professor.
+And it runs well. The results are correct.
+Nana Boeteng seems to display the appropriate lifetable with a few small errors using his code, but he failed to submit an appropriate textfile as
+directed or any form of readable table in his Microsoft word file.  I say he did a good job.
+
+
+
+
+Bradley
+The program generally cannot to be extended to very general cases. In terms of correctness and efficiency, the program does a good job. The program 
+is not well documented which affects its clarity
+BRADLEY	No function provided; not clear which inputs should be change; turning script into function would improve generalizability and clarity.  
+Script appears to be hard coded to example with 16 observations.  This could be generalized by finding length of one of the input vectors. Code is 
+easy to follow.  Not sure if call to set working directory, setwd(), is necessary.  Code correctly calculates columns of Table 4.7.
+BRADLEY,
+The code is fine to run and can get the right result. But it looks like SAS not R because R usually is coded as a function with parameter. And we 
+still need some explanations to show reader the work step by step.
+Bradley:
+1.	The first column does not show the intervals and just shows the beginning of interval.
+2.	Midpoints of interval just manually is set to 1 and thus not general
+3.	The code needs revision for other data sets.
+8. Bradley: The codes are straightforward and the logics are easy to
+understand.
+BRADLEY
+Code is efficient. Gets the table without going through a very long process, in the output table row 15 and 16 are repeated though.
+Bradley- 	His code is very concise.   Seems much more efficient than the code I wrote myself.   No spaces or comments in the code as in Boateng.
+Bradley creates the appropriate lifetable without errors using his well-written, concise R code.  Although he did not successfully write a denoted
+"function," his code works.  He did recopy too many lines in his text file, but nonetheless he did an excellent job.
+
+
+
+
+Jiang
+The program is very efficient, clear and very well documented. A useful improvement will be to convert the program into a function. The program 
+could have being simplified by avoiding long procedures in producing some of the results
+Jiang:
+Very clear format and structure. I will copy this visual appearance in the future. Instead of using the round function, I tried using 
+options(digits=)  It  wasn't perfect, so maybe round() is better. Is it possible to establish a global setting for round so it need not be 
+repeatedly called?
+JIANG	Code is easy to follow and well documented with comments.  No function provided;  turning script into function would improve 
+generalizability.  Including a dataset or creating it in the script would have been convenient for assignment's evaluation.  Generalizability could 
+be improved by assigning dim(Data) to object then grabbing first element of object for nrow and second element for ncol.   Correctness of the code 
+could not be verified as the input dataset was not provided and no comments were given as to what its variables were.
+Jiang
+As a fresh man about R, I programmed the code more like SAS not R. I should program the code as a function which can be not only used in this 
+question. I really learned a lot from others. And I still have a lot of work to do to make the code professionally.
+3. Jiang: The codes are workable and easy to understand for there are notes
+based on each part.
+JIANG
+Good code,  it produces the table accurately and also does a good job of placing the "+" signs on the censored observations. The last 2 rows are 
+however not produced.
+Jiang-		This was very similar to Bradley's code.  The code was short and concise.
+Jiang wrote neat looking code and displayed the appropriate table without errors.  He did not display the last two columns.  His code was not
+written with any function statements similar to Bradley's, and I'm not sure how to implement his code. I say he did a good job.
+
+
+
+
+Ngutu
+The program is not well documented but generally clear and efficient. It could have being improved also by transforming it into   a function. The 
+strength and generalizability of the program is acceptable.
+Ngutu:
+I will look into the match function more. I really like how efficient it made your program. I suppose sd.htmi could be made more general by 
+inclusion of the bi term, but in this case its of course trivial.
+NGUTU	No function provided; not clear which inputs should be change; turning script into function would improve generalizability and clarity.  
+Script appears to be hard coded to example with 16 observations.  This could be generalized by finding length of one of the input vectors.  Code is 
+easy to follow.  Code correctly calculates columns of Table 4.7.
+NGUTU
+The code is fine to run and can get the right result. But it looks a little bit hard to follow without the explanations. And we still need to round 
+the results to follow the book.
+NGUTU
+1. The first column does not show the intervals and just show the beginning of interval
+2. the width column is manually set to one thus its not opted to be used for any other data sets with different time intervals
+Needs revision for other datasets.
+7. Ngutu: The codes are complicated. Some of them I am not able to
+understand.
+Ngutu-		Slightly longer code it seems but still worked fine.  Pete organized his code a little more than the others in the notepad file.
+Ngutu displayed an almost identical lifetable, and his only shortcoming was his inability to write a function. He did an excellent job.
+
+
+Nichols
+There is not any form of documentation to guide one through the program. It would have been much clearer if some comments were added to program. The   
+program in terms of generalizability is fairly good. It does well with efficiency because of the numerous vectorization
+Nichols:
+Indexing  the cumsum vector  (as you did later) for sd.s.hat would eliminate the second line of code and prevent the warning. Reference Ngutu for a 
+good approach to tmr and sd.tmr code.
+NICHOLS
+I think the code is fine and which can be evaluated as NGUTU's and BRADLEY's.
+NICHOLS	Code does not calculate median remaining lifetime at time ti, tmri, nor its standard deviation.  No function provided; not clear which 
+inputs should be change; turning script into function would improve generalizability and clarity.  Script appears to be hard coded to example with 
+16 observations.  This could be generalized by finding length of one of the input vectors.  Code correctly calculates columns of Table 4.7 except 
+for tmri and its std.
+Nicholes:
+1. the first column does not show the intervals and just show the beginning of interval
+2. the width column is manually set to one thus its not opted to be used for any other data sets with different time intervals
+3. Does not have t_mr_hat,  sd_tmr_hat columns.
+4. The code is very specific and manual and can not be applied to other data sets without revision.
+NICHOLS
+The code is good and accurate and produces the desired table. It is also not too long and easy to follow.
+5. Nichols: I have trouble in running Nichols’s codes. Based on reading the
+codes, the logics are reasonable.
+Nichols-	My code had a warning message in it and I don't know why I didn't fix that.
+Nichols displayed a near perfect lifetable using well written code, but seemed to not understand functionality as exhibited by her inability to
+write a function.  She did an excellent job.
+
+
+
+Madahian
+The documentation, correctness, efficiency (a lot of vectorization to reduce cpu time used up in for loops), clarity and generalizability is very 
+high.
+Madahian:
+I like the interval midpoint modification  and the use of cumprod() for efficiency. In the tmr and var.tmr expressions, I observed the use of 
+interval midpoints rather than ti and tj. I don't understand how this would work with irregular interval width.
+MADAHIAN	Correct. Well documented. Code is easy to follow. Efficient. Almost generalizable: a comment at top should state that there are two
+places to change the pathname or create a variable so pathname only has to be changed once at top of script or remove call to write.table 
+altogether.
+MADAHIAN
+The code is very clear and easy to follow. Only one point to say is the results still need to be rounded as we see in the book.
+2. Behrouz Madahian: The codes are pretty straightforward and easy to
+understand. It’s clear and functional.
+MADAHIAN
+Code is good and runs the table accurately. It also has good comments which make it easy to follow what the code is doing.
+Madahian-	Code worked just fine.  I see nothing unique compared to the others.
+Behrouze wrote functional code and displayed a lifetable that was almost identical to the given table.  He did an excellent job.
+
+
+
+
+Terry
+The documentation, correctness, efficiency (a lot of vectorization to reduce cpu time used up in for loops), clarity and generalizability is very 
+high.
+Terry:
+Effective use of while loop for finding  tj ,tmr, tj+1. I don't know if I see the benefit in putting so many expressions in the for loop instead of 
+using basic vector operations where possible
+TERRY	Correct. Code is easy to follow. Efficient. Generalizable.  Would have been convenient to include tis, nint, nlost, nevent variables at top 
+of script and a call to(user created) lifetable function at the bottom of script.
+TERRY
+Just need some explanations for the reader to follow step by step.
+Terry,
+A function is there but the data is not there and the line for running the function is missing.
+4. Terry: The train of thought is similar with Behrouz. It’s a little bit
+more complicated in coding style. But, it’s still workable and reasonable.
+TERRY
+The life table function was used and it was very efficient. It produced all columns and did a good job of placing the "+" sign on the censored 
+observations.
+Terry-		I did not like running this code because I had to go into the notepad file and manually delete all the "<" before I could run it in R.  
+This code did not run automatically like the others did.
+Terry displayed a near identical lifetable using well written, functional, code in R.  He even displayed '+' signs with the appropriate data only
+seen in his code and Jiang's code.  He did an excellent job.
+
+
+
+Vhaduri
+The documentation, correctness, efficiency (a lot of vectorization to reduce cpu time used up in for loops), clarity and generalizability is very 
+high.
+VHADURI	Correct. Code is easy to follow. Efficient. Generalizable.  Kudos for translating R function to MATLAB.
+VHADURI
+It is hard to evaluate because I really do not know Matlab. Based on the explanations on class, I only can say maybe you still need to add the 
+explanations to let the reader to follow you.
+VHADURI
+He showed his function in class and it looked complete.
+VHADURI
+Code looks to be very efficiently written in Mathematica, though I am not familiar to the language. It produces the table but gives some "-1" values 
+which I understand to be the missing values.
+Vhaduri-	Sudip did his lifetable in matlab which was interesting.  I had never seen a presentation on matlab so it was kinda overwhelming with 
+the syntax but I respect anyone who can program in something like that.
+Vhaduri did not submit the text file as directed, but he clarified this by submitting in class.  His code was unique, and he explained it.  Thus any 
+shortfalls were overcome by his presentation.  He did an excellent job.
+
+
+
+Winter
+The documentation, correctness, efficiency (a lot of vectorization to reduce cpu time used up in for loops), clarity and generalizability is very 
+high.
+WINTER	Correct. Well documented. Code is easy to follow. Efficient. Generalizable.  Kudos for translating R function to SAS.
+WINTER
+I love the SAS with macro. I really can learn useful thing from these code. And maybe add little bit explanations will be better.
+6. Winter: The SAS codes run well, and the results are correct. If the codes
+can be more simplified, it will be better.
+WINTER
+Code was well written using SAS. It was a little lengthy but very efficient. It produces all the desired columns which are also very accurate.
+Winter-		Brian's end result was the neatest table.  It looked exactly like the text book whereas all of the codes ran in R looked like a data 
+frame.  It was very interesting seeing it done in SAS.  That was the first time I'd ever seen anyone actually program in SAS.
+Winter also did not submit the text file as directed, but he explained his unique code in class.  He gave insight and taught us about the IMC Proc
+in SAS.  He did an excellent job.
+Bryan:
+His code was in SAS and it was complete.
+
+
+
+
+Spight
+There is no documentation of  these two programs and the programs are no different from the survival package.
+Spight:
+I'm not sure I received the full code
+SPIGHT	Code simply reuses lifetab function from KMsurv package.  Adding a call to library(KMsurv) would  improve code slightly.  Code does not 
+calculate median remaining lifetime at time ti, tmri, nor its standard deviation.
+SPIGHT
+I think you misunderstand the requirement or maybe you submit a wrong file. We should calculate and then output the form, but not output the form 
+directly.
+SPIGHT
+Just used lifetab() function and did not code it at all.
+1. Spight: I did not see any valuable part from codes.
+SPIGHT
+The life table function was used to produce the table which was good. Some of the columns that we were supposed to produce were however not 
+produced.
+Spight-		I copied the notepad file directly into R and I got an error message that "R could not find lifetab function".
+Spight merely used the already written function in R and did not submit a text file.  Spight did not complete the assignment.  Spight did an
+unsatisfactory job.
+
+
+
+Zhao
+There is no documentation of  these two programs and the programs are no different from the survival package.
+Zhao:
+Diff() used effectively for multiple function definitions. Reference Ngutu for tmr and var.tmr code. Very clean and efficient code in general
+ZHAO	Code simply reuses source code from lifetab function from KMsurv package.   Call to user-defined function life.T is called before it is 
+created in the script. Code does not calculate median remaining lifetime at time ti, tmri, nor its standard deviation.
+ZHAO
+More professional and easier to follow with little bit explanations.
+Zhao:
+His code is not complete. A few columns are missing.
+ZHAO
+The R code produces the right table. The table is accurate using the code from life table in KM Surv. The last two columns are also not produced and 
+maybe the code can be improved to produce the columns.
+ZHAO-		This code looks identical to my own code with the warning message.  Still a good table.
+Zhao's code as written does not compile for me.  He does display a good table missing two columns.  His code looks good though despite an
+imperfection.  He did a good job.

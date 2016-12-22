@@ -1,0 +1,451 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+% By  using hyperref={pdfpagelabels=false} you get rid off:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Using lmondern and you get rid off this:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+\usepackage{hyperref}
+
+% If \titel{…} \author{…} come after \begin{document} 
+% you get the following warnig:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% So it is here before \begin{document}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{fix-cm}
+
+\title{PAIRED    COMPARISON BETWEEN  TREATMENT  GROUPS}   
+\author{Nana Boateng \\
+ Bo Jiang\\
+ William Terry \\
+Jingnan Zhao} 
+\date{\today} 
+% additional usepackage{beamerthemeshadow} is used
+
+\usepackage{beamerthemeshadow}
+%\usetheme{CambridgeUS}
+    \usepackage[latin1]{inputenc}
+    \usefonttheme{professionalfonts}
+    \usepackage{times}
+    \usepackage{tikz}
+    \usepackage{amsmath}
+    \usepackage{verbatim}
+    \usepackage[T1]{fontenc}
+    \usepackage{mathtools}
+    \usepackage{fix-cm}
+    \usetikzlibrary{arrows,shapes}
+    \DeclareMathOperator*{\Max}{Max}
+
+\usepackage{graphicx}% http;//ctan.org/pkg/graphicx
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{lstautogobble}
+
+\lstset{basicstyle=\ttfamily,
+  mathescape=true,
+  escapeinside=||,
+  autogobble}
+% Let us first define a custom Verbatim environment, that saves us a lot of writing
+  \DefineVerbatimEnvironment{VerbatimTest}{Verbatim}%
+    {showspaces,showtabs,commandchars=\\\{\}}% showspaces and showtabs only for visualizing
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=SAS,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
+\lstset{language=SAS,caption={Descriptive Caption Text},label=DescriptiveLabel}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{color}
+
+
+
+
+
+%\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+%\titleformat{\subsection}[hang]{\bfseries}{}{1em}{}
+
+\setcounter{secnumdepth}{1}
+
+% allows use of "@" in control sequence names
+\makeatletter
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+% this creates a custom and simpler ruled box style
+\newcommand\floatc@simplerule[2]{{\@fs@cfont #1 #2}\par}
+\newcommand\fs@simplerule{\def\@fs@cfont{\bfseries}\let\@fs@capt\floatc@simplerule
+  \def\@fs@pre{\hrule height.8pt depth0pt \kern4pt}%
+  \def\@fs@post{\kern4pt\hrule height.8pt depth0pt \kern4pt \relax}%
+  \def\@fs@mid{\kern8pt}%
+  \let\@fs@iftopcapt\iftrue}
+
+
+
+
+
+\def\aa{\vec{a}}
+\def\bb{\vec{b}}
+\def\cc{\vec{c}}
+\def\ee{\vec{e}}
+\def\pp{\vec{p}}
+\def\xx{\vec{x}}
+\def\yy{\vec{y}}
+\def\zz{\vec{z}}
+\def\PP{\vec{P}}
+\def\SS{\vec{S}}
+\def\aalpha{\vec{\alpha}}
+\def\bbeta{\vec{\beta}}
+\def\ggamma{\vec{\gamma}}
+\def\llambda{\vec{\lambda}}
+\def\nnu{\vec{\nu}}
+
+\def\cD{\mathcal{D}}
+\def\cF{\mathcal{F}}
+\def\cG{\mathcal{G}}
+\def\cI{\mathcal{I}}
+\def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}}
+\def\cN{\mathcal{N}}
+\def\cO{\mathcal{O}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+\def\cS{\mathcal{S}}
+\def\cX{\mathcal{X}}
+%\setbeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+%\useoutertheme{infolines}
+%\usetheme{Hannover}
+%\setcounter{captureframe}{\value{framenumber}}
+\mode<presentation>
+ {
+   \usetheme{Dresden}
+ }
+
+ \setbeamertemplate
+ {footline}{\quad\hfill\insertframenumber/\inserttotalframenumber\strut\quad} 
+
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame} 
+
+\begin{frame}
+\frametitle{Table of contents}
+\tableofcontents
+\end{frame}
+ 
+
+
+\section{Methods of Adjusting P-values} 
+
+
+\begin{frame}
+\frametitle{\textbf{Methods of Adjusting P-values}}
+For k samples,there are a total of $\left( 
+\begin{array}{c} 
+k\\ 
+2 
+\end{array} 
+\right) =\frac{k(k-1)}{2}$ 
+pairwise comparisons
+\pause
+\begin{itemize}
+\item\textbf{\color{blue} Bonferroni Method}\\
+
+
+% \begin{equation*}
+\scalebox{2}{
+$\alpha_{new}=\frac{\alpha}{\frac{k(k-1)}{2}}$}
+%\end{equation*}
+%\end{itemize}
+%\end{frame}
+\pause
+%\begin{itemize}
+\item\textbf{\color{blue} Fishers Protected Least Significant Difference Method}\\
+\begin{itemize}
+\item perform overall F-Test for significant difference.
+\item If significant perform$ \frac{k(k-1)}{2}$ pairewise t-test
+\item Fisher's LSD does not correct for multiple comparisons.
+\end{itemize}
+\end{itemize}
+\end{frame}	
+
+\begin{frame}
+\begin{itemize}
+
+\item\textbf{\color{blue} Tukeys  Honest Significant Difference(HSD) Method}\\
+The normalized mean difference between the groups I and j is given as;
+\pause
+ \begin{equation*}
+\scalebox{1.8}{
+$T _{ij}=\frac{|\bar{x}_{i}-\bar{x}_{j}|}{\sqrt{\frac{MSE}{2}\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)}}>q(\alpha,k,df)$}
+\end{equation*}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{SAS CODES} 
+
+\begin{frame}
+\frametitle{SAS CODES}
+\begin{figure}[h!]
+%  \caption{SAS CODES}
+  \centering
+    \includegraphics[width=10cm,height=3cm]{sas.png}
+%\includegraphics[height=0.5\textheight]{project.png}
+%\label{fig:awesome_image}
+\end{figure} 
+\end{frame}
+\begin{frame}
+\frametitle{SAS OUTPUT}
+\begin{figure}[h!]
+%  \caption{SAS OUTPUT}
+  \centering
+    \includegraphics[width=10cm,height=10cm]{results1.png}
+%\includegraphics[height=0.5\textheight]{project.png}
+%\label{fig:awesome_image}
+\end{figure}
+
+\end{frame}
+
+
+
+%\subsection{Lists I}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Summary of Data}
+\begin{table}[h]
+\centering
+\begin{tabular}{ |l|l|l|l| }
+\multicolumn{3}{c}{} \\
+\cline{1-4}
+  & Low Fat  & Saturated Fat&Unsaturated \\
+&  & &Fat\\
+\hline
+Number of &    15  & 7   & 0     \\
+  Censored observations &  &   &\\
+               \hline
+    Number of &  15    & 23  & 30     \\
+  Events & &  &\\
+               \hline
+
+\end{tabular}
+\caption{Summary of Data }
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+\item In this study we were interested in investigating relationship between diet and development of tumors
+\item We  estimated the survival (tumor-free) function  of the three diet groups in order to obtain information about the distribution of the tumor-free time.
+\item We tested for overall significant difference among the three groups using K-Sample Gehans Generalized Wilcoxon Test, Generalized Log rank and Peto-Peto Test.
+\item After finding a significant difference between the groups,we proceeded to investigate which paired group was contributing  significantly to the diference and found groups 1 and 3 to be so.
+
+\end{itemize}
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+%\section{Section no. 4}
+%\subsection{blocs}
+\begin{frame}
+%\frametitle{blocs}
+
+\begin{block}{}
+Thank you for your attention.Any questions?
+\end{block}
+
+%\begin{exampleblock}{title of the bloc}
+%bloc text
+%\end{exampleblock}
+
+
+%\begin{alertblock}{title of the bloc}
+%%bloc text
+%\end{alertblock}
+\end{frame}
+\begin{frame}
+%\href{run:survival.pdf}{http://yihui.name/en/2008/10/how-to-open-a-file-from-a-hyperlink/}
+\hyperlink{frame6}{\beamergotobutton{Go to frame 6}}	
+\end{frame}
+
+\begin{frame}
+	{\footnotesize
+		\bibliographystyle{authortitle1}
+		\bibliography{TEST}
+	}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+	\bibliographystyle{amsalpha}
+	\bibliography{../bib_files/jabrefmaster.bib}
+	\begin{center}
+		{\bf BIBLIOGRAPHY}
+	\end{center}
+	\addcontentsline{toc}{section}{\rm BIBLIOGRAPHY \dotfill}
+	\begin{thebiblio}{}
+		%---------------------------------------------------------------------------------------------------------------------------
+		
+		
+		
+		\bibitem{BS73}
+		F. Black, M.S. Scholes, \emph{The pricing of options and corporate
+			liabilities}, Journal of Political Economy 81 (1973) 637-659
+		\bibitem{Fas02}
+		G.E. Fasshauer, A.Q.M. Khaliq, D.A. Voss, \emph{Using meshfree
+			approximation for multi-asset American option problems}, Journal of
+		Chinese Institute of Engineers, 27 (2004) 563-571
+		
+		\bibitem{NB11}
+		N. Flyer and B. Fornberg,\emph{ Radial basis function: Development
+			and applications to planetary scale flows, Computers and Fluids}
+		46(2011) 23-32.
+		\bibitem{BEN11}
+		B. Fornberg, E. Larsson, and N. Flyer,\emph{ Stable computations
+			with Gaussian Radial Basis Functions}, SIAM Journal on Scientific
+		Computing, 33 (2011), 869-892.
+		\bibitem{YZE07}
+		Y. Goto, Z. Fei, S.Kan, and E. Kita, \emph{Options valuation by
+			using radial basis function approximation}, Engineering Analysis
+		with Boundary Elements, 31(2007) 836-843.
+		\bibitem{Hon09}
+		Y.C. Hon and Z. Yang, \emph{Meshless collocation method by
+			Delta-shaped basis functions for default barrier model}, Engineering
+		Analysis with Boundary Elements 33(2009) 951-958.
+		\bibitem{ADS06}
+		A.Q.M. Khaliq, D.A. Voss, S.H.K. Kazmi,   \emph{A linearly implicit
+			predictor-corrector scheme for pricing American options using a
+			penalty method approach}, Journal of Banking and Finance,30 (2006)
+		489-502.
+		\bibitem{BSA02}
+		B. Nielsen, O. Skavhaug, and A. Tveito, \emph{Penalty and
+			front-fixing methods for the numerical solution of American option
+			problems}, Journal of Computational Finance, 5 (2002) 69-97.
+		\bibitem{BOA08}
+		B. Nielsen, O. Skavhaug, and A. Tveito,\emph{ Penalty methods for
+			the numerical solution of American multi-asset option problems},
+		Journal of Computational and Applied Mathematics, 222 (2008) 3-16.
+		\bibitem{UEG}
+		U.  Pettersson, E. Larsson, G.  Marcusson, and J. Persson,
+		\emph{Improved radial basis function methods for multi-dimensional
+			option pricing}, Journal of Computational and Applied Mathematics,
+		222 (2008) 82-93
+		\bibitem{SE09}
+		S. A. Sarra and E. J. Kansa,  \emph{Multiquadric Radial Basis
+			Function Approximation Methods for the Numerical Solution of Partial
+			Differential Equations}. Advances in Computational Mechanics, Tech
+		Series Press, 2 (2009).
+		%\bibitem{PSJ}
+		%Paul Wilmott,Sam Howson,Jeff Dewynne  \emph{The Mathematics of
+		%Financial Derivatives}. A Student Introduction, Cambridge university
+		%press.
+		\bibitem{higham}
+		Desmond J. Higham  \emph{An Introduction to Financial Option
+			Valuation}. Mathematics,Stochchastics and Computation,cambridge
+		univeristy press(2004).
+		\bibitem{CF}
+		Omur Ogur \emph{An Introduction to Computational Finance}.Imperial
+		College press
+		\bibitem{Wilmot}
+		Paul Wilmot,Sam Howson,Jeff Dewynne\emph{The Mathematics of
+			Financial Derivatives}:A Student Introduction.Cambridge University
+		press
+		\bibitem{Hon}
+		Yiu-Chung Hon,Xian-Zhang Mao\emph{A Radial Basis Function Method for
+			Solving Options Pricing Models}.The Journal of Finacial
+		Engineering.(1999)
+		
+		\bibitem{KK}
+		A.Q.M. Khaliq, D.A. Voss,Greg E.Fasshauer\emph{A Parallel Time
+			Stepping Approach using Mesh-free Approximations for Pricing Options
+			with Non-Smooth Payouts}:A Student Introduction.The Journal of
+		Risk(2009)
+	\end{thebiblio}
+\end{frame}
+\end{document}

@@ -1,0 +1,195 @@
+Problem 5.3
+
+H_0:S_1=S_2=S_3
+H_a:S_i!=S_j  for some i,j:i!=j
+
+S_1=714
+S_2=-37
+S_3=-677
+W=238522
+X^2=12.05828
+
+X^2(.025,2)=7.38
+
+X^2>X^2(.025,2) so reject H_0 and conclude there is a difference in time for different treatments.
+
+
+> Three(low,clow,sat,csat,unsat,cunsat)
+[1] 714
+[1] -37
+[1] -677
+[1] 238522
+[1] 12.05828
+   time censored group1 group2 group3
+1    43        0      0    -89      0
+2    46        0      0    -87      0
+3    50        0    -85      0      0
+4    56        0    -82      0      0
+5    56        0      0    -82      0
+6    58        0      0    -79      0
+7    60        0      0      0    -77
+8    63        0      0      0    -73
+9    63        0      0      0    -73
+10   63        0      0      0    -73
+11   65        0    -69      0      0
+12   66        0    -64      0      0
+13   66        0      0      0    -64
+14   66        0      0      0    -64
+15   66        0      0      0    -64
+16   68        0      0    -58      0
+17   68        0      0      0    -58
+18   70        0      0      0    -54
+19   70        0      0      0    -54
+20   73        0    -51      0      0
+21   75        0      0    -49      0
+22   77        0    -45      0      0
+23   77        0      0      0    -45
+24   77        0      0      0    -45
+25   79        0      0    -41      0
+26   81        0      0    -39      0
+27   84        0    -36      0      0
+28   84        0      0      0    -36
+29   86        0    -31      0      0
+30   86        0      0    -31      0
+31   86        0      0    -31      0
+32   87        0    -27      0      0
+33   89        0      0    -25      0
+34   91        0      0      0    -22
+35   91        0      0      0    -22
+36   94        0      0      0    -19
+37   96        0      0    -17      0
+38   98        0      0    -14      0
+39   98        0      0      0    -14
+40  101        0      0      0    -11
+41  105        0      0     -8      0
+42  105        0      0      0     -8
+43  107        0      0     -5      0
+44  108        0      0      0     -3
+45  109        0      0      0     -1
+46  110        0      0      1      0
+47  112        0      0      0      4
+48  112        0      0      0      4
+49  115        0      0      0      7
+50  117        0      0      9      0
+51  119        0     11      0      0
+52  124        0      0     13      0
+53  126        0      0     16      0
+54  126        0      0      0     16
+55  133        0      0     19      0
+56  140        0     21      0      0
+57  140        1     56      0      0
+58  142        0      0     25      0
+59  142        0      0     25      0
+60  143        0      0      0     28
+61  153        0     31      0      0
+62  153        0      0      0     31
+63  161        0      0      0     34
+64  164        0      0      0     36
+65  165        0      0     38      0
+66  170        1      0     64      0
+67  177        0     41      0      0
+68  178        0      0      0     43
+69  181        0     45      0      0
+70  191        0     47      0      0
+71  200        1     68      0      0
+72  200        1     68      0      0
+73  200        1     68      0      0
+74  200        1     68      0      0
+75  200        1     68      0      0
+76  200        1     68      0      0
+77  200        1     68      0      0
+78  200        1     68      0      0
+79  200        1     68      0      0
+80  200        1     68      0      0
+81  200        1     68      0      0
+82  200        1     68      0      0
+83  200        1     68      0      0
+84  200        1     68      0      0
+85  200        1      0     68      0
+86  200        1      0     68      0
+87  200        1      0     68      0
+88  200        1      0     68      0
+89  200        1      0     68      0
+90  200        1      0     68      0
+
+Three<-function(x1,c1,x2,c2,x3,c3){
+#x1 and x2 and x3 are all data pts. for treatments 1,2, and 3 respectively
+#c1 and c2 and c3 denote censored or non for all data pts. from treatments 1,2,3
+#respectively 1 for censored and 0 for not
+	cx<-c(x1,c1,rep(1,length(x1)))
+	dim(cx)<-c(length(x1),3)
+	cx2<-c(x2,c2,rep(2,length(x2)))
+	dim(cx2)<-c(length(x2),3)
+	cx3<-c(x3,c3,rep(3,length(x3)))
+	tl<-length(x1)+length(x2)+length(x3)
+	combin<-c(x1,x2,x3,c1,c2,c3,rep(1,length(x1)),rep(2,length(x2)),rep(3,length(x3)),rep(0,tl),rep(0,tl),rep(0,tl))
+	dim(combin)<-c(length(x2)+length(x1)+length(x3),6)
+	combin<-combin[order(combin[,1]),]
+	for (i in 1:length(combin[,1])){
+		greater=0
+		for (j in 1:length(combin[,1])){
+			if(i!=j){
+				if(combin[j,2]==1){
+					if(combin[i,2]==1){
+						if(combin[i,1]<combin[j,1]){
+	 						greater=greater+0}}}}
+
+			if(i!=j){
+				if(combin[j,2]==0){
+					if(combin[i,2]==1){
+						if(combin[i,1]>=combin[j,1]){
+	 						greater=greater+1}}}}
+
+			if(i!=j){
+				if(combin[j,2]==1){
+					if(combin[i,2]==0){
+						if(combin[i,1]>combin[j,1]){
+	 						greater=greater+0}
+					if(combin[i,1]<=combin[j,1]){
+	 					greater=greater-1}}}}					
+			if(i!=j){
+			if(combin[j,2]==0){
+				if(combin[i,2]==0){
+					if(combin[i,1]>combin[j,1]){
+	 					greater=greater+1}
+					if(combin[i,1]<combin[j,1]){
+	 					greater=greater-1}}}}
+		combin[i,4]=greater}
+		}
+	n1=length(x1)
+	n2=length(x2)
+	n3=length(x3)
+	N=n1+n2+n3
+	S1=sum(c(combin[,3]==1)*combin[,4])
+	S2=sum(c(combin[,3]==2)*combin[,4])
+	S3=sum(c(combin[,3]==3)*combin[,4])
+	W=sum(combin[,4]^2)
+	sSq=W/(N-1)
+	ChiSquare=(S1^2/n1+S2^2/n2+S3^2/n3)/sSq
+	time=combin[,1]
+	censored=combin[,2]
+	w_i=combin[,4]
+	group=combin[,3]
+	for (i in 1:(length(combin[,1]))){
+		if(group[i]==1){
+			combin[i,5]=0
+			combin[i,6]=0}
+		if(group[i]==2){
+			combin[i,5]=combin[i,4]
+			combin[i,4]=0
+			combin[i,6]=0}
+		if(group[i]==3){
+			combin[i,6]=combin[i,4]
+			combin[i,4]=0
+			combin[i,5]=0}
+		}
+	group1=combin[,4]
+	group2=combin[,5]
+	group3=combin[,6]
+	table=data.frame(time,censored,group1,group2,group3)
+	print(S1)
+	print(S2)
+	print(S3)
+	print(W)
+	print(ChiSquare)
+	return(table)}

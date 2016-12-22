@@ -1,0 +1,38 @@
+library(survival)
+
+##LYD
+y0 <- rgamma(100, 5, 0.1); mean(y0)
+cens  <- rexp(100,1/60); mean(cens)
+#y <- ifelse(y0< cens, y0, cens); mean(y)
+#NOT (why?) y <- min(y0, cens); mean(y)
+y <- pmin(y0, cens); mean(y)
+d  <- as.numeric(y0<cens); mean(d)
+i <- order(y)
+y <- y[i]
+d <- d[i]
+cens <- cens[i]
+y0 <- y0[i]
+DATA <- data.frame(y,d)
+surv_fit <- survfit(Surv(y, d)~1)
+summary(surv_fit)
+cbind(y0, cens, y, d)
+
+S.F <- 1-pgamma(y, 5, 0.1)
+KM.F <- surv_fit$surv
+matplot(y,cbind(S.F, KM.F), type="l")
+savePlot("c:/class/7762-8762-2013/surv-F", type="jpg")
+
+
+
+#computation of hazard function for Y0
+
+S.F <- 1-pgamma(y, 5, 0.1)
+hazard.F <- dgamma(y, 5, 0.1)/S.F
+plot(y, hazard.F, type="l")
+
+#computation of hazard function for cens
+
+y[KM.F >= 0.5]
+
+
+min(y[1- KM.F >= 0.5])
