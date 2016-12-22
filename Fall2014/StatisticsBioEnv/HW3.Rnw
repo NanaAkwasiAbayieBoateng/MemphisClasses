@@ -1,0 +1,444 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+{\Large MATH 8764} \\
+\vspace{5mm}
+{\Large HOMEWORK 3} \\
+\end{center}
+
+\section{13.5.3}
+
+<<my-label, eval=TRUE, dev='png'>>=
+###############13.5.3##############################
+###########continuous metropolis hastings##########
+n=10000
+d=0.5
+a=c()
+scale=2
+shape=2
+x=rep(1,n)
+y=rep(1,n)
+piy=c()
+pix=c()
+for (t in 1:n){
+  
+  ###proposal density######
+
+  y[t]=rgamma(n=1, round(shape), round(shape)/shape )
+  
+  ## target density ###################
+ 
+  
+  piy[t]=dgamma(y[t], shape, scale, log = FALSE)
+  pix[t]=dgamma(x[t], shape, scale, log = FALSE)
+ 
+  
+  a[t]=min(((piy[t]*y[t])/(pix[t]*x[t])),1)
+  
+  u=runif(n=1, min = -d, max = d)
+  
+  if(u<=a[t]){
+    x[t+1]=y[t] 
+  }else
+    x[t+1]=x[t]  
+}
+
+
+burnin=500
+plot.mcmc<-function(mcmc.out)
+{
+  op=par(mfrow=c(2,2))
+  plot(ts(mcmc.out[burnin:n]),col=2)
+  abline(h=mean(mcmc.out),col="black",lw=2)
+  hist(mcmc.out,prob=TRUE,col="lightgreen"
+       ,axes=TRUE,breaks = "fd",main="  target density",xlab="",ylab="")
+  abline(v=mean(mcmc.out),col="red",lw=2)
+  box(lty = '1373', col = 'black')
+  #qqnorm(mcmc.out,col=4)
+  
+  acf(mcmc.out,col=2,lag.max=100)
+  box(lty = '1373', col = 'black')
+  par(op)
+}
+
+plot.mcmc(x)
+@
+
+
+\section{13.5.6}
+<<>>=
+###############13.5.6###################
+###########continuous metropolis##########
+
+
+r=c()
+y=c()
+piy=c()
+pix=c()
+x=c()
+x[1]=2
+n=10000
+for (t in 1:n){
+
+  ###proposal density######
+y[t]=rnorm(1,mean=x[t],sd=0.4)
+
+## target density pi(y)=cexp(-y^2/2)
+piy[t]=exp(-0.5*y[t]^2)
+
+##target density pi(x)=cexp(-x^2/2)
+pix[t]=exp(-0.5*x[t]^2)
+
+r[t]=piy[t]/pix[t]
+
+u=runif(n=1, min = -d, max = d)
+
+if(u<=r[t]){
+ x[t+1]=y[t] 
+}else
+  x[t+1]=x[t]  
+}
+burnin=500
+plot.mcmc<-function(mcmc.out)
+{
+  op=par(mfrow=c(2,2))
+  plot(ts(mcmc.out[burnin:n]),col=2)
+  abline(h=mean(mcmc.out),col="black",lw=2)
+  hist(mcmc.out,prob=TRUE,col="lightgreen"
+       ,axes=TRUE,breaks = "fd",main="  target density",xlab="",ylab="")
+  abline(v=mean(mcmc.out),col="red",lw=2)
+  box(lty = '1373', col = 'black')
+  #qqnorm(mcmc.out,col=4)
+  
+ # acf(mcmc.out,col=2,lag.max=100)
+  box(lty = '1373', col = 'black')
+  par(op)
+}
+
+plot.mcmc(x)
+
+@
+
+
+
+\section{13.5.7}
+
+<<>>=
+###############13.5.7###################
+###########continuous metropolis##########
+y=c()
+piy=c()
+pix=c()
+x=c()
+x[1]=2
+n=10000
+theta=2
+r=c()
+for (t in 1:n){
+  
+  ###proposal density######
+  y[t]=rnorm(1,mean=x[t],sd=0.4)
+  
+  ## target density pi(y)=cexp(-y^2/2)
+  piy[t]=dexp(y[t],rate=theta)
+  
+  ##target density pi(x)=cexp(-x^2/2)
+  pix[t]=dexp(x[t],rate=theta)
+  
+  r[t]=piy[t]/pix[t]
+  
+  u=runif(n=1, min = 0, max = 1)
+  
+  if(u<=r[t]){
+    x[t+1]=y[t] 
+  }else
+    x[t+1]=x[t]  
+}
+
+plot.mcmc(x)
+@
+<<>>=
+###############13.5.7##############################
+###########continuous metropolis hastings##########
+a=c()
+for (t in 1:n){
+  
+  ###proposal density######
+  
+  y[t]=rnorm(1,mean=x[t],sd=0.4)
+  
+  ## target density pi(y)=thetaexp(-ytheta),pi(x)=thetaexp(-xtheta)
+  ######## pi(y)/pi(x)=exp(theta(x-y))
+
+ 
+  a[t]=min(exp(theta*(x[t]-y[t]))*(y[t]/x[t]),1)
+  
+  u=runif(n=1, min = 0, max = 1)
+  
+  if(u<=a[t]){
+    x[t+1]=y[t] 
+  }else
+    x[t+1]=x[t]  
+}
+plot.mcmc(x)
+@
+
+
+\section{13.5.8}
+<<>>=
+###############13.5.8##############################
+###########continuous metropolis hastings##########
+
+a=c()
+#x[1]=runif(n=1, min = 0, max =1)
+x[1]=-0.09
+(x[1]^34)*((1-x[1])^38)*(2+x[1])^125
+for (t in 1:n){
+  
+  ###proposal density######
+  y[t]=runif(n=1, min = x[t]-1, max = x[t]+1)
+ 
+  ## ####target density pi(y)=ay34(1-y)38(2+y)125,pi(x)=ax34(1-x)38(2+x)125#######
+  ######## #######################################################################
+  
+  piy[t]=(y[t]^34)*((1-y[t])^38)*(2+y[t])^125
+  pix[t]=(x[t]^34)*((1-x[t])^38)*(2+x[t])^125
+  a[t]=min(( piy[t]* y[t])/(pix[t]*x[t]),1)
+  
+ 
+  
+  u=runif(n=1, min = 0, max = 1)
+  
+  if(u<=a[t]){
+    x[t+1]=y[t] 
+  }else
+    x[t+1]=x[t]  
+}
+
+
+plot.mcmc(x)
+@
+
+
+
+\section{13.5.9}
+
+
+
+<<>>=
+###############13.5.9##############################
+###########gibbs smapling##########################
+rm(list=ls())
+
+
+x=c()
+betabinomial<-function(k,yp){
+
+  y=c()
+  x=c()
+  y[1]=yp
+  x[1]=rbinom(n=1, size=15, prob=y[1])
+  alpha=1
+  beta=2
+  for (i in 2:k){
+  
+    x[i]=rbinom(n=1, size=15, prob=y[i-1])
+    y[i]=rbeta(n=1, shape1=x[i]+alpha, shape2=15-x[i]+beta, ncp = 0)
+    
+  }
+
+return(list(y=y[(k-20):k],x=x[(k-20):k]))
+}
+
+betabinomial(1000,1/3)
+betabinomial(1000,1/2)
+betabinomial(1000,2/3)
+@
+
+
+\section{13.5.10}
+
+
+
+
+$f_{y}(y)=c\int_{0}^{\infty} 
+\exp(-(x+y+4xy))dx= c(1+4y)\exp(-y)$\\
+
+$f_{x}(x)=c(1+4y)\exp(-x)$\\
+
+$f(y|x)=\frac{f(x,y)}{f(x)}=\frac{c\exp(-(y+4xy))}{(1+4x)}$\\
+
+$f(x|y)=\frac{f(x,y)}{f(x)}=\frac{c\exp(-(x+4xy))}{(1+4y)}$\\
+
+
+<<>>=
+bivariate= function(k,y1,x1){
+
+  y=c()
+  x=c()
+  y[1]=y1
+  x[1]=x1
+
+  for (i in 2:k){
+    
+    x[i]=exp(-(x[i-1]+4*x[i-1]*y[i-1]))/(1+4*y[i-1])
+    
+    y[i]=exp(-(y[i-1]+4*x[i]*y[i-1]))/(1+4*x[i])
+    
+  }
+  
+ 
+  return(list(y=y,x=x))
+}
+
+bivariate(25,2,4)
+
+@
+
+\section{13.5.11}
+
+$X_{1}|X_{2}=x_{2} \sim N(\mu{1}+ \frac{\sigma_{1}}{\sigma_{2}}\rho(x_{2}-\mu_{2}),(1-\rho^{2})\sigma_{1}^{2})$
+
+$X_{2}|X_{1}=x_{1} \sim N(\mu{2}+ \frac{\sigma_{2}}{\sigma_{1}}\rho(x_{1}-\mu_{1}),(1-\rho^{2})\sigma_{2}^{2})$
+<<eval=TRUE>>=
+###############13.5.11################################
+########### gibbs smapling ##########################
+rm(list=ls())
+gibbsampling=function(N,thin,x1,x2,mean,sigma1,sigma2,rho)
+{
+  mat=matrix(0,ncol=3,nrow=N)
+  mat[,1]=1:N
+  for (i in 1:N) {
+    for (j in 1:thin) {
+      x1=rnorm(n=1, mean = mean[1]+(sigma1/sigma2)*rho*(x2-mean[2]), sd = (1-rho^2)*sigma1^2)
+      y1=rnorm(n=1, mean = mean[2]+(sigma2/sigma1)*rho*(x1-mean[1]), sd = (1-rho^2)*sigma2^2)
+    }
+    mat[i,2:3]=c(x1,y1)
+  }
+  mat=data.frame(mat)
+  names(mat)=c("Iter","x","y")
+  mat
+}
+mat=gibbsampling(N=10000,thin=500,x1=rep_len(x=12, length.out=10000)
+             ,x2=rep_len(x=12, length.out=10000)
+             ,mean=c(0,0)
+             ,sigma1=1
+             ,sigma2=1
+             ,rho=0.7)
+
+gibbsplot=function(x){
+  burn=500
+  N=length(x)
+  mat[(N-10):N,]
+  par(mfrow=c(2,1))
+  plot(1:N,x, type="l", col="purple")
+  abline(h=mean(x),col="black",lw=2)
+  hist(x,prob=TRUE,col="lightgreen"
+       ,axes=TRUE,breaks = "fd",xlab="",ylab="")
+  lines(density(x),main="x2",lw=2)
+}
+gibbsplot(mat[,2])
+gibbsplot(mat[,3])
+@
+
+\section{13.5.12}
+<<>>=
+rm(list=ls())
+  gibbsampling=function(N,thin,x1,x2,mean,sigma1,sigma2,rho)
+  {
+    mat=matrix(0,ncol=3,nrow=N)
+    mat[,1]=1:N
+    for (i in 1:N) {
+      for (j in 1:thin) {
+        x1=rnorm(n=1, mean = mean[1]+(sigma1/sigma2)*rho*(x2-mean[2]), sd = (1-rho^2)*sigma1^2)
+        y1=rnorm(n=1, mean = mean[2]+(sigma2/sigma1)*rho*(x1-mean[1]), sd = (1-rho^2)*sigma2^2)
+      }
+      mat[i,2:3]=c(x1,y1)
+    }
+    mat=data.frame(mat)
+    names(mat)=c("Iter","x","y")
+    mat
+  }
+  mat=gibbsampling(N=10000,thin=500,x1=rep_len(x=12, length.out=10000)
+                   ,x2=rep_len(x=12, length.out=10000)
+                   ,mean=c(0,0)
+                   ,sigma1=1
+                   ,sigma2=1
+                   ,rho=0.7)
+  
+  gibbsplot=function(x){
+    burn=500
+    N=length(x)
+    mat[(N-10):N,]
+    par(mfrow=c(2,1))
+    plot(1:N,x, type="l", col="purple")
+    abline(h=mean(x),col="black",lw=2)
+    hist(x,prob=TRUE,col="lightgreen"
+         ,axes=TRUE,breaks = "fd",xlab="",ylab="")
+    lines(density(x),main="x2",lw=2)
+  }
+  gibbsplot(mat[,2])
+  gibbsplot(mat[,3])
+
+
+
+
+
+@
+
+
+
+\end{document}
+
+
+
+

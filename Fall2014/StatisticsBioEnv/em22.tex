@@ -1,0 +1,243 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+{\Large MATH 8764} \\
+\end{center}
+
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{rm}\hlstd{(}\hlkwc{list}\hlstd{=}\hlkwd{ls}\hlstd{())}
+\hlcom{#install.packages("psych")}
+\hlkwd{library}\hlstd{(psych)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(psych): there is no package called 'psych'}}\begin{alltt}
+\hlstd{n}\hlkwb{=}\hlnum{100}
+\hlstd{m}\hlkwb{=}\hlnum{75}
+\hlstd{mu1}\hlkwb{=}\hlnum{5}
+\hlstd{sigma21}\hlkwb{=}\hlnum{5}
+\hlstd{z}\hlkwb{=}\hlkwd{rnorm}\hlstd{(n,mu1,sigma21)}
+
+\hlstd{beta1}\hlkwb{=}\hlnum{1}
+\hlstd{beta2}\hlkwb{=}\hlnum{4}
+\hlstd{sigma}\hlkwb{=}\hlnum{7}
+\hlstd{yz}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+  \hlstd{yz[i]}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{,beta1}\hlopt{+}\hlstd{beta2}\hlopt{*}\hlstd{z[i],sigma)}
+\hlstd{\}}
+
+\hlstd{z1}\hlkwb{=}\hlkwd{matrix}\hlstd{(z[}\hlnum{1}\hlopt{:}\hlstd{m],m,}\hlnum{1}\hlstd{)}
+\hlstd{y1}\hlkwb{=}\hlkwd{matrix}\hlstd{(yz[}\hlnum{1}\hlopt{:}\hlstd{m],m,}\hlnum{1}\hlstd{)}
+\hlstd{y2}\hlkwb{=}\hlkwd{matrix}\hlstd{(yz[(m}\hlopt{+}\hlnum{1}\hlstd{)}\hlopt{:}\hlstd{n],n}\hlopt{-}\hlstd{m,}\hlnum{1}\hlstd{)}
+
+
+\hlstd{N}\hlkwb{=}\hlnum{1000}  \hlcom{#number of iterations}
+\hlstd{m1}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{3}\hlstd{,N)}  \hlcom{## mu 1  mean of z}
+\hlstd{s}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{8}\hlstd{,N)}  \hlcom{# variance of y|z}
+\hlstd{s[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{8}
+\hlcom{#s=c()}
+\hlstd{s1}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{4}\hlstd{,N)}  \hlcom{#variance of z}
+\hlstd{s1[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{4}
+\hlcom{#s1=c()}
+\hlstd{b1}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,N)}  \hlcom{#beta1}
+\hlstd{b1[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{1}
+\hlcom{#b1=c()}
+\hlstd{b2}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{5}\hlstd{,N)}
+
+\hlcom{#b2=c()}
+\hlstd{b2[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{5}
+
+\hlstd{A}\hlkwb{=}\hlkwd{matrix}\hlstd{(}\hlnum{0}\hlstd{,N,n}\hlopt{-}\hlstd{m)}   \hlcom{#mean of z2|y2}
+
+\hlstd{d}\hlkwb{=}\hlkwd{matrix}\hlstd{(}\hlnum{0}\hlstd{,N)}
+\hlstd{B}\hlkwb{=}\hlkwd{matrix}\hlstd{(}\hlnum{0}\hlstd{,N)}  \hlcom{# variance of z2|y2}
+
+\hlstd{d[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{(s1[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{s[}\hlnum{1}\hlstd{])}\hlopt{/}\hlstd{(s1[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{b2[}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlopt{+}\hlstd{s[}\hlnum{1}\hlstd{])}
+\hlstd{A[}\hlnum{1}\hlstd{,]}\hlkwb{=}\hlstd{(}\hlnum{1}\hlopt{/}\hlstd{(s1[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{b2[}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlstd{))}\hlopt{*}\hlstd{(m1[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{s[}\hlnum{1}\hlstd{]}\hlopt{+}\hlstd{s1[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{y2}\hlopt{-}\hlstd{b1[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{b2[}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{s1[}\hlnum{1}\hlstd{])}
+\hlstd{B[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlkwd{tr}\hlstd{(}\hlkwd{diag}\hlstd{(d[}\hlnum{1}\hlstd{],n}\hlopt{-}\hlstd{m,n}\hlopt{-}\hlstd{m))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): could not find function "{}tr"{}}}\begin{alltt}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{N)\{}
+
+  \hlstd{A[i,]}\hlkwb{=}\hlstd{(}\hlnum{1}\hlopt{/}\hlstd{(s1[i]}\hlopt{*}\hlstd{b2[i]}\hlopt{^}\hlnum{2}\hlstd{))}\hlopt{*}\hlstd{(m1[i]}\hlopt{*}\hlstd{s[i]}\hlopt{+}\hlstd{s1[i]}\hlopt{*}\hlstd{y2}\hlopt{-}\hlstd{b1[i]}\hlopt{*}\hlstd{b2[i]}\hlopt{*}\hlstd{s1[i])}
+  \hlstd{B[i]}\hlkwb{=}\hlkwd{tr}\hlstd{(}\hlkwd{diag}\hlstd{(d[i],n}\hlopt{-}\hlstd{m,n}\hlopt{-}\hlstd{m))}
+
+\hlstd{\}}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}tr"{}}}\begin{alltt}
+\hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{2}\hlopt{:}\hlstd{N)\{}
+
+  \hlstd{d[i]}\hlkwb{=}\hlstd{(s1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{s[i}\hlopt{-}\hlnum{1}\hlstd{])}\hlopt{/}\hlstd{(s1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlopt{+}\hlstd{s[i}\hlopt{-}\hlnum{1}\hlstd{])}
+
+  \hlcom{#B[i]=tr(diag(d[i],n-m,n-m)) }
+
+  \hlstd{s[i]}\hlkwb{=}\hlstd{(}\hlkwd{sum}\hlstd{(y1}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{-}\hlnum{2}\hlopt{*}\hlkwd{sum}\hlstd{(y1)}\hlopt{*}\hlstd{b1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{-}\hlnum{2}\hlopt{*}\hlkwd{sum}\hlstd{(y1}\hlopt{*}\hlstd{z1)}\hlopt{*}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{+}\hlstd{m}\hlopt{*}\hlstd{b1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlopt{+}\hlnum{2}\hlopt{*}\hlstd{b1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlkwd{sum}\hlstd{(z1))}\hlopt{/}\hlstd{n}
+        \hlopt{+}\hlstd{(}\hlkwd{sum}\hlstd{(y2}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{-}\hlnum{2}\hlopt{*}\hlkwd{sum}\hlstd{(y2)}\hlopt{*}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{-}\hlnum{2}\hlopt{*}\hlkwd{t}\hlstd{(y2)}\hlopt{%*%}\hlstd{A[i,]}\hlopt{*}\hlstd{b2[i]}\hlopt{+}\hlstd{(n}\hlopt{-}\hlstd{m)}\hlopt{*}\hlstd{b1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlopt{+}
+         \hlnum{2}\hlopt{*}\hlstd{b1[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlkwd{sum}\hlstd{(A[i,])}\hlopt{+}\hlstd{(b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{+}\hlstd{(b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlstd{(B[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{+}\hlkwd{t}\hlstd{(A[i,])}\hlopt{%*%}\hlstd{A[i,]))}\hlopt{/}\hlstd{n}
+
+
+  \hlstd{s1[i]}\hlkwb{=}\hlstd{(B[i]}\hlopt{+}\hlkwd{t}\hlstd{(A[i}\hlopt{-}\hlnum{1}\hlstd{,])}\hlopt{%*%}\hlstd{A[i}\hlopt{-}\hlnum{1}\hlstd{,]}\hlopt{-}\hlnum{2}\hlopt{*}\hlstd{m1[i]}\hlopt{*}\hlkwd{sum}\hlstd{(A[i}\hlopt{-}\hlnum{1}\hlstd{,])}\hlopt{+}\hlstd{(n}\hlopt{-}\hlstd{m)}\hlopt{*}\hlstd{m1[i]}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{/}\hlstd{(n}\hlopt{-}\hlstd{m)}
+
+ \hlcom{# mu1  }
+  \hlstd{m1[i]}\hlkwb{=}\hlkwd{sum}\hlstd{(A[i}\hlopt{-}\hlnum{1}\hlstd{,])}\hlopt{/}\hlstd{(n}\hlopt{-}\hlstd{m)}
+
+ \hlstd{b1[i]}\hlkwb{=}\hlstd{(}\hlkwd{sum}\hlstd{(y1)}\hlopt{-}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlkwd{sum}\hlstd{(z1)}\hlopt{+}\hlkwd{sum}\hlstd{(y2)}\hlopt{-}\hlstd{b2[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlkwd{sum}\hlstd{(A[i}\hlopt{-}\hlnum{1}\hlstd{,]))}\hlopt{/}\hlstd{n}
+
+
+ \hlstd{b2[i]}\hlkwb{=}\hlstd{(}\hlnum{1}\hlopt{/}\hlstd{(}\hlkwd{sum}\hlstd{(z1}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{+}\hlkwd{t}\hlstd{(A[i,])}\hlopt{%*%}\hlstd{A[i,]}\hlopt{+}\hlstd{B[i]))}\hlopt{*}\hlstd{(}\hlkwd{sum}\hlstd{(z1}\hlopt{*}\hlstd{y1)}\hlopt{-}\hlstd{b1[i]}\hlopt{*}\hlkwd{sum}\hlstd{(z1)}\hlopt{+}
+                                                \hlkwd{sum}\hlstd{(y2}\hlopt{*}\hlstd{A[i,])}\hlopt{-}\hlstd{b1[i]}\hlopt{*}\hlkwd{sum}\hlstd{(A[i,]))}
+
+\hlstd{\}}
+
+
+
+\hlstd{b1[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 9.140172 9.140172 9.140172 9.140172 9.140172 9.140172 9.140172
+##  [8] 9.140172 9.140172 9.140172 9.140172
+\end{verbatim}
+\begin{alltt}
+\hlstd{b2[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 3.412612 3.412612 3.412612 3.412612 3.412612 3.412612 3.412612
+##  [8] 3.412612 3.412612 3.412612 3.412612
+\end{verbatim}
+\begin{alltt}
+\hlstd{s[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N]}
+\end{alltt}
+\begin{verbatim}
+##  [1] -374.3851 -374.3851 -374.3851 -374.3851 -374.3851 -374.3851 -374.3851
+##  [8] -374.3851 -374.3851 -374.3851 -374.3851
+\end{verbatim}
+\begin{alltt}
+\hlstd{s1[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 9 9 9 9 9 9 9 9 9 9 9
+\end{verbatim}
+\begin{alltt}
+\hlstd{m1[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 0 0 0 0 0 0 0 0 0 0 0
+\end{verbatim}
+\begin{alltt}
+\hlcom{#warnings() }
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+\end{document}

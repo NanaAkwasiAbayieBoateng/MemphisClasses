@@ -1,0 +1,251 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+{\Large MATH 8764} \\
+\end{center}
+
+
+$L(\theta,\lambda|\b{Y}=\b{y},\b{Z}=\b{z})=\prod_{i=1}^{n}P(Y_{i}=y_{i},Z_{i}=z_{i}|\theta,\lambda)$\\
+
+$\prod_{i=1}^{n}P(Y_{i}=y_{i},N_{i}=y_{i}+Z_{i}|\theta,\lambda)=\prod_{i=1}^{n}P(Y_{i}=y_{i},|N_{i}\theta,\lambda)P(N_{i}|\lambda)$\\
+
+$\prod_{i=1}^{n}\binom{y_{i}+Z{i}}{y_{i}}\theta^{y_{i}}(1-\theta)^{Z_{i}}\frac{e^{-\lambda}\lambda^{y_{i}+Z_{i}}}{(y_{i}+Z_{i})!}$\\
+
+$\propto \theta^{\sum y_{i}}(1-\theta)^{\sum_{i}^{n}}e^{-n\lambda}\lambda^{\sum_{i}^{n}(y_{i}+Z_{i})}$\\
+
+$l(\theta,\lambda|Z_{i},y_{i})=\sum y\log\theta+\sum Z_{i}\log(1-\theta)-n\lambda+\sum_{i=1}^{n}(y_{i}+Z_{i})\log \lambda$\\
+
+
+
+$Q(\lambda,\theta|\theta^{(m)},\lambda^{(m)})=E_{Z|\theta^{(m)},\lambda^{(m)}}l(\theta,\lambda|Z_{i},y_{i})$\\
+
+$=E_{Z|\theta^{(m)},\lambda^{(m)}} \left(\sum y_{i}\log\theta+ \sum Z_{i}\log(1-\theta)-n\lambda+\sum y_{i}\lambda \right)$\\
+
+$\sum y_{i}\log \theta + E_{Z|\theta^{(m)},\lambda^{(m)}}(\sum Z_{i})\log (1-\theta)-n\lambda+\sum y_{i}\lambda +E_{Z|\theta^{(m)},\lambda^{(m)}}(\sum Z_{i})\log\lambda$\\
+
+$=\sum y_{i}\log\theta+n\lambda^{(m)}(1-\theta^{(m)})\log(1-\theta)-n\lambda+\sum y_{i}\log \lambda+n\lambda^{(m)}(1-\theta{(m)})\log \lambda$\\
+
+$\frac{\partial Q(\lambda,\theta|\theta^{(m)},\lambda^{(m)})}{\partial \theta}=\frac{\sum y_{i}}{\theta}-\frac{n\lambda^{(m)}(1-\theta^{(m)})}{1-\theta}=0|_{\theta=\theta^(m+1)}$\\
+
+$\frac{\partial Q(\lambda,\theta|\theta^{(m)},\lambda^{(m)})}{\partial \theta}=\frac{\sum y_{i}}{\lambda}-\frac{n\lambda^{(m)}(1-\theta^{(m)})}{\lambda}=0|_{\lambda=\lambda^(m+1)}$\\
+
+$\sum y_{i}(1-\theta^{(m+1)})-\theta^{(m+1)}n\lambda^{(m)}(1-\theta^{(m)})=0$\\
+
+
+$\theta^{(m+1)}=\frac{\sum y_{i}}{\sum y_{i}+n\lambda^{(m)}(1-\theta^{(m)})}$\\
+
+$\lambda^{(m+1)}=\frac{\sum y_{i}}{\sum y_{i}+n\lambda^{(m)}(1-\theta^{(m)})}{n}$\\
+
+$\lambda^{(m+1)}=\lambda^{(m)}(1-\theta^{(m)})+\bar{y}$\\
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{rm}\hlstd{(}\hlkwc{list}\hlstd{=}\hlkwd{ls}\hlstd{())}
+\hlkwd{options}\hlstd{(}\hlkwc{digits} \hlstd{=} \hlnum{10}\hlstd{)}
+\hlstd{n}\hlkwb{=}\hlnum{1000}
+\hlstd{lambda1}\hlkwb{=}\hlnum{10}
+\hlstd{theta1}\hlkwb{=}\hlnum{0.8}
+\hlstd{x}\hlkwb{=}\hlkwd{rpois}\hlstd{(n,lambda1)}
+
+
+
+
+\hlstd{y}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{theta}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{lambda}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{,n)}
+\hlstd{theta[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{3}
+\hlstd{lambda[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{3}
+\hlstd{diff}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+
+  \hlstd{y[i]}\hlkwb{=}\hlkwd{rbinom}\hlstd{(}\hlkwc{size}\hlstd{=x[i],} \hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{prob}\hlstd{=theta1)}
+
+
+
+
+\hlstd{\}}
+
+
+
+
+
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{2}\hlopt{:}\hlstd{n)\{}
+
+\hlstd{lambda[i]} \hlkwb{=}\hlstd{lambda[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{theta[i}\hlopt{-}\hlnum{1}\hlstd{])}\hlopt{+}\hlkwd{mean}\hlstd{(y)}
+
+\hlstd{theta[i]}\hlkwb{=}\hlkwd{sum}\hlstd{(y)}\hlopt{/}\hlstd{(}\hlkwd{sum}\hlstd{(y)}\hlopt{+}\hlstd{n}\hlopt{*}\hlstd{lambda[i]}\hlopt{*}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{theta[i}\hlopt{-}\hlnum{1}\hlstd{]))}
+
+\hlstd{diff[i]}\hlkwb{=}\hlkwd{abs}\hlstd{(lambda[i]}\hlopt{-}\hlstd{lambda[i}\hlopt{-}\hlnum{1}\hlstd{])}
+
+\hlstd{\}}
+
+\hlstd{lambda[(n}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{n]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 6.3642549 6.3642549 6.3642549 6.3642549 6.3642549 6.3642549 6.3642549
+##  [8] 6.3642549 6.3642549 6.3642549 6.3642549
+\end{verbatim}
+\begin{alltt}
+\hlstd{theta[(n}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{n]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 1.275404604 1.275404604 1.275404604 1.275404604 1.275404604
+##  [6] 1.275404604 1.275404604 1.275404604 1.275404604 1.275404604
+## [11] 1.275404604
+\end{verbatim}
+\begin{alltt}
+\hlstd{diff[(n}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{n]}
+\end{alltt}
+\begin{verbatim}
+##  [1] 0 0 0 0 0 0 0 0 0 0 0
+\end{verbatim}
+\begin{alltt}
+\hlstd{theta}\hlkwb{=}\hlnum{3}
+\hlstd{lambda}\hlkwb{=}\hlnum{3}
+\hlstd{tol}\hlkwb{=}\hlnum{10}\hlopt{^}\hlstd{(}\hlopt{-}\hlnum{9}\hlstd{)}
+\hlstd{iter}\hlkwb{<-}\hlnum{0}
+\hlstd{maxiter}\hlkwb{=}\hlnum{10000}
+
+\hlstd{diff}\hlkwb{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{)}
+\hlcom{#while((iter<maxiter))\{  }
+\hlkwa{while}\hlstd{((iter}\hlopt{<}\hlstd{maxiter)}\hlopt{&&}\hlstd{((diff)}\hlopt{>}\hlstd{tol))\{}
+    \hlstd{newlambda} \hlkwb{=}\hlstd{lambda}\hlopt{*}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{theta)}\hlopt{+}\hlkwd{mean}\hlstd{(y)}
+
+    \hlstd{newtheta}\hlkwb{=}\hlkwd{sum}\hlstd{(y)}\hlopt{/}\hlstd{(}\hlkwd{sum}\hlstd{(y)}\hlopt{+}\hlstd{n}\hlopt{*}\hlstd{newlambda}\hlopt{*}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{theta))}
+
+
+    \hlstd{diff1}\hlkwb{=}\hlkwd{abs}\hlstd{(newlambda}\hlopt{-}\hlstd{lambda)}
+    \hlstd{diff2}\hlkwb{=}\hlkwd{abs}\hlstd{(newlambda}\hlopt{-}\hlstd{lambda)}
+    \hlstd{diff}\hlkwb{=}\hlkwd{c}\hlstd{(diff1,diff2)}
+    \hlstd{lambda}\hlkwb{=}\hlstd{newlambda}
+    \hlstd{theta}\hlkwb{=}\hlstd{newtheta}
+
+    \hlstd{iter}\hlkwb{=}\hlstd{iter}\hlopt{+}\hlnum{1}
+
+
+  \hlstd{\}}
+
+\hlstd{newlambda}
+\end{alltt}
+\begin{verbatim}
+## [1] 6.3642549
+\end{verbatim}
+\begin{alltt}
+\hlstd{newtheta}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.275404604
+\end{verbatim}
+\begin{alltt}
+\hlstd{diff}
+\end{alltt}
+\begin{verbatim}
+## [1] 4.620552829e-10 4.620552829e-10
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+\end{document}

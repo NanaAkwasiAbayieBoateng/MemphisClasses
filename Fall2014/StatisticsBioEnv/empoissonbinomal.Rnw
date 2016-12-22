@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+{\Large MATH 8764} \\
+\end{center}
+
+
+$L(\theta,\lambda|\b{Y}=\b{y},\b{Z}=\b{z})=\prod_{i=1}^{n}P(Y_{i}=y_{i},Z_{i}=z_{i}|\theta,\lambda)$\\
+
+$\prod_{i=1}^{n}P(Y_{i}=y_{i},N_{i}=y_{i}+Z_{i}|\theta,\lambda)=\prod_{i=1}^{n}P(Y_{i}=y_{i},|N_{i}\theta,\lambda)P(N_{i}|\lambda)$\\
+
+$\prod_{i=1}^{n}\binom{y_{i}+Z{i}}{y_{i}}\theta^{y_{i}}(1-\theta)^{Z_{i}}\frac{e^{-\lambda}\lambda^{y_{i}+Z_{i}}}{(y_{i}+Z_{i})!}$\\
+
+$\propto \theta^{\sum y_{i}}(1-\theta)^{\sum_{i}^{n}}e^{-n\lambda}\lambda^{\sum_{i}^{n}(y_{i}+Z_{i})}$\\
+
+$l(\theta,\lambda|Z_{i},y_{i})=\sum y\log\theta+\sum Z_{i}\log(1-\theta)-n\lambda+\sum_{i=1}^{n}(y_{i}+Z_{i})\log \lambda$\\
+
+
+
+$Q(\lambda,\theta|\theta^{(m)},\lambda^{(m)})=E_{Z|\theta^{(m)},\lambda^{(m)}}l(\theta,\lambda|Z_{i},y_{i})$\\
+
+$=E_{Z|\theta^{(m)},\lambda^{(m)}} \left(\sum y_{i}\log\theta+ \sum Z_{i}\log(1-\theta)-n\lambda+\sum y_{i}\lambda \right)$\\
+
+$\sum y_{i}\log \theta + E_{Z|\theta^{(m)},\lambda^{(m)}}(\sum Z_{i})\log (1-\theta)-n\lambda+\sum y_{i}\lambda +E_{Z|\theta^{(m)},\lambda^{(m)}}(\sum Z_{i})\log\lambda$\\
+
+$=\sum y_{i}\log\theta+n\lambda^{(m)}(1-\theta^{(m)})\log(1-\theta)-n\lambda+\sum y_{i}\log \lambda+n\lambda^{(m)}(1-\theta{(m)})\log \lambda$\\
+
+$\frac{\partial Q(\lambda,\theta|\theta^{(m)},\lambda^{(m)})}{\partial \theta}=\frac{\sum y_{i}}{\theta}-\frac{n\lambda^{(m)}(1-\theta^{(m)})}{1-\theta}=0|_{\theta=\theta^(m+1)}$\\
+
+$\frac{\partial Q(\lambda,\theta|\theta^{(m)},\lambda^{(m)})}{\partial \theta}=\frac{\sum y_{i}}{\lambda}-\frac{n\lambda^{(m)}(1-\theta^{(m)})}{\lambda}=0|_{\lambda=\lambda^(m+1)}$\\
+
+$\sum y_{i}(1-\theta^{(m+1)})-\theta^{(m+1)}n\lambda^{(m)}(1-\theta^{(m)})=0$\\
+
+
+$\theta^{(m+1)}=\frac{\sum y_{i}}{\sum y_{i}+n\lambda^{(m)}(1-\theta^{(m)})}$\\
+
+$\lambda^{(m+1)}=\frac{\sum y_{i}}{\sum y_{i}+n\lambda^{(m)}(1-\theta^{(m)})}{n}$\\
+
+$\lambda^{(m+1)}=\lambda^{(m)}(1-\theta^{(m)})+\bar{y}$\\
+
+<<>>=
+
+rm(list=ls())
+options(digits = 10)
+n=1000
+lambda1=10
+theta1=0.8
+x=rpois(n,lambda1)
+
+
+
+
+y=c()
+theta=c()
+lambda=rep(0,n)
+theta[1]=3
+lambda[1]=3
+diff=c()
+for (i in 1:n){
+  
+  
+  y[i]=rbinom(size=x[i], n=1, prob=theta1)
+  
+   
+  
+  
+}
+
+
+
+
+
+for (i in 2:n){
+  
+lambda[i] =lambda[i-1]*(1-theta[i-1])+mean(y) 
+  
+theta[i]=sum(y)/(sum(y)+n*lambda[i]*(1-theta[i-1]))
+
+diff[i]=abs(lambda[i]-lambda[i-1])
+  
+}
+
+lambda[(n-10):n]
+theta[(n-10):n]
+diff[(n-10):n]
+
+
+
+
+
+
+
+
+theta=3
+lambda=3
+tol=10^(-9)
+iter<-0
+maxiter=10000
+
+diff=c(1,1)
+#while((iter<maxiter)){  
+while((iter<maxiter)&&((diff)>tol)){ 
+    newlambda =lambda*(1-theta)+mean(y) 
+    
+    newtheta=sum(y)/(sum(y)+n*newlambda*(1-theta))
+    
+    
+    diff1=abs(newlambda-lambda)
+    diff2=abs(newlambda-lambda)
+    diff=c(diff1,diff2)
+    lambda=newlambda
+    theta=newtheta
+   
+    iter=iter+1
+  
+    
+  }
+
+newlambda
+newtheta
+diff
+
+
+
+
+@
+
+
+
+\end{document}

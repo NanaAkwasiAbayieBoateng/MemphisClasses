@@ -1,0 +1,339 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+{\Large MATH 8764} \\
+\end{center}
+
+
+$Y_{1}|Z_{1} \sim N(X_{1}\beta,\sigma^2 I_{m\times m})$\\
+\vspace{5mm}
+$Y_{2}|Z_{2} \sim N(X_{2}\beta,\sigma^2 I_{(n-m)\times (n-m)}$\\
+\vspace{5mm}
+$Z_{2} \sim N(\mu,\sigma^2_{1} I_{(n-m)\times (n-m)})$\\
+\vspace{5mm}
+$\large{\varepsilon} \sim N(0,\sigma^2)$\\
+\vspace{5mm}
+$\large{\mu}=\left[\begin{array}{c} \mu_{m+1} \\ \vdots \\ \mu_{n} \end{array} \right]$\\
+\vspace{8mm}
+$\large{\theta}=\left[\begin{array}{c} \beta \\ \sigma^{2} \\ \mu  \end{array} \right]$\\
+\vspace{8mm}
+$\large{\eta}=\left[\begin{array}{c} \mu_{1} \\ \sigma^{2}_{1}   \end{array} \right]$\\
+\[X_{1} = \left[ \begin{array}{cccc}
+1& & z_{1}\\
+
+& \vdots & \vdots &  \\
+& \vdots & \vdots &  \\
+& & &  \\
+%0 &...&\alpha-\beta & 1+2\beta +rk &-(\alpha+\beta)\\
+ 1&&z_{m-1} \\
+ 1 & & z_{m} \end{array} \right] .\]
+ \[X_{2} = \left[ \begin{array}{cccc}
+1& & z_{m+1}\\
+
+& \vdots & \vdots &  \\
+& \vdots & \vdots &  \\
+& & &  \\
+%0 &...&\alpha-\beta & 1+2\beta +rk &-(\alpha+\beta)\\
+ 1&&z_{n-1} \\
+ 1 & & z_{n} \end{array} \right] .\]
+
+$\large{\beta}=\left[\begin{array}{c} \beta_{1} \\ \beta_{2} \end{array} \right]$
+\vspace{5mm}\\
+
+
+$(y_{2}-X_{2}\beta)^{\prime}(y_{2}-X_{2}\beta)=y_{2}^{\prime}y_{2}-2y_{2}^{\prime}X_{2}\beta+\beta^{\prime}X_{2}^{\prime}X_{2}\beta$\\
+
+$(Z_{2}-\mu)^{\prime}(Z_{2}-\mu)=Z_{2}^{\prime}Z_{2}-2Z_{2}^{\prime}\mu+\mu^{\prime}\mu$
+\vspace{5mm}\\
+$X_{2}=[1,z_{2}]$
+\vspace{5mm}\\
+$2y_{2}^{\prime}X_{2}\beta=2y_{2}^{\prime}1\beta_{1}+2y_{2}^{\prime}z_{2}\beta_{2}$
+\vspace{5mm}\\
+\[X_{2}^{\prime}X_{2} =\left[ \begin{array}{c} 1^{\prime} \\ Z_{2}^{\prime} \end{array} \right]\left[1 \hspace{5mm} Z_{2}^{\prime}\right]= \left[ \begin{array}{cccc}
+1^{\prime}1& & 1^{\prime}Z_{2}\\
+ Z_{2}^{\prime}1 & & Z_{2}^{\prime}Z_{2} \end{array} \right] .\]\\
+ 
+
+ \[\beta^{\prime}X_{2}^{\prime}X_{2}\beta = \left[\beta_{1} \beta_{2}\right]\left[ \begin{array}{cccc}
+1^{\prime}1& & 1^{\prime}Z_{2}\\
+ Z_{2}^{\prime}1 & & Z_{2}^{\prime}Z_{2} \end{array} \right] .\] $\times \left[ \begin{array}{c} \beta_{1} \\ \beta_{2} \end{array} \right]$\\
+ 
+ $=\left[\beta_{1}1^{\prime}+\beta_{2}Z_{2}^{\prime}1,\beta_{1}1^{\prime}Z_{2}+\beta_{2} Z_{2}^{\prime}Z_{2}\right]\left[ \begin{array}{c} \beta_{1} \\ \beta_{2} \end{array} \right]$\\
+
+$=(n-m)\beta_{1}^{2}+2\beta_{2}\beta_{1}1^{\prime}Z_{2}+\beta_{2}^{2}Z_{2}^{\prime}Z_{2}$\\
+%_{(n-m)}$
+%+2\beta_{2}\beta_{1}1^{\prime}Z_{2}+\beta_{2}^{2}Z_{2}^{\prime}Z_{2}$\\
+
+
+
+$X_{2}\beta=\left[1,Z_{2}\right]\left[\begin{array}{c} \beta_{1} \\ \beta_{2} \end{array} \right]=1\beta_{1}+\beta_{2}Z_{2}$\\
+
+$X_{2}\beta=\left[1,Z_{2}\right]\left[\begin{array}{c} \beta_{1} \\ \beta_{2} \end{array} \right]=(n-m)\beta_{1}+\beta_{2}Z_{2}$\\
+
+
+$2y_{2}^{\prime}X_{2}\beta=2y_{2}^{\prime}1\beta_{1}+2y_{2}^{\prime}Z_{2}\beta_{2}$ \vspace{5mm}\\
+$2y_{2}^{\prime}X_{2}\beta=2y_{2}^{\prime}(n-m)\beta_{1}+2y_{2}^{\prime}Z_{2}\beta_{2}$\vspace{5mm}\\
+
+
+$f(z_{i}|y_{i})=\frac{f(y_{i}|z_{i})f(z_{i})}{\int f(y_{i}|z_{i})f(z_{i})dz_{i}}\propto f(y_{i}|z_{i})f(z_{i})$\vspace{5mm}\\
+
+
+$f(z_{i}|y_{i}) \propto N(\beta_{1}+\beta_{2}z_{i},\sigma^{2})N(\mu_{1},\sigma^{2}_{1})$\vspace{5mm}\\
+
+$=(2\pi\sigma^{2})^{-\frac{1}{2}}\exp[-\frac{1}{\sigma^{2}}(y_{i}-\beta_{1}+\beta_{2}z_{i})^{2}](2\pi\sigma^{2}_{1})^{-\frac{1}{2}}\exp[-\frac{1}{\sigma^{2}_{1}}(z_{i}-\mu_{1})^{2}]$\vspace{5mm}\\
+
+$\frac{(y_{i}-\beta_{1}+\beta_{2} z_{i})^{2}}{\sigma^{2}}=\frac{y_{i}^{2}+\beta_{1}^{2}+\beta_{2}^{2} z_{i}^{2}+2\beta_{1} \beta_{2} z_{i}-2\beta_{1}y_{i}-2\beta_{2}y_{i} z_{i}}{\sigma^{2}}$\vspace{5mm}\\
+
+%$=\frac{\beta_{1}^{2}+\beta_{2}^{2} z_{i}^{2}+y_{i}^{2}}{\sigma^{2}-2\beta_{1}y_{i}+2(\beta_{1}\beta_{2}-\beta_{1}y_{i})z_{i}}$\vspace{5mm}\\
+$\frac{(z_{i}-\mu_{1})^{2}}{\sigma^{2}_{1}}=\frac{z_{i}^{2}-2\mu_{1}z_{i}+\mu_{1}^{2}}{\sigma^{2}_{1}}$\\
+
+%\begin{equation}
+$\frac{(y_{i}-\beta_{1}+\beta_{2} z_{i})^{2}}{\sigma^{2}}+\frac{(z_{i}-\mu_{1})^{2}}{\sigma^{2}_{1}}=\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)z_{i}^{2}-2\left[\frac{\mu_{1}}{\sigma^{2}_{1}}-\frac{\beta_{1}\beta_{2}}{\sigma^{2}}+\frac{\beta_{2}y_{i}}{\sigma^{2}}\right]z_{i}+\frac{\mu_{1}^{2}}{\sigma^{2}_{1}}+\frac{\beta_{1}^{2}+y_{i}^{2}-2\beta_{1}y_{i}}{\sigma^{2}}$\vspace{5mm}\\
+
+$=\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)\left[z_{i}-\frac{2\left[\frac{\mu_{1}}{\sigma^{2}_{1}}-\frac{\beta_{1}\beta_{2}}{\sigma^{2}}+\frac{\beta_{2}y_{i}}{\sigma^{2}}\right]z_{i}}{\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)}+\frac{\frac{\mu_{1}^{2}}{\sigma^{2}_{1}}+\frac{\beta_{1}^{2}+y_{i}^{2}-2\beta_{1}y_{i}}{\sigma^{2}}}{\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)}  \right]$\vspace{5mm}\\
+
+$\propto  \left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)\left[z_{i}-\frac{\left[\frac{\mu_{1}}{\sigma^{2}_{1}}-\frac{\beta_{1}\beta_{2}}{\sigma^{2}}+\frac{\beta_{2}y_{i}}{\sigma^{2}}\right]{}}{\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)} z_{i} \right]^{2}$\vspace{5mm}\\
+
+
+$f(z_{i}|y_{i})\propto \exp\left(-\frac{1}{2}\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)\left[z_{i}-\frac{\left[\frac{\mu_{1}}{\sigma^{2}_{1}}-\frac{\beta_{1}\beta_{2}}{\sigma^{2}}+\frac{\beta_{2}y_{i}}{\sigma^{2}}\right]z_{i}}{\left(\frac{\beta_{2}^{2}}{\sigma^{2}}+\frac{1}{\sigma^{2}_{1}}\right)}  \right]^{2}\right)$\vspace{5mm}\\
+
+
+$f(z_{i}|y_{i})  \sim  N\left[\frac{\frac{\mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{i}-\beta_{1}\beta_{2}\sigma_{1}^{2}}{\sigma^{2}_{1}\sigma^{2}}}{\frac{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}{\sigma^{2}_{1}\sigma^{2}}},\frac{1}{\frac{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}{\sigma^{2}_{1}\sigma^{2}}}  \right]   $\vspace{5mm}\\
+
+$\sim N \left[\frac{\mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{i}-\beta_{1}\beta_{2}\sigma_{1}^{2}}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}},\frac{\sigma^{2}_{1}\sigma^{2}}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}  \right]$\vspace{5mm}\\
+
+$f(Z_{2}|Y_{2})\sim N[A,B]$
+\vspace{5mm}\\
+$\large{A}=\frac{1}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}\left[\begin{array}{c} \mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{m+1}-\beta_{1}\beta_{2}\sigma_{1}^{2}\\ \vdots \\ \vdots \\ \mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{n}-\beta_{1}\beta_{2}\sigma_{1}^{2} \end{array} \right]$
+\vspace{7mm}\\
+$B=\frac{\sigma^{2}_{1}\sigma^{2}}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}\Huge{I_{(n-m)\times(n-m)}}$\vspace{5mm}\\
+
+
+$L(\theta,\eta|Y,Z)=f_{1}(y_{1}|Z_{1},\theta)f_{2}(y_{2}|Z_{2},\theta)f_(Z_{2}|\eta)$\vspace{5mm}\\
+
+$L(\theta|Y,Z)=(2\pi\sigma^2)^{-\frac{m}{2}}\exp[-\frac{1}{2\sigma^2}(y_{1}-X_{1}\beta)^{\prime}(y_{1}-X_{1}\beta)]\times(2\pi\sigma^2)^{-\frac{n-m}{2}}\exp[-\frac{1}{2\sigma^2}(y_{2}-X_{2}\beta)^{\prime}(y_{2}-X_{2}\beta)]$\hspace{10mm}\\
+$\times (2\pi\sigma^2_{1})^{-\frac{n-m}{2}}\exp[-\frac{1}{2\sigma^2_{1}}(Z_{2}-\mu)^{\prime}(Z_{2}-\mu)]$\\
+
+
+
+$l(\theta|Y,Z)=-\frac{m}{2}\log 2\pi -\frac{m}{2}\log \sigma^{2}-\frac{1}{2\sigma^{2}}(y_{1}^{\prime}y_{1}-2y_{1}^{\prime}X_{1}\beta+\beta^{\prime}X_{1}^{\prime}X_{1}\beta)
+-\frac{(n-m)}{2}\log 2\pi -\frac{(n-m)}{2}\log \sigma^{2}
+\vspace{7mm}\\
+\hspace{7mm}-\frac{1}{2\sigma^{2}}(y_{2}^{\prime}y_{2}-2y_{2}^{\prime}X_{2}\beta+\beta^{\prime}X_{2}^{\prime}X_{2}\beta)
+-\frac{(n-m)}{2}\log 2\pi -\frac{(n-m)}{2}\log \sigma^{2}_{1}-\frac{1}{2\sigma^{2}_{1}}(Z_{2}^{\prime}Z_{2}-2Z_{2}^{\prime}\mu+\mu^{\prime}\mu)$\\
+\vspace{7mm}\\
+\textbf{The Expectation Step} \vspace{7mm}\\
+\vspace{7mm}\\
+$Q(\theta|\theta^{k})=E_{[Z_{2}|\theta^{(k)},y]}\left[l(\theta|Y,Z)\right]$
+\vspace{7mm}\\
+$Q(\theta|\theta^{k})=-\frac{m}{2}\log 2\pi -\frac{m}{2}\log \sigma^{2}-\frac{1}{2\sigma^{2}}(y_{1}^{\prime}y_{1}-2y_{1}^{\prime}X_{1}\beta+\beta^{\prime}X_{1}^{\prime}X_{1}\beta)
+-\frac{(n-m)}{2}\log 2\pi -\frac{(n-m)}{2}\log \sigma^{2}
+\hspace{7mm}-\frac{1}{2\sigma^{2}}E_{Z_{z}|\theta^{k},y}[y_{2}^{\prime}y_{2}-2y_{1}^{\prime
+}1\beta_{1}-2y_{2}^{\prime}Z_{2}\beta_{2}+\beta^{2}_{1(n-m)}+2\beta_{2}\beta_{1}1^{\prime}Z_{2}+\beta_{2}^{2}Z_{2}^{\prime}Z_{2}]
+-\frac{(n-m)}{2}\log 2\pi -\frac{(n-m)}{2}\log \sigma^{2}_{1}-\frac{1}{2\sigma^{2}_{1}}
+E_{Z_{z}|\theta^{k},y}[Z_{2}^{\prime}Z_{2}-2Z_{2}^{\prime}\mu+\mu^{\prime}\mu]$\vspace{5mm}\\
+
+
+$\propto -\frac{m}{2}\log \sigma^{2}-\frac{1}{2\sigma^{2}}(y_{1}^{\prime}y_{1}-2y_{1}^{\prime}X_{1}\beta+\beta^{\prime}X_{1}^{\prime}X_{1}\beta)-\frac{(n-m)}{2}\log \sigma^{2}$\\
+$-\frac{1}{2\sigma^{2}}\left[y_{2}^{\prime}y_{2}-2y_{2}^{\prime
+}1\beta  -2y_{2}^{\prime
+}\vspace{5mm}\\
+A^{*}\beta +(n-m)\beta_{1}^{2}+2\beta_{2}\beta_{1}1^{\prime}A^{*}
++\beta_{2}^{2}(B^{*}+A^{\prime *}A^{*})\right]\\
+-\frac{(n-m)}{2}\log \sigma^{2}_{1}-\frac{1}{2\sigma^{2}_{1}}\left[B^{*}+A^{\prime *}A^{*}-2A^{*}\mu+\mu^{\prime}\mu  \right]$
+
+\vspace{7mm}
+$\propto -\frac{m}{2}\log \sigma^{2}-\frac{1}{2\sigma^{2}}(y_{1}^{\prime}y_{1}-2y_{1}^{\prime}1\beta_{1}
+-2y_{1}^{\prime}Z_{1}\beta_{2}+\beta_{1}^{2}m+2\beta_{2}\beta_{1}1^{\prime}Z_{1}+\beta_{2}^{2}Z_{1}Z_{1}^{\prime})-\frac{(n-m)}{2}\log \sigma^{2}$\\
+$-\frac{1}{2\sigma^{2}}\left[y_{2}^{\prime}y_{2}-2y_{2}^{\prime
+}1\beta_{1}  -2y_{2}^{\prime
+}\\
+A^{*}\beta_{2} +\beta_{1(n-m)}^{2}+2\beta_{2}\beta_{1}1^{\prime}A^{*}+\beta_{2}^{2}(B^{*}+A^{\prime *}A^{*})\right]\\
+-\frac{(n-m)}{2}\log \sigma^{2}_{1}-\frac{1}{2\sigma^{2}_{1}}\left[B^{*}+A^{\prime *}A^{*}-2A^{*}\mu+\mu^{\prime}\mu  \right]$
+
+\vspace{7mm}
+$Q(\theta|\theta^{k})\propto -\frac{n}{2}\log \sigma^{2}-\frac{1}{2\sigma^{2}}(y_{1}^{\prime}y_{1}-2y_{1}^{\prime}1\beta_{1}
+-2y_{1}^{\prime}Z_{1}\beta_{2}+\beta_{1}^{2}m+2\beta_{2}\beta_{1}1^{\prime}Z_{1}+\beta_{2}^{2}Z_{1}Z_{1}^{\prime})-$\\
+$-\frac{1}{2\sigma^{2}}\left[y_{2}^{\prime}y_{2}-2y_{2}^{\prime}1\beta_{1}  -2y_{2}^{\prime
+}\\
+A^{*}\beta_{2} +\beta_{1(n-m)}^{2}+2\beta_{2}\beta_{1}1^{\prime}A^{*}+\beta_{2}^{2}(B^{*}+A^{\prime *}A^{*})\right]\\
+-\frac{(n-m)}{2}\log \sigma^{2}_{1}-\frac{1}{2\sigma^{2}_{1}}\left[B^{*}+A^{\prime *}A^{*}-2A^{*}\mu+\mu^{\prime}\mu  \right]$
+
+\vspace{5mm}
+$\large{A^{*}}=\frac{1}{\sigma^{2(k)}_{1}\beta_{2}^{2(k)}+\sigma^{2(k)}}\left[\begin{array}{c} \mu_{1}^{(k)}\sigma^{2(k)}+\sigma_{1}^{2(k)}y_{m+1}-\beta_{1}^{(k)}\beta_{2}^{(k)}\sigma_{1}^{2(k)}\\ \vdots \\ \vdots \\ \mu_{1}^{(k)}\sigma^{2(k)}+\sigma_{1}^{2(k)}y_{n}-\beta_{1}^{(k)}\beta_{2}^{(k)}\sigma_{1}^{2(k)} \end{array} \right]$
+
+
+%\vspace{7mm}
+%$B^{*}= \frac{\sigma^{2(k)}_{1}\sigma^{2(k)}}{\sigma^{2(k)}_{1}\beta_{2}^{2(k)}+\sigma^{2(k)}}\Huge{I_{(n-m)\times(n-m)}} $ \vspace{5mm}\\
+\vspace{7mm}
+$B^{*}=trace  \left[\frac{\sigma^{2(k)}_{1}\sigma^{2(k)}}{\sigma^{2(k)}_{1}\beta_{2}^{2(k)}+\sigma^{2(k)}}\Huge{I_{(n-m)\times(n-m)}} \right]$ \vspace{5mm}\\
+
+
+
+\textbf{The Maximization Step} \vspace{7mm}\\
+$\frac{\partial Q}{\partial \sigma^{2}}|_{(\sigma^{2}=\sigma^{2(k+1)})}=\frac{-n}{\sigma^{2}}+\frac{1}{2(\sigma^{2})^{2}}\left[y_{1}^{\prime}y_{1}\\
+-2y_{1}^{\prime}1\beta_{1} -2y_{1}^{\prime}Z_{1}\beta_{2}+\beta_{1}^{2}m+2\beta_{1}\beta_{2}1^{\prime}Z_{1}+\beta_{2}^{2}Z_{1}^{\prime}Z_{1}\right]\\
++\frac{1}{2(\sigma^{2})^{2}} 
+\hspace{5mm}     \left[y_{2}^{\prime}y_{2} -2y_{2}^{\prime}1\beta_{1} -2y_{2}^{\prime}A^{*}\beta_{2}+\beta_{1}^{2}(n-m)+2\beta_{1}\beta_{2}1^{\prime}A^{*}+\beta_{2}^{2}(B^{*}+A^{\prime *}A^{*})\right]=0$\\
+
+
+$n\sigma^{2(k+1)}=\left[y_{1}^{\prime}y_{1} \\
+-2y_{1}^{\prime}1\beta_{1} -2y_{1}^{\prime}Z_{1}\beta_{2}+\beta_{1}^{2}m+2\beta_{1}\beta_{2}1^{\prime}Z_{1}+\beta_{2}^{2}Z_{1}^{\prime}Z_{1}\right]+\\\ 
+\hspace{5mm}     \left[y_{2}^{\prime}y_{2} -2y_{2}^{\prime}1\beta_{1} -2y_{2}^{\prime}A^{*}\beta_{2}+\beta_{1}^{2}(n-m)+2\beta_{1}\beta_{2}1^{\prime}A^{*}+\beta_{2}^{2}(B^{*}+A^{\prime *}A^{*})\right]$\\
+
+$\sigma^{2(k+1)}=\frac{1}{n}\left[y_{1}^{\prime}y_{1} \\
+-2y_{1}^{\prime}1\beta_{1} -2y_{1}^{\prime}Z_{1}\beta_{2}+\beta_{1}^{2}m+2\beta_{1}\beta_{2}1^{\prime}Z_{1}+\beta_{2}^{2}Z_{1}^{\prime}Z_{1}\right]+\\\ 
+\hspace{5mm}     \frac{1}{n}\left[y_{2}^{\prime}y_{2} -2y_{2}^{\prime}1\beta_{1} -2y_{2}^{\prime}A^{*}\beta_{2}+\beta_{1}^{2}(n-m)+2\beta_{1}\beta_{2}1^{\prime}A^{*}+\beta_{2}^{2}(B^{*}+A^{\prime *}A^{*})\right]$ \vspace{5mm}\\
+
+
+$\frac{\partial Q}{\partial \sigma^{2}_{1}}|_{(\sigma^{2}_{1}=\sigma^{2(k+1)}_{1})}
+=-\frac{(n-m)}{2\sigma^{2}_{1}}+\frac{1}{2(\sigma^{2})^{2}}\left[B^{*}+A^{\prime *}A^{*}-2A^{\prime *}\mu+\mu^{\prime}\mu  \right]=0$ \vspace{5mm}\\
+
+
+
+
+$(n-m)\sigma_{1}^{2(k+1)}=\left[B^{*}+A^{\prime *}A^{*}-2A^{\prime *}\mu+\mu^{\prime}\mu  \right]$ \vspace{5mm}\\
+
+$\sigma_{1}^{2(k+1)}=\frac{1}{(n-m)}\left[B^{*}+A^{\prime *}A^{*}-2A^{\prime *}\mu+\mu^{\prime}\mu  \right]$ \vspace{5mm}\\
+
+
+$\frac{\partial Q}{\partial \beta_{1}}|_{(\beta_{1}=\beta_{1}^{(k+1)})}=\frac{y_{1}^{\prime}1}{\sigma^{2}}-\frac{\beta_{1}m}{\sigma^{2}}-\frac{\beta_{2}1^{\prime}Z_{1}}{\sigma^{2}}+\frac{y_{2}^{\prime}1}{\sigma^{2}}-\frac{\beta_{1}(n-m)}{\sigma^{2}}-\frac{\beta_{2}1^{\prime}A^{*}}{\sigma^{2}}=0$\vspace{5mm}\\
+
+$\frac{\beta_{1}^{(k+1)}n}{\sigma^{2}}=\frac{y_{1}^{\prime}1}{\sigma^{2}}-\frac{\beta_{2}1^{\prime}Z_{1}}{\sigma^{2}}+\frac{y_{2}^{\prime}1}{\sigma^{2}}-\frac{\beta_{2}1^{\prime}A^{*}}{\sigma^{2}}$\vspace{5mm}\\
+
+
+$\beta_{1}^{(k+1)}=\frac{1}{n}\left[ y_{1}^{\prime}1-\beta_{2}1^{\prime}Z_{1}+y_{2}^{\prime}1  -\beta_{2}1^{\prime}A^{*}\right]$  \vspace{5mm}\\
+$\beta_{1}^{(k+1)}=\frac{1}{n}\left[ \sum_{i=1}^{m}y_{1}-\beta_{2}1^{\prime}Z_{1}+\sum_{i=m+1}^{n} y_{2} -\beta_{2}\frac{1}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}\sum_{i=m+1}^{n}\left[\mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{i}-\beta_{1}\beta_{2}\sigma_{1}^{2} \right]\right]$  \vspace{5mm}\\
+
+
+
+$\frac{\partial Q}{\partial \beta{2}}|_{(\beta_{2}=\beta_{2}^{(k+1)})}=\frac{y_{1}^{\prime}Z_{1}}{\sigma^{2}}-\frac{\beta_{1}1^{\prime}Z_{1}}{\sigma^{2}}-\frac{\beta_{2}Z_{1}^{\prime}Z_{1}}{\sigma^{2}}+\frac{y_{2}^{\prime}A^{*}}{\sigma^{2}}-\frac{\beta_{1}1^{\prime}A^{*}}{\sigma^{2}}-\frac{\beta_{2}(B^{*}+A^{\prime *}A^{*})}{\sigma^{2}}=0$ \vspace{5mm}\\
+
+$\frac{\beta_{2}2^{(k+1)}}{\sigma^{2}}[Z_{1}^{\prime}Z_{1}+B+A^{\prime}A]=\frac{1}{\sigma^2}[y_{1}^{\prime}Z_{1}-\beta_{1}1^{\prime}Z_{1}+y_{2}^{\prime}A^{*}-\beta_{1}1^{\prime}A^{*}]$  \vspace{5mm}\\
+$\beta_{2}^{(k+1)}=[Z_{1}^{\prime}Z_{1}+B+A^{\prime}A]^{-1}[y_{1}^{\prime}Z_{1}-\beta_{1}1^{\prime}Z_{1}+y_{2}^{\prime}A^{*}-\beta_{1}1^{\prime}A^{*}]$  \vspace{5mm}\\
+\vspace{5mm}\\
+$\beta_{2}^{(k+1)}=[Z_{1}^{\prime}Z_{1}+B+A^{\prime}A]^{-1}\left [y_{1}^{\prime}Z_{1}-\beta_{1}1^{\prime}Z_{1}+y_{2}^{\prime}A^{*}-\beta_{1}\frac{1}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}\sum_{i=m+1}^{n}\left[\mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{i}-\beta_{1}\beta_{2}\sigma_{1}^{2} \right] \right]$  \vspace{5mm}\\
+
+$\beta_{2}^{(k+1)}=[Z_{1}^{\prime}Z_{1}+B+A^{\prime}A]^{-1}\left [y_{1}^{\prime}Z_{1}-\beta_{1}\sum_{i=1}^{m}Z_{1_{i}}+y_{2}^{\prime}A^{*}-\beta_{1}\frac{1}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}\sum_{i=m+1}^{n}\left[\mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{i}-\beta_{1}\beta_{2}\sigma_{1}^{2} \right] \right]$  \vspace{5mm}\\
+
+
+
+${\mu^{\prime}\mu}=\left[\mu_{1}\ldots \mu_{1}  \right]_{(n-m)}\left[\begin{array}{c} \mu_{1} \\ \\ \vdots \\ \mu_{1} \end{array} \right]_{(n-m)}$
+\vspace{5mm}\\
+
+
+$=\mu_{1}^{2}+\dots \dots   \ldots + \mu_{1}^{2}=(n-m)\mu_{1}^{2}$\\
+
+$\frac{\partial Q}{\partial \mu{}}|_{(\mu_{1}=\mu_{1}^{(k+1)})}=\frac{-1}{2\sigma^{2}}\left[  -2A^{\prime *}1 +2\mu^{\prime} 1\right]=0$\\
+
+
+$A^{\prime *}1 =\mu^{\prime(k+1)} 1$\\
+
+$A^{\prime *}1 =(n-m)\mu^{(k+1)}_{1}$\\
+
+$\mu^{(k+1)}_{1}=\frac{1}{(n-m)}A^{\prime *}1$\\
+
+
+$\mu^{(k+1)}_{1}=\frac{1}{(n-m)}\frac{1}{\sigma^{2}_{1}\beta_{2}^{2}+\sigma^{2}}\sum_{i=m+1}^{n}\left[\mu_{1}\sigma^{2}+\sigma_{1}^{2}y_{i}-\beta_{1}\beta_{2}\sigma_{1}^{2} \right]$\\
+
+
+\end{document}

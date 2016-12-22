@@ -1,0 +1,597 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+{\Large MATH 8764} \\
+\vspace{5mm}
+{\Large HOMEWORK 3} \\
+\end{center}
+
+\section{13.5.3}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.3##############################}
+\hlcom{###########continuous metropolis hastings##########}
+\hlstd{n}\hlkwb{=}\hlnum{10000}
+\hlstd{d}\hlkwb{=}\hlnum{0.5}
+\hlstd{a}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{scale}\hlkwb{=}\hlnum{2}
+\hlstd{shape}\hlkwb{=}\hlnum{2}
+\hlstd{x}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,n)}
+\hlstd{y}\hlkwb{=}\hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,n)}
+\hlstd{piy}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{pix}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlkwa{for} \hlstd{(t} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+  \hlcom{###proposal density######}
+
+  \hlstd{y[t]}\hlkwb{=}\hlkwd{rgamma}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwd{round}\hlstd{(shape),} \hlkwd{round}\hlstd{(shape)}\hlopt{/}\hlstd{shape )}
+
+  \hlcom{## target density ###################}
+
+
+  \hlstd{piy[t]}\hlkwb{=}\hlkwd{dgamma}\hlstd{(y[t], shape, scale,} \hlkwc{log} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+  \hlstd{pix[t]}\hlkwb{=}\hlkwd{dgamma}\hlstd{(x[t], shape, scale,} \hlkwc{log} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+
+
+  \hlstd{a[t]}\hlkwb{=}\hlkwd{min}\hlstd{(((piy[t]}\hlopt{*}\hlstd{y[t])}\hlopt{/}\hlstd{(pix[t]}\hlopt{*}\hlstd{x[t])),}\hlnum{1}\hlstd{)}
+
+  \hlstd{u}\hlkwb{=}\hlkwd{runif}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{min} \hlstd{=} \hlopt{-}\hlstd{d,} \hlkwc{max} \hlstd{= d)}
+
+  \hlkwa{if}\hlstd{(u}\hlopt{<=}\hlstd{a[t])\{}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{y[t]}
+  \hlstd{\}}\hlkwa{else}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{x[t]}
+\hlstd{\}}
+
+
+\hlstd{burnin}\hlkwb{=}\hlnum{500}
+\hlstd{plot.mcmc}\hlkwb{<-}\hlkwa{function}\hlstd{(}\hlkwc{mcmc.out}\hlstd{)}
+\hlstd{\{}
+  \hlstd{op}\hlkwb{=}\hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{2}\hlstd{))}
+  \hlkwd{plot}\hlstd{(}\hlkwd{ts}\hlstd{(mcmc.out[burnin}\hlopt{:}\hlstd{n]),}\hlkwc{col}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h}\hlstd{=}\hlkwd{mean}\hlstd{(mcmc.out),}\hlkwc{col}\hlstd{=}\hlstr{"black"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{hist}\hlstd{(mcmc.out,}\hlkwc{prob}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{col}\hlstd{=}\hlstr{"lightgreen"}
+       \hlstd{,}\hlkwc{axes}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{breaks} \hlstd{=} \hlstr{"fd"}\hlstd{,}\hlkwc{main}\hlstd{=}\hlstr{"  target density"}\hlstd{,}\hlkwc{xlab}\hlstd{=}\hlstr{""}\hlstd{,}\hlkwc{ylab}\hlstd{=}\hlstr{""}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{v}\hlstd{=}\hlkwd{mean}\hlstd{(mcmc.out),}\hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{box}\hlstd{(}\hlkwc{lty} \hlstd{=} \hlstr{'1373'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
+  \hlcom{#qqnorm(mcmc.out,col=4)}
+
+  \hlkwd{acf}\hlstd{(mcmc.out,}\hlkwc{col}\hlstd{=}\hlnum{2}\hlstd{,}\hlkwc{lag.max}\hlstd{=}\hlnum{100}\hlstd{)}
+  \hlkwd{box}\hlstd{(}\hlkwc{lty} \hlstd{=} \hlstr{'1373'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
+  \hlkwd{par}\hlstd{(op)}
+\hlstd{\}}
+
+\hlkwd{plot.mcmc}\hlstd{(x)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/my-label-1} 
+
+\end{knitrout}
+
+
+\section{13.5.6}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.6###################}
+\hlcom{###########continuous metropolis##########}
+
+
+\hlstd{r}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{y}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{piy}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{pix}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{x}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{x[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{2}
+\hlstd{n}\hlkwb{=}\hlnum{10000}
+\hlkwa{for} \hlstd{(t} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+  \hlcom{###proposal density######}
+\hlstd{y[t]}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{,}\hlkwc{mean}\hlstd{=x[t],}\hlkwc{sd}\hlstd{=}\hlnum{0.4}\hlstd{)}
+
+\hlcom{## target density pi(y)=cexp(-y^2/2)}
+\hlstd{piy[t]}\hlkwb{=}\hlkwd{exp}\hlstd{(}\hlopt{-}\hlnum{0.5}\hlopt{*}\hlstd{y[t]}\hlopt{^}\hlnum{2}\hlstd{)}
+
+\hlcom{##target density pi(x)=cexp(-x^2/2)}
+\hlstd{pix[t]}\hlkwb{=}\hlkwd{exp}\hlstd{(}\hlopt{-}\hlnum{0.5}\hlopt{*}\hlstd{x[t]}\hlopt{^}\hlnum{2}\hlstd{)}
+
+\hlstd{r[t]}\hlkwb{=}\hlstd{piy[t]}\hlopt{/}\hlstd{pix[t]}
+
+\hlstd{u}\hlkwb{=}\hlkwd{runif}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{min} \hlstd{=} \hlopt{-}\hlstd{d,} \hlkwc{max} \hlstd{= d)}
+
+\hlkwa{if}\hlstd{(u}\hlopt{<=}\hlstd{r[t])\{}
+ \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{y[t]}
+\hlstd{\}}\hlkwa{else}
+  \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{x[t]}
+\hlstd{\}}
+\hlstd{burnin}\hlkwb{=}\hlnum{500}
+\hlstd{plot.mcmc}\hlkwb{<-}\hlkwa{function}\hlstd{(}\hlkwc{mcmc.out}\hlstd{)}
+\hlstd{\{}
+  \hlstd{op}\hlkwb{=}\hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{2}\hlstd{))}
+  \hlkwd{plot}\hlstd{(}\hlkwd{ts}\hlstd{(mcmc.out[burnin}\hlopt{:}\hlstd{n]),}\hlkwc{col}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h}\hlstd{=}\hlkwd{mean}\hlstd{(mcmc.out),}\hlkwc{col}\hlstd{=}\hlstr{"black"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{hist}\hlstd{(mcmc.out,}\hlkwc{prob}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{col}\hlstd{=}\hlstr{"lightgreen"}
+       \hlstd{,}\hlkwc{axes}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{breaks} \hlstd{=} \hlstr{"fd"}\hlstd{,}\hlkwc{main}\hlstd{=}\hlstr{"  target density"}\hlstd{,}\hlkwc{xlab}\hlstd{=}\hlstr{""}\hlstd{,}\hlkwc{ylab}\hlstd{=}\hlstr{""}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{v}\hlstd{=}\hlkwd{mean}\hlstd{(mcmc.out),}\hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{box}\hlstd{(}\hlkwc{lty} \hlstd{=} \hlstr{'1373'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
+  \hlcom{#qqnorm(mcmc.out,col=4)}
+
+ \hlcom{# acf(mcmc.out,col=2,lag.max=100)}
+  \hlkwd{box}\hlstd{(}\hlkwc{lty} \hlstd{=} \hlstr{'1373'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
+  \hlkwd{par}\hlstd{(op)}
+\hlstd{\}}
+
+\hlkwd{plot.mcmc}\hlstd{(x)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-1-1} 
+
+\end{knitrout}
+
+
+
+\section{13.5.7}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.7###################}
+\hlcom{###########continuous metropolis##########}
+\hlstd{y}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{piy}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{pix}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{x}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{x[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{2}
+\hlstd{n}\hlkwb{=}\hlnum{10000}
+\hlstd{theta}\hlkwb{=}\hlnum{2}
+\hlstd{r}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlkwa{for} \hlstd{(t} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+  \hlcom{###proposal density######}
+  \hlstd{y[t]}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{,}\hlkwc{mean}\hlstd{=x[t],}\hlkwc{sd}\hlstd{=}\hlnum{0.4}\hlstd{)}
+
+  \hlcom{## target density pi(y)=cexp(-y^2/2)}
+  \hlstd{piy[t]}\hlkwb{=}\hlkwd{dexp}\hlstd{(y[t],}\hlkwc{rate}\hlstd{=theta)}
+
+  \hlcom{##target density pi(x)=cexp(-x^2/2)}
+  \hlstd{pix[t]}\hlkwb{=}\hlkwd{dexp}\hlstd{(x[t],}\hlkwc{rate}\hlstd{=theta)}
+
+  \hlstd{r[t]}\hlkwb{=}\hlstd{piy[t]}\hlopt{/}\hlstd{pix[t]}
+
+  \hlstd{u}\hlkwb{=}\hlkwd{runif}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{min} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{max} \hlstd{=} \hlnum{1}\hlstd{)}
+
+  \hlkwa{if}\hlstd{(u}\hlopt{<=}\hlstd{r[t])\{}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{y[t]}
+  \hlstd{\}}\hlkwa{else}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{x[t]}
+\hlstd{\}}
+
+\hlkwd{plot.mcmc}\hlstd{(x)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-2-1} 
+
+\end{knitrout}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.7##############################}
+\hlcom{###########continuous metropolis hastings##########}
+\hlstd{a}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlkwa{for} \hlstd{(t} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+  \hlcom{###proposal density######}
+
+  \hlstd{y[t]}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{,}\hlkwc{mean}\hlstd{=x[t],}\hlkwc{sd}\hlstd{=}\hlnum{0.4}\hlstd{)}
+
+  \hlcom{## target density pi(y)=thetaexp(-ytheta),pi(x)=thetaexp(-xtheta)}
+  \hlcom{######## pi(y)/pi(x)=exp(theta(x-y))}
+
+
+  \hlstd{a[t]}\hlkwb{=}\hlkwd{min}\hlstd{(}\hlkwd{exp}\hlstd{(theta}\hlopt{*}\hlstd{(x[t]}\hlopt{-}\hlstd{y[t]))}\hlopt{*}\hlstd{(y[t]}\hlopt{/}\hlstd{x[t]),}\hlnum{1}\hlstd{)}
+
+  \hlstd{u}\hlkwb{=}\hlkwd{runif}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{min} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{max} \hlstd{=} \hlnum{1}\hlstd{)}
+
+  \hlkwa{if}\hlstd{(u}\hlopt{<=}\hlstd{a[t])\{}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{y[t]}
+  \hlstd{\}}\hlkwa{else}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{x[t]}
+\hlstd{\}}
+\hlkwd{plot.mcmc}\hlstd{(x)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-3-1} 
+
+\end{knitrout}
+
+
+\section{13.5.8}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.8##############################}
+\hlcom{###########continuous metropolis hastings##########}
+
+\hlstd{a}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlcom{#x[1]=runif(n=1, min = 0, max =1)}
+\hlstd{x[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlopt{-}\hlnum{0.09}
+\hlstd{(x[}\hlnum{1}\hlstd{]}\hlopt{^}\hlnum{34}\hlstd{)}\hlopt{*}\hlstd{((}\hlnum{1}\hlopt{-}\hlstd{x[}\hlnum{1}\hlstd{])}\hlopt{^}\hlnum{38}\hlstd{)}\hlopt{*}\hlstd{(}\hlnum{2}\hlopt{+}\hlstd{x[}\hlnum{1}\hlstd{])}\hlopt{^}\hlnum{125}
+\end{alltt}
+\begin{verbatim}
+## [1] 9.899725
+\end{verbatim}
+\begin{alltt}
+\hlkwa{for} \hlstd{(t} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+
+  \hlcom{###proposal density######}
+  \hlstd{y[t]}\hlkwb{=}\hlkwd{runif}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{min} \hlstd{= x[t]}\hlopt{-}\hlnum{1}\hlstd{,} \hlkwc{max} \hlstd{= x[t]}\hlopt{+}\hlnum{1}\hlstd{)}
+
+  \hlcom{## ####target density pi(y)=ay34(1-y)38(2+y)125,pi(x)=ax34(1-x)38(2+x)125#######}
+  \hlcom{######## #######################################################################}
+
+  \hlstd{piy[t]}\hlkwb{=}\hlstd{(y[t]}\hlopt{^}\hlnum{34}\hlstd{)}\hlopt{*}\hlstd{((}\hlnum{1}\hlopt{-}\hlstd{y[t])}\hlopt{^}\hlnum{38}\hlstd{)}\hlopt{*}\hlstd{(}\hlnum{2}\hlopt{+}\hlstd{y[t])}\hlopt{^}\hlnum{125}
+  \hlstd{pix[t]}\hlkwb{=}\hlstd{(x[t]}\hlopt{^}\hlnum{34}\hlstd{)}\hlopt{*}\hlstd{((}\hlnum{1}\hlopt{-}\hlstd{x[t])}\hlopt{^}\hlnum{38}\hlstd{)}\hlopt{*}\hlstd{(}\hlnum{2}\hlopt{+}\hlstd{x[t])}\hlopt{^}\hlnum{125}
+  \hlstd{a[t]}\hlkwb{=}\hlkwd{min}\hlstd{(( piy[t]}\hlopt{*} \hlstd{y[t])}\hlopt{/}\hlstd{(pix[t]}\hlopt{*}\hlstd{x[t]),}\hlnum{1}\hlstd{)}
+
+
+
+  \hlstd{u}\hlkwb{=}\hlkwd{runif}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{min} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{max} \hlstd{=} \hlnum{1}\hlstd{)}
+
+  \hlkwa{if}\hlstd{(u}\hlopt{<=}\hlstd{a[t])\{}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{y[t]}
+  \hlstd{\}}\hlkwa{else}
+    \hlstd{x[t}\hlopt{+}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{x[t]}
+\hlstd{\}}
+
+
+\hlkwd{plot.mcmc}\hlstd{(x)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-4-1} 
+
+\end{knitrout}
+
+
+
+\section{13.5.9}
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.9##############################}
+\hlcom{###########gibbs smapling##########################}
+\hlkwd{rm}\hlstd{(}\hlkwc{list}\hlstd{=}\hlkwd{ls}\hlstd{())}
+
+
+\hlstd{x}\hlkwb{=}\hlkwd{c}\hlstd{()}
+\hlstd{betabinomial}\hlkwb{<-}\hlkwa{function}\hlstd{(}\hlkwc{k}\hlstd{,}\hlkwc{yp}\hlstd{)\{}
+
+  \hlstd{y}\hlkwb{=}\hlkwd{c}\hlstd{()}
+  \hlstd{x}\hlkwb{=}\hlkwd{c}\hlstd{()}
+  \hlstd{y[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{yp}
+  \hlstd{x[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlkwd{rbinom}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{size}\hlstd{=}\hlnum{15}\hlstd{,} \hlkwc{prob}\hlstd{=y[}\hlnum{1}\hlstd{])}
+  \hlstd{alpha}\hlkwb{=}\hlnum{1}
+  \hlstd{beta}\hlkwb{=}\hlnum{2}
+  \hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{2}\hlopt{:}\hlstd{k)\{}
+
+    \hlstd{x[i]}\hlkwb{=}\hlkwd{rbinom}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{size}\hlstd{=}\hlnum{15}\hlstd{,} \hlkwc{prob}\hlstd{=y[i}\hlopt{-}\hlnum{1}\hlstd{])}
+    \hlstd{y[i]}\hlkwb{=}\hlkwd{rbeta}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{shape1}\hlstd{=x[i]}\hlopt{+}\hlstd{alpha,} \hlkwc{shape2}\hlstd{=}\hlnum{15}\hlopt{-}\hlstd{x[i]}\hlopt{+}\hlstd{beta,} \hlkwc{ncp} \hlstd{=} \hlnum{0}\hlstd{)}
+
+  \hlstd{\}}
+
+\hlkwd{return}\hlstd{(}\hlkwd{list}\hlstd{(}\hlkwc{y}\hlstd{=y[(k}\hlopt{-}\hlnum{20}\hlstd{)}\hlopt{:}\hlstd{k],}\hlkwc{x}\hlstd{=x[(k}\hlopt{-}\hlnum{20}\hlstd{)}\hlopt{:}\hlstd{k]))}
+\hlstd{\}}
+
+\hlkwd{betabinomial}\hlstd{(}\hlnum{1000}\hlstd{,}\hlnum{1}\hlopt{/}\hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $y
+##  [1] 0.419816672 0.224230670 0.128413214 0.085590239 0.057960120
+##  [6] 0.063259136 0.005495782 0.109600497 0.144106208 0.099113718
+## [11] 0.071265304 0.136102416 0.017159257 0.118844992 0.076500002
+## [16] 0.175748320 0.493493920 0.256276397 0.596430994 0.451159143
+## [21] 0.308349888
+## 
+## $x
+##  [1]  9  4  0  0  1  1  0  0  3  2  1  1  0  0  2  1  5  6  8 10  4
+\end{verbatim}
+\begin{alltt}
+\hlkwd{betabinomial}\hlstd{(}\hlnum{1000}\hlstd{,}\hlnum{1}\hlopt{/}\hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $y
+##  [1] 0.8099224 0.8780169 0.9966349 0.9447386 0.9237135 0.8370138 0.6294208
+##  [8] 0.8295979 0.8278446 0.7387856 0.7812277 0.4254263 0.5389853 0.3951268
+## [15] 0.7197565 0.5231662 0.6906865 0.8463740 0.8401495 0.8523484 0.7472702
+## 
+## $x
+##  [1] 12 14 15 15 15 14 11 10 11 13 11  8  8  8  8  8  8 12 13 14 13
+\end{verbatim}
+\begin{alltt}
+\hlkwd{betabinomial}\hlstd{(}\hlnum{1000}\hlstd{,}\hlnum{2}\hlopt{/}\hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $y
+##  [1] 0.6372966 0.9032180 0.7947330 0.4012447 0.5254155 0.4481547 0.5012982
+##  [8] 0.5215020 0.3538476 0.1655451 0.2110924 0.2520561 0.3175256 0.2396446
+## [15] 0.4839602 0.6211245 0.6636051 0.6140720 0.5552199 0.7512670 0.7381661
+## 
+## $x
+##  [1] 10 12 13 10  7  8  9  7  6  4  4  6  4  6  5  7 11 11 11 13 11
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+\section{13.5.10}
+
+
+
+
+$f_{y}(y)=c\int_{0}^{\infty} 
+\exp(-(x+y+4xy))dx= c(1+4y)\exp(-y)$\\
+
+$f_{x}(x)=c(1+4y)\exp(-x)$\\
+
+$f(y|x)=\frac{f(x,y)}{f(x)}=\frac{c\exp(-(y+4xy))}{(1+4x)}$\\
+
+$f(x|y)=\frac{f(x,y)}{f(x)}=\frac{c\exp(-(x+4xy))}{(1+4y)}$\\
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{bivariate}\hlkwb{=} \hlkwa{function}\hlstd{(}\hlkwc{k}\hlstd{,}\hlkwc{y1}\hlstd{,}\hlkwc{x1}\hlstd{)\{}
+
+  \hlstd{y}\hlkwb{=}\hlkwd{c}\hlstd{()}
+  \hlstd{x}\hlkwb{=}\hlkwd{c}\hlstd{()}
+  \hlstd{y[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{y1}
+  \hlstd{x[}\hlnum{1}\hlstd{]}\hlkwb{=}\hlstd{x1}
+
+  \hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{2}\hlopt{:}\hlstd{k)\{}
+
+    \hlstd{x[i]}\hlkwb{=}\hlkwd{exp}\hlstd{(}\hlopt{-}\hlstd{(x[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{+}\hlnum{4}\hlopt{*}\hlstd{x[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{*}\hlstd{y[i}\hlopt{-}\hlnum{1}\hlstd{]))}\hlopt{/}\hlstd{(}\hlnum{1}\hlopt{+}\hlnum{4}\hlopt{*}\hlstd{y[i}\hlopt{-}\hlnum{1}\hlstd{])}
+
+    \hlstd{y[i]}\hlkwb{=}\hlkwd{exp}\hlstd{(}\hlopt{-}\hlstd{(y[i}\hlopt{-}\hlnum{1}\hlstd{]}\hlopt{+}\hlnum{4}\hlopt{*}\hlstd{x[i]}\hlopt{*}\hlstd{y[i}\hlopt{-}\hlnum{1}\hlstd{]))}\hlopt{/}\hlstd{(}\hlnum{1}\hlopt{+}\hlnum{4}\hlopt{*}\hlstd{x[i])}
+
+  \hlstd{\}}
+
+
+  \hlkwd{return}\hlstd{(}\hlkwd{list}\hlstd{(}\hlkwc{y}\hlstd{=y,}\hlkwc{x}\hlstd{=x))}
+\hlstd{\}}
+
+\hlkwd{bivariate}\hlstd{(}\hlnum{25}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{4}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## $y
+##  [1] 2.0000000 0.1353353 0.1709929 0.4093827 0.2424948 0.2479962 0.2937907
+##  [8] 0.2692085 0.2660885 0.2752502 0.2719420 0.2705428 0.2722544 0.2719033
+## [15] 0.2715168 0.2718104 0.2717973 0.2717090 0.2717546 0.2717616 0.2717437
+## [22] 0.2717498 0.2717527 0.2717494 0.2717500
+## 
+## $x
+##  [1] 4.000000e+00 2.577248e-17 6.487856e-01 1.991511e-01 2.242239e-01
+##  [6] 3.263648e-01 2.620434e-01 2.599956e-01 2.806036e-01 2.714214e-01
+## [11] 2.691005e-01 2.731007e-01 2.719727e-01 2.712133e-01 2.719302e-01
+## [16] 2.718390e-01 2.716510e-01 2.717683e-01 2.717739e-01 2.717335e-01
+## [21] 2.717506e-01 2.717556e-01 2.717478e-01 2.717498e-01 2.717514e-01
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\section{13.5.11}
+
+$X_{1}|X_{2}=x_{2} \sim N(\mu{1}+ \frac{\sigma_{1}}{\sigma_{2}}\rho(x_{2}-\mu_{2}),(1-\rho^{2})\sigma_{1}^{2})$
+
+$X_{2}|X_{1}=x_{1} \sim N(\mu{2}+ \frac{\sigma_{2}}{\sigma_{1}}\rho(x_{1}-\mu_{1}),(1-\rho^{2})\sigma_{2}^{2})$
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{###############13.5.11################################}
+\hlcom{########### gibbs smapling ##########################}
+\hlkwd{rm}\hlstd{(}\hlkwc{list}\hlstd{=}\hlkwd{ls}\hlstd{())}
+\hlstd{gibbsampling}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{N}\hlstd{,}\hlkwc{thin}\hlstd{,}\hlkwc{x1}\hlstd{,}\hlkwc{x2}\hlstd{,}\hlkwc{mean}\hlstd{,}\hlkwc{sigma1}\hlstd{,}\hlkwc{sigma2}\hlstd{,}\hlkwc{rho}\hlstd{)}
+\hlstd{\{}
+  \hlstd{mat}\hlkwb{=}\hlkwd{matrix}\hlstd{(}\hlnum{0}\hlstd{,}\hlkwc{ncol}\hlstd{=}\hlnum{3}\hlstd{,}\hlkwc{nrow}\hlstd{=N)}
+  \hlstd{mat[,}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{1}\hlopt{:}\hlstd{N}
+  \hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{N) \{}
+    \hlkwa{for} \hlstd{(j} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{thin) \{}
+      \hlstd{x1}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{mean} \hlstd{= mean[}\hlnum{1}\hlstd{]}\hlopt{+}\hlstd{(sigma1}\hlopt{/}\hlstd{sigma2)}\hlopt{*}\hlstd{rho}\hlopt{*}\hlstd{(x2}\hlopt{-}\hlstd{mean[}\hlnum{2}\hlstd{]),} \hlkwc{sd} \hlstd{= (}\hlnum{1}\hlopt{-}\hlstd{rho}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlstd{sigma1}\hlopt{^}\hlnum{2}\hlstd{)}
+      \hlstd{y1}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{mean} \hlstd{= mean[}\hlnum{2}\hlstd{]}\hlopt{+}\hlstd{(sigma2}\hlopt{/}\hlstd{sigma1)}\hlopt{*}\hlstd{rho}\hlopt{*}\hlstd{(x1}\hlopt{-}\hlstd{mean[}\hlnum{1}\hlstd{]),} \hlkwc{sd} \hlstd{= (}\hlnum{1}\hlopt{-}\hlstd{rho}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlstd{sigma2}\hlopt{^}\hlnum{2}\hlstd{)}
+    \hlstd{\}}
+    \hlstd{mat[i,}\hlnum{2}\hlopt{:}\hlnum{3}\hlstd{]}\hlkwb{=}\hlkwd{c}\hlstd{(x1,y1)}
+  \hlstd{\}}
+  \hlstd{mat}\hlkwb{=}\hlkwd{data.frame}\hlstd{(mat)}
+  \hlkwd{names}\hlstd{(mat)}\hlkwb{=}\hlkwd{c}\hlstd{(}\hlstr{"Iter"}\hlstd{,}\hlstr{"x"}\hlstd{,}\hlstr{"y"}\hlstd{)}
+  \hlstd{mat}
+\hlstd{\}}
+\hlstd{mat}\hlkwb{=}\hlkwd{gibbsampling}\hlstd{(}\hlkwc{N}\hlstd{=}\hlnum{10000}\hlstd{,}\hlkwc{thin}\hlstd{=}\hlnum{500}\hlstd{,}\hlkwc{x1}\hlstd{=}\hlkwd{rep_len}\hlstd{(}\hlkwc{x}\hlstd{=}\hlnum{12}\hlstd{,} \hlkwc{length.out}\hlstd{=}\hlnum{10000}\hlstd{)}
+             \hlstd{,}\hlkwc{x2}\hlstd{=}\hlkwd{rep_len}\hlstd{(}\hlkwc{x}\hlstd{=}\hlnum{12}\hlstd{,} \hlkwc{length.out}\hlstd{=}\hlnum{10000}\hlstd{)}
+             \hlstd{,}\hlkwc{mean}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{)}
+             \hlstd{,}\hlkwc{sigma1}\hlstd{=}\hlnum{1}
+             \hlstd{,}\hlkwc{sigma2}\hlstd{=}\hlnum{1}
+             \hlstd{,}\hlkwc{rho}\hlstd{=}\hlnum{0.7}\hlstd{)}
+
+\hlstd{gibbsplot}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
+  \hlstd{burn}\hlkwb{=}\hlnum{500}
+  \hlstd{N}\hlkwb{=}\hlkwd{length}\hlstd{(x)}
+  \hlstd{mat[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N,]}
+  \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{))}
+  \hlkwd{plot}\hlstd{(}\hlnum{1}\hlopt{:}\hlstd{N,x,} \hlkwc{type}\hlstd{=}\hlstr{"l"}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"purple"}\hlstd{)}
+  \hlkwd{abline}\hlstd{(}\hlkwc{h}\hlstd{=}\hlkwd{mean}\hlstd{(x),}\hlkwc{col}\hlstd{=}\hlstr{"black"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlkwd{hist}\hlstd{(x,}\hlkwc{prob}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{col}\hlstd{=}\hlstr{"lightgreen"}
+       \hlstd{,}\hlkwc{axes}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{breaks} \hlstd{=} \hlstr{"fd"}\hlstd{,}\hlkwc{xlab}\hlstd{=}\hlstr{""}\hlstd{,}\hlkwc{ylab}\hlstd{=}\hlstr{""}\hlstd{)}
+  \hlkwd{lines}\hlstd{(}\hlkwd{density}\hlstd{(x),}\hlkwc{main}\hlstd{=}\hlstr{"x2"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+\hlstd{\}}
+\hlkwd{gibbsplot}\hlstd{(mat[,}\hlnum{2}\hlstd{])}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
+\begin{kframe}\begin{alltt}
+\hlkwd{gibbsplot}\hlstd{(mat[,}\hlnum{3}\hlstd{])}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-2} 
+
+\end{knitrout}
+
+\section{13.5.12}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{rm}\hlstd{(}\hlkwc{list}\hlstd{=}\hlkwd{ls}\hlstd{())}
+  \hlstd{gibbsampling}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{N}\hlstd{,}\hlkwc{thin}\hlstd{,}\hlkwc{x1}\hlstd{,}\hlkwc{x2}\hlstd{,}\hlkwc{mean}\hlstd{,}\hlkwc{sigma1}\hlstd{,}\hlkwc{sigma2}\hlstd{,}\hlkwc{rho}\hlstd{)}
+  \hlstd{\{}
+    \hlstd{mat}\hlkwb{=}\hlkwd{matrix}\hlstd{(}\hlnum{0}\hlstd{,}\hlkwc{ncol}\hlstd{=}\hlnum{3}\hlstd{,}\hlkwc{nrow}\hlstd{=N)}
+    \hlstd{mat[,}\hlnum{1}\hlstd{]}\hlkwb{=}\hlnum{1}\hlopt{:}\hlstd{N}
+    \hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{N) \{}
+      \hlkwa{for} \hlstd{(j} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{thin) \{}
+        \hlstd{x1}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{mean} \hlstd{= mean[}\hlnum{1}\hlstd{]}\hlopt{+}\hlstd{(sigma1}\hlopt{/}\hlstd{sigma2)}\hlopt{*}\hlstd{rho}\hlopt{*}\hlstd{(x2}\hlopt{-}\hlstd{mean[}\hlnum{2}\hlstd{]),} \hlkwc{sd} \hlstd{= (}\hlnum{1}\hlopt{-}\hlstd{rho}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlstd{sigma1}\hlopt{^}\hlnum{2}\hlstd{)}
+        \hlstd{y1}\hlkwb{=}\hlkwd{rnorm}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{mean} \hlstd{= mean[}\hlnum{2}\hlstd{]}\hlopt{+}\hlstd{(sigma2}\hlopt{/}\hlstd{sigma1)}\hlopt{*}\hlstd{rho}\hlopt{*}\hlstd{(x1}\hlopt{-}\hlstd{mean[}\hlnum{1}\hlstd{]),} \hlkwc{sd} \hlstd{= (}\hlnum{1}\hlopt{-}\hlstd{rho}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlstd{sigma2}\hlopt{^}\hlnum{2}\hlstd{)}
+      \hlstd{\}}
+      \hlstd{mat[i,}\hlnum{2}\hlopt{:}\hlnum{3}\hlstd{]}\hlkwb{=}\hlkwd{c}\hlstd{(x1,y1)}
+    \hlstd{\}}
+    \hlstd{mat}\hlkwb{=}\hlkwd{data.frame}\hlstd{(mat)}
+    \hlkwd{names}\hlstd{(mat)}\hlkwb{=}\hlkwd{c}\hlstd{(}\hlstr{"Iter"}\hlstd{,}\hlstr{"x"}\hlstd{,}\hlstr{"y"}\hlstd{)}
+    \hlstd{mat}
+  \hlstd{\}}
+  \hlstd{mat}\hlkwb{=}\hlkwd{gibbsampling}\hlstd{(}\hlkwc{N}\hlstd{=}\hlnum{10000}\hlstd{,}\hlkwc{thin}\hlstd{=}\hlnum{500}\hlstd{,}\hlkwc{x1}\hlstd{=}\hlkwd{rep_len}\hlstd{(}\hlkwc{x}\hlstd{=}\hlnum{12}\hlstd{,} \hlkwc{length.out}\hlstd{=}\hlnum{10000}\hlstd{)}
+                   \hlstd{,}\hlkwc{x2}\hlstd{=}\hlkwd{rep_len}\hlstd{(}\hlkwc{x}\hlstd{=}\hlnum{12}\hlstd{,} \hlkwc{length.out}\hlstd{=}\hlnum{10000}\hlstd{)}
+                   \hlstd{,}\hlkwc{mean}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{)}
+                   \hlstd{,}\hlkwc{sigma1}\hlstd{=}\hlnum{1}
+                   \hlstd{,}\hlkwc{sigma2}\hlstd{=}\hlnum{1}
+                   \hlstd{,}\hlkwc{rho}\hlstd{=}\hlnum{0.7}\hlstd{)}
+
+  \hlstd{gibbsplot}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
+    \hlstd{burn}\hlkwb{=}\hlnum{500}
+    \hlstd{N}\hlkwb{=}\hlkwd{length}\hlstd{(x)}
+    \hlstd{mat[(N}\hlopt{-}\hlnum{10}\hlstd{)}\hlopt{:}\hlstd{N,]}
+    \hlkwd{par}\hlstd{(}\hlkwc{mfrow}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{))}
+    \hlkwd{plot}\hlstd{(}\hlnum{1}\hlopt{:}\hlstd{N,x,} \hlkwc{type}\hlstd{=}\hlstr{"l"}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"purple"}\hlstd{)}
+    \hlkwd{abline}\hlstd{(}\hlkwc{h}\hlstd{=}\hlkwd{mean}\hlstd{(x),}\hlkwc{col}\hlstd{=}\hlstr{"black"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+    \hlkwd{hist}\hlstd{(x,}\hlkwc{prob}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{col}\hlstd{=}\hlstr{"lightgreen"}
+         \hlstd{,}\hlkwc{axes}\hlstd{=}\hlnum{TRUE}\hlstd{,}\hlkwc{breaks} \hlstd{=} \hlstr{"fd"}\hlstd{,}\hlkwc{xlab}\hlstd{=}\hlstr{""}\hlstd{,}\hlkwc{ylab}\hlstd{=}\hlstr{""}\hlstd{)}
+    \hlkwd{lines}\hlstd{(}\hlkwd{density}\hlstd{(x),}\hlkwc{main}\hlstd{=}\hlstr{"x2"}\hlstd{,}\hlkwc{lw}\hlstd{=}\hlnum{2}\hlstd{)}
+  \hlstd{\}}
+  \hlkwd{gibbsplot}\hlstd{(mat[,}\hlnum{2}\hlstd{])}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-1} 
+\begin{kframe}\begin{alltt}
+  \hlkwd{gibbsplot}\hlstd{(mat[,}\hlnum{3}\hlstd{])}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-8-2} 
+
+\end{knitrout}
+
+
+
+\end{document}
+
+
+
+

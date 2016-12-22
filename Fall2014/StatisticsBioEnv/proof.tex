@@ -1,0 +1,215 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{alltt}
+\usepackage{setspace,relsize} % for latex(describe()) (Hmisc package) and latex.table
+\usepackage{moreverb}
+\usepackage[pdftex]{lscape}
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+ 
+\setlength{\oddsidemargin}{0.truein}
+\setlength{\evensidemargin}{0.truein}
+\setlength{\textwidth}{6.5truein} \setlength{\topmargin}{-.55truein}
+\setlength{\textheight}{9.0truein}
+
+
+\def\eqalign#1{\null\,\vcenter{\openup\jot\ialign
+{\strut\hfil$\displaystyle{##}$&$\displaystyle{{}##}$\hfil\crcr#1\crcr}}\,}
+\def\refhg{\hangindent=20pt\hangafter=1}
+\def\refmark{\par\vskip 2mm\noindent\refhg}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bphi{\mbox{\boldmath $\phi$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\bJ{{\bf J}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\bY{{\bf Y}}
+\def\bU{{\bf U}}
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\bW{{\bf W}}
+\def\bZ{{\bf Z}}
+\def\bz{{\bf z}}
+\def\logit{\rm logit}
+
+\def\bgn{\begin{eqnarray*}}
+\def\edn{\end{eqnarray*}}
+\def\bg{\begin{eqnarray}}
+
+
+% Fix latex
+\def\smallskip{\vskip\smallskipamount}
+\def\medskip{\vskip\medskipamount}
+\def\bigskip{\vskip\bigskipamount}
+ 
+% Hand made theorem
+\newcounter{thm}[section]
+\renewcommand{\thethm}{\thesection.\arabic{thm}}
+\def\claim#1{\par\medskip\noindent\refstepcounter{thm}\hbox{\bf \arabic{chapter}.\arabic{section}.\arabic{thm}. #1.}
+\it\ %\ignorespaces
+}
+\def\endclaim{
+\par\medskip}
+\newenvironment{thm}{\claim}{\endclaim}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[enlgish]{babel}
+ 
+\newtheorem{theorem}{Theorem}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{center}
+{\Large {\bf Nana Boateng}} \\
+\vspace{5mm}
+{\Large Department of Mathematics} \\
+\vspace{5mm}
+%{\Large MATH 8764} \\
+\vspace{5mm}
+{\Large EM with Marginal Compactibility} \\
+\end{center}
+
+\section{1}
+Let $X_{1},X_{2},\cdots,X_{n}$ be binary exchangeable. \\
+Let $\lambda_{k}=P(X_{1}=X_{2}=\cdots=X_{k}=1|N=n)$\\
+
+$P(X_{1}=x_{1},\cdots,X_{n}=x_{n})=P(X_{1}=1,\cdots,X_{r}=1,X_{r+1}=0,\cdots,X_{n}=0)$\\
+
+$=E[X_{1}X_{2},\cdots,X_{r}(1-X_{r+1},\cdots,(1-X_{n}))]$\\
+
+$=\sum_{k=0}^{n-r}(-1)^{k}\binom{k}{n-r}.1.P(X_{1}=X_{2}=,\cdots,=X_{r+k}=1)$\\
+
+Let $r=\sum_{i=1}^{n-r}x_{i}$ then\\
+
+$P(R=r)=\binom{n}{r}\sum_{k=0}^{n-r}(-1)^{k}\binom{k}{n-r}\lambda_{r+k,n}$\\
+
+\newtheorem{mydef}{Definition}
+\begin{mydef}
+The $M\ddot{o}bius$ function isdefined as:\\
+$\mu(n) = \left\{ \begin{array}{rcl}
+(-1)^{k}   \mbox{\hspace{5mm}if  $n=p_{1},\cdots,p_{k}$ ,for $1\leq i \leq j \leq k$,$p_{i} \neq p_{j}$}
+& \\ 0& \mbox{otherwise}  &\\
+
+\end{array}\right.$\\
+\end{mydef}
+
+\begin{theorem}
+
+Let $n\geq 1$ be an integer\\
+
+$\sum_{d \setminus n}\mu(d) = \left\{ \begin{array}{rcl}
+1   \mbox{\hspace{5mm}if  $n=0$}
+& \\ 0& \mbox{otherwise } &\\
+
+\end{array}\right.$\\
+\end{theorem}
+
+\begin{theorem}[$M\ddot{o}bius Inversion Theorem$]
+
+
+If $f(n)=\sum_{d \setminus n}g(d)$\\
+
+    $g(n)=\sum_{d \setminus n}\mu(\frac{n}{d})f(d)$\\
+      
+\end{theorem}
+
+By the above theorem we can deduce that\\
+
+$\lambda_{r,n}=\frac{\sum_{j=0}^{n-r}\mu(j)}{\binom{n}{n-j}}P_{n-j,n} $\\
+
+
+
+
+
+The conditional distribution of the missing data $S$ is\\
+
+
+$P_{r}(S=s|R=r,\Theta^{(t)})=\frac{P([s\hspace{2mm} out \hspace{0.5mm} of \hspace{2mm} M-n] \&[r\hspace{2mm} out \hspace{0.5mm}of \hspace{2mm}n])}{P(r\hspace{2mm} out\hspace{0.5mm} of \hspace{2mm}n|\Theta^{(t)})}$
+
+
+$=\frac{P(r+s\hspace{2mm} out \hspace{0.5mm} of \hspace{2mm} M)P(r\hspace{2mm} out \hspace{0.5mm}of \hspace{2mm}n|r+s \hspace{2mm} out \hspace{.5mm} of \hspace{2mm}M )}{P(r\hspace{2mm} out\hspace{0.5mm} of \hspace{2mm}n|\Theta^{(t)})}$\\
+
+$\frac{P^{(t)}_{r+s}\frac{\binom{M-r-s}{n-r}\binom{r+s}{r}}{\binom{M}{n}}}{P^{(t)}_{r,n}}$\\
+
+
+$\frac{P^{(t)}_{r+s}\binom{n}{r}\binom{M-n}{s}}{\binom{M}{r+s}P^{(t)}_{r,n}}$\\
+
+
+$Q(\theta | \theta^{t})=E_{s|R=r,\theta^{(t)}}\log P_{r+s,M}$\\
+
+$\sum_{s=0}^{M-n}\frac{\binom{n}{r}\binom{M-n}{s}  P_{r+s,M}^{(t)}}{\binom{M}{r+s}  P_{r,n}}\log P_{r+s,M}$\\
+
+Let $k=r+s$,Then \\
+
+$Q(\theta | \theta^{t})=\frac{\sum_{k=r}^{M-n+r}\binom{n}{r}\binom{M-n}{k-r}P_{k,M}^{(t)}\log P_{k,M}}{\binom{M}{k}P_{r,n}^{(t)}}$\\
+
+
+
+$=\frac{\sum_{k=0}^{M}\binom{n}{r}\binom{M-n}{k-r}P_{k,M}^{(t)}\log P_{k,M}}{\binom{M}{k}P_{r,n}^{(t)}}$\\
+
+
+
+\end{document}
+
+
+
+
