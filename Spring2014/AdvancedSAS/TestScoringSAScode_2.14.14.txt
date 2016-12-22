@@ -1,0 +1,154 @@
+************* HW3 **************;
+/*Homework 3 Patricia Goedecke 2.7.14 - 2.14.14 SAS Dr Wong */
+/* Find the number of correct responses on a test, comparing student responses with the answer key */
+dm log 'clear';
+dm output 'clear';
+ 
+
+  
+  
+Data answer;
+	infile 'F:\UMemphis\Wong SAS\data file tests.txt';
+	  input name$ test @@;
+	   do k=1 to 20;  input ans $ @@;  output;
+           end;
+ run;
+ proc print data=answer;
+	Title 'Data Answer';
+run;
+/*Input Test Data Set*/
+data test;
+infile 'F:\UMemphis\Wong SAS\Data file nametest.txt';
+ input name$ test @@;
+	   do k=1 to 2;  input ans $ @@;  output;
+           end;
+ run;
+ proc print data=test;
+	Title 'Data Test';
+run;
+
+/*concatenate name with test# and item #k*/
+%macro ww;
+	data bb;
+		set answer;
+			call symput(trim(name)||trim(left(test))||trim(left(k)), ans);
+run;
+	%put _user_;
+	%mend ww; 
+	%ww;
+		
+/*Find the number of correct answers for any one test */
+%Macro test1(filename, stud, test); 
+	Title &stud &test;
+	data dd; 
+		%let n=0;
+			%do k=1 %to 20; 
+				%if &&AA&test&k = &&&stud&test&k
+					%then %let n = %eval(&n+1);
+						mm = %eval(&n*1);
+							
+						%end;
+	run;
+		%put _user_;
+		 	proc print;
+			run; 
+	%mend test1;
+	%test1(bb, Tom, 2);	
+		%test1(bb, Jenny, 1);	
+				%test1(bb, Jenny, 2);	
+						%test1(bb, Jenny, 3);	
+								%test1(bb, Jenny, 4);	
+
+
+
+/*Find the number of correct answers for all tests */
+%Macro test2(filename, stud); 
+
+	data dd; 
+		%let n=0;
+					
+	
+		%do t=1 %to 4;
+			Title &stud ;
+
+
+
+					%do k=1 %to 20; 
+							%if &&AA&t&k = &&&stud&t&k
+								%then %let n = %eval(&n+1);
+					%end;
+
+		%end;
+
+	sum = %eval(&n*1);
+	pp = %sysevalf(&n/80*1);	 
+		
+	run;
+	
+			%put _user_;
+			proc print;
+		run; 
+	%mend test2;
+	options mlogic mprint symbolgen;
+	%test2(bb, Jenny);
+				
+
+
+
+/*Find the number of correct answers for all tests OR any test */
+%Macro test3(filename, stud, test); 
+
+	data dd; 
+		%let n=0;
+			%let tst=&test;
+					
+	%if &tst<5
+		%then %do k=1 %to 20; 
+		 	Title &stud &tst;
+					%if &&AA&test&k = &&&stud&test&k
+							%then %let n = %eval(&n+1);
+		%end;
+
+
+
+		%else %do t=1 %to 4;
+			Title &stud ;
+
+					%do k=1 %to 20; 
+							%if &&AA&t&k = &&&stud&t&k
+								%then %let n = %eval(&n+1);
+					%end;	
+	
+				%end;
+
+
+
+	sum = %eval(&n*1);
+		
+	run;
+	
+		%put _user_;
+		proc print;
+	run; 
+	%mend test3;
+	options mlogic mprint symbolgen;
+	%test3(bb, Jenny, "all");
+	%test3(bb, Tom, 2);
+
+				
+
+options mlogic mprint symbolgen;
+
+ /* Problem:
+  
+   1. Write a macro that would give the number of correct answers for any test 
+      of any student. Find the number of correct answers in test #2 for Tom.
+
+   2. Write a macro that would give for any student the total number and percent
+      of correct answers of all tests. Find the total number and percent of 
+      correct answers for Jenny.
+
+   3. Write a macro that can give the total number of correct answers of all 
+      tests or the number of correct answers for any specified test. 
+      Use this macro to answer problems 1 and 2.*/
+

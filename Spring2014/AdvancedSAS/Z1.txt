@@ -1,0 +1,12 @@
+   1 joan  a. smith    female 09 22 96 12 20 64  shoe      30300 
+   2 john c.  park     male   07 13 90 09 25 65  clothing  30000 
+   3  mike    m. katz  male   03 15 98 06 30 60  applianc  37000 
+   4 jenny m. park     female 12 07 95 11 13 62  clothing  25500 
+   5                   male   03 15 95 10 27 70  shoe      27800 
+   6 john p.   manley  male   04 18 97 02 18 75  clothing  23000 
+   7 susy m. smith     female 09 14 99 03 30 89  clothing  19500 
+   8 lisa k. kapling   female 08 23 97 12 15 75  applianc  37900 
+   9 bob  k. park      male   11 12 93 10 10 72  clothing  23000 
+  10  nancy p. kwan    female 10 15 94 09 16 73  clothing  23500 
+  11      miny d. king female 10 22 98 11 22 79  toy       21000 
+  12 jenny a. moby     female 08 06 99 09 30 80  toy       19000 

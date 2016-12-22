@@ -1,0 +1,6 @@
+   1 joan  a. smith    female  67
+   . john c.  park     male    58
+   3  mike   m. katz   male    78
+   4 jenny m. park     female  65
+   5 john  e. clark    male    87
+   . susy  a. smith    female  67

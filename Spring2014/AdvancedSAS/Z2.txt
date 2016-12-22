@@ -1,0 +1,12 @@
+  14 debby  f. sloan   female 01 22 01 12 20 74  shoe      20300 
+   2 john c.  park     male   07 13 90 09 25 65  clothing  31000 
+  13  mike  e. silver  male   02 15 01 06 30 80  shoe      20000 
+   4 jenny m. park     female 12 07 95 11 13 62  clothing  27500 
+   5 mike j. flemming  male   03 15 95 10 27 70  applianc  38800 
+   6                   male   04 18 97 02 18 75  clothing  24000 
+   7 susy m. smith     female 09 14 99 03 30 89  clothing  21500 
+   8 lisa k. kapling   female 08 23 97 12 15 75  applianc  38900 
+   9 bob  k. park      male   11 12 93 10 10 72  clothing  23000 
+  10  nancy p. kwan    female 10 15 94 09 16 73  clothing  24500 
+  11      miny d. king female 10 22 98 11 22 79  clothing  . 
+  12 jenny a. moby     female 08 06 99 09 30 80  toy       19500 

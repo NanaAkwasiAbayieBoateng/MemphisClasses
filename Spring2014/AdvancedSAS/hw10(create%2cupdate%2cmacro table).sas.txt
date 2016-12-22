@@ -1,0 +1,76 @@
+dm log 'clear';
+dm output 'clear';
+options nodate pageno=1 formdlim='*';
+ods html close;
+ods html;
+ods listing;
+
+proc sql;
+create table d1 
+(id num primary key,
+lastname char(30) not null,
+firstname char(20) not null,
+test1 num,
+test2 num,
+days num,
+constraint id_chk check (id le 100 and id gt 0) );
+
+describe table d1;
+
+insert into d1 values (23, 'Arthur', 'Barbara', 60, ., 3);
+insert into d1 values (33, 'Cahill', 'Marshall' ,77 ,55 ,1);
+insert into d1 values (9, 'Carter', 'Dorithy', ., 69, 4);
+insert into d1 values (53, 'Cooper', 'Anthony', 86, 98, 1);
+insert into d1 values (15, 'Dean', 'Sharon', ., ., 10);
+insert into d1 values (10, 'Dunlap', 'Donna', 77, 88, 0);
+insert into d1 values (67, 'Gold', 'Albert', 70, 70, 2);
+
+select * from d1;
+
+*delete from d1 where test1 is missing or test2 is missing;
+update d1 set test1=0 where test1 is missing;
+update d1 set test2=0 where test2 is missing;
+
+alter table d1 modify lastname char(20), firstname char(15);
+
+alter table d1 add avg num;
+update d1 set avg=(test1+test2)/2;
+
+alter table d1 add grade character;
+update d1 set grade='A' where avg le 100 and avg gt 90;
+update d1 set grade='B' where avg le 90 and avg gt 80;
+update d1 set grade='C' where avg le 80 and avg gt 70;
+update d1 set grade='D' where avg le 70 and avg gt 60;
+update d1 set grade='F' where avg le 60;
+
+select * from d1;
+
+update d1 set test2 = test2 + 5 where test2 ne 0;
+
+select * from d1;
+
+update d1 set avg = avg +
+	case days when 0 then 5
+			  when 1 then 3
+			  when 2 then 2
+			  else 0
+	end;
+
+select * from d1;
+
+%macro retrieve(lastname=, option=);
+	proc sql;
+	select lastname, &option from d1 where lastname=&lastname;
+	quit;
+%mend retrieve;
+
+%retrieve(lastname='Cahill', option=grade);
+%retrieve(lastname='Cahill', option=test2);
+
+%macro test_avg(option=);
+	proc sql;
+	select avg(&option) from d1;
+	quit;
+%mend test_avg;
+
+%test_avg(option=test1);

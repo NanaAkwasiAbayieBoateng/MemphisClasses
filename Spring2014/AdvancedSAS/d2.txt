@@ -1,0 +1,9 @@
+male    50     3    11   20
+male    60     4    17   13
+male    75     5    13   23
+male    80     7    14   29
+female  61     7    9    15
+female  63     9    9    16
+female  70     11   13   20
+female  64     14   18   23
+female  70     18   20    29

@@ -1,0 +1,7 @@
+   1 joan     smith           76
+   2 john     park     male   68
+   3  mike    katz     male   .
+   4 jenny    park     female 74 
+   . john     manley   male   .
+   7 susy     smith    female  .
+   . Ted      sloan    male   89
