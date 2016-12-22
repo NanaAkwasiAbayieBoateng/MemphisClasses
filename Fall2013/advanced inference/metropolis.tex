@@ -1,0 +1,509 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+% By  using hyperref={pdfpagelabels=false} you get rid off:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Using lmondern and you get rid off this:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+
+% If \titel{…} \author{…} come after \begin{document} 
+% you get the following warnig:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% So it is here before \begin{document}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{fix-cm}
+
+\title{Understanding The Metropolis-Hastings Algorithm}   
+\author{Nana Boateng } 
+\date{\today} 
+% additional usepackage{beamerthemeshadow} is used
+
+\usepackage{beamerthemeshadow}
+%\usetheme{CambridgeUS}
+    \usepackage[latin1]{inputenc}
+    \usefonttheme{professionalfonts}
+    \usepackage{times}
+    \usepackage{tikz}
+    \usepackage{amsmath}
+    \usepackage{verbatim}
+    \usepackage[T1]{fontenc}
+    \usepackage{mathtools}
+    \usepackage{fix-cm}
+    \usetikzlibrary{arrows,shapes}
+    \DeclareMathOperator*{\Max}{Max}
+
+\usepackage{graphicx}% http;//ctan.org/pkg/graphicx
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{lstautogobble}
+
+\lstset{basicstyle=\ttfamily,
+  mathescape=true,
+  escapeinside=||,
+  autogobble}
+% Let us first define a custom Verbatim environment, that saves us a lot of writing
+  \DefineVerbatimEnvironment{VerbatimTest}{Verbatim}%
+    {showspaces,showtabs,commandchars=\\\{\}}% showspaces and showtabs only for visualizing
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=SAS,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
+\lstset{language=SAS,caption={Descriptive Caption Text},label=DescriptiveLabel}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{color}
+
+
+
+
+
+%\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+%\titleformat{\subsection}[hang]{\bfseries}{}{1em}{}
+
+\setcounter{secnumdepth}{1}
+
+% allows use of "@" in control sequence names
+\makeatletter
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+% this creates a custom and simpler ruled box style
+\newcommand\floatc@simplerule[2]{{\@fs@cfont #1 #2}\par}
+\newcommand\fs@simplerule{\def\@fs@cfont{\bfseries}\let\@fs@capt\floatc@simplerule
+  \def\@fs@pre{\hrule height.8pt depth0pt \kern4pt}%
+  \def\@fs@post{\kern4pt\hrule height.8pt depth0pt \kern4pt \relax}%
+  \def\@fs@mid{\kern8pt}%
+  \let\@fs@iftopcapt\iftrue}
+
+
+
+
+
+\def\aa{\vec{a}}
+\def\bb{\vec{b}}
+\def\cc{\vec{c}}
+\def\ee{\vec{e}}
+\def\pp{\vec{p}}
+\def\xx{\vec{x}}
+\def\yy{\vec{y}}
+\def\zz{\vec{z}}
+\def\PP{\vec{P}}
+\def\SS{\vec{S}}
+\def\aalpha{\vec{\alpha}}
+\def\bbeta{\vec{\beta}}
+\def\ggamma{\vec{\gamma}}
+\def\llambda{\vec{\lambda}}
+\def\nnu{\vec{\nu}}
+
+\def\cD{\mathcal{D}}
+\def\cF{\mathcal{F}}
+\def\cG{\mathcal{G}}
+\def\cI{\mathcal{I}}
+\def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}}
+\def\cN{\mathcal{N}}
+\def\cO{\mathcal{O}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+\def\cS{\mathcal{S}}
+\def\cX{\mathcal{X}}
+%\setbeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+%\useoutertheme{infolines}
+%\usetheme{Hannover}
+%\setcounter{captureframe}{\value{framenumber}}
+\mode<presentation>
+ {
+   \usetheme{Dresden}
+ }
+
+ \setbeamertemplate
+ {footline}{\quad\hfill\insertframenumber/\inserttotalframenumber\strut\quad} 
+\everymath{\displaystyle} 
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame} 
+
+\begin{frame}
+\frametitle{Table of contents}
+\tableofcontents
+\end{frame}
+ 
+
+
+
+\section{Introduction} 
+
+\begin{frame}
+\frametitle{Background }
+\begin{itemize}
+%\item Developed by Metropolis,Rosenbluth,Rosenbluth,Teller and Teller(1953)
+\item  Developed by Nicholas Metropolis, Arianna W. Rosenbluth, Marshall N. Rosenbluth, Augusta H. Teller, and Edward Teller(1953)
+\item Generalized by Hastings in 1970
+\item The main idea behind the Metropolis-Hastings algorithm  is to simulate an egordic Markov chain such that the  stationary distribution  of this chain coincides with the target distribution
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item Assume we want to generate a random variable $X$ taking values $\mathcal{X}=\{1,\cdots,m\}$ according to a target distribution $\{\pi_{i}\}$,with \\
+\vspace{5mm}
+$\pi_{i}=\frac{b_{i}}{C}$, \hspace{10mm}$i \in \mathcal{X}$
+%\end{frame}
+
+\end{itemize}
+where it is assumed that all $\{b_{i}\}$ are strictly positive,$m$ is large,and the normalization constant 
+$C=\sum_{i=1}^m b_{i}$ is difficult to calculate.
+
+\end{frame}
+
+\section{Acceptance-Rejection Sampling}
+\begin{frame}
+\frametitle{Acceptance-Rejection Sampling}
+The objective is to generate samples from the  absolutely continous \textit{target density} $\pi(x)=\frac{f(x)}{K}$\\
+Let $h(x)$ be a density that can be simulated by some known method and suppose there is a constant $c$ such that
+$f(x)\leq ch(x)$
+\begin{itemize}
+\item $(*)$ Generate a candidate Z from $h(.)$ and a value $u$ from $U(0,1)$,the uniform distribution on $(0,1)$
+\item $u\leq \frac{f(Z)}{ch(Z)}$
+\begin{itemize}
+\item return  $Z=y$
+\end{itemize}
+\item Else\\
+\begin{itemize}
+\item  go to $(*)$
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+For this method to be efficient,$c$ must be carefully selected .Because the expected number of iterations of steps $1$ and $2$  to obtain a draw is given by $c^{-1}$,the rejection method is optimized by setting 
+
+$
+c=\sup_{x}\frac{f(x)}{h(x)}
+$
+
+\end{frame}
+
+\section{The Metroplois Hastings Algorithm}
+
+%\begin{frame}
+%\frametitle{The Metroplois Hastings Algorithm}
+
+%\end{frame}
+\begin{frame}
+\frametitle{The Metroplois Hastings Algorithm}
+%\pause
+\begin{itemize}
+
+\pause
+\item We denote the candidate generating density $q(x,y)$,where $\int q(x,y)=1$
+\pause
+\item Interpreted as saying when the proceess is at the point $x$,the density generates a value $y$ from $q(x,y)$
+
+\pause
+\item We want $q(x,y)$ to satisfy the reversibility condition $\pi(x)q(x,y)=\pi(y)q(y,x)$.Thus the process moves from $x$ to $y$ equal number of times.
+
+\pause 
+\item Suppose that  $\pi(x)q(x,y)>\pi(y)q(y,x)$ $*$,The process moves from $x$ to $y$ too often and from $y$ to $x$ rarely.
+
+\pause
+\item A convenient  way of correcting this condition is by introducing a probability $\alpha(x,y)<1$ referred to as probability of move.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The Metroplois Hastings Algorithm}
+\begin{itemize}
+\pause
+\item The transitions from $x$ to $y$ are made according to $\rho_{MH}=q(x,y)\alpha(x,y)$
+\pause
+\item $\alpha(x,y) $ is determined by requiring $\rho_{MH}$ to satisfy the reversibility condition.then
+$\pi(x)q(x,y)\alpha(x,y)=\pi(y)q(y,x)\alpha(y,x)=\pi(y)q(y,x)$
+
+\vspace{5mm}
+
+$\alpha(x,y)=\frac{\pi(y)q(y,x)}{\pi(x)q(x,y)}$
+
+\pause
+\item We can reverse  $*$ and set $\alpha(x,y)=1$ and derive $\alpha(y,x)$ similarly.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The Metroplois Hastings Algorithm}
+\begin{itemize}
+
+\pause
+\item In order for $\rho_{MH}$ to be reversible we set
+
+%\begin{equation*}
+
+\[ \alpha(x,y) = \left\{ 
+ \begin{array}{l l}
+ \textrm{min}\Bigg[ \frac{\pi(y)q(y,x)}{\pi(x)q(x,y)},1\Bigg] & \quad \textrm{,if $\pi(y)q(y,x)>0$}\\
+   1 & \quad \textrm{,otherwise}
+  \end{array} \right.\]
+\pause
+\item the non-zero probability that the process remains at $x$  is defined  by $ r(x)=1-\int_{R^{d}}q(x,y)\alpha(x,y)dy$
+
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\pause
+\item consequently the transition kernel of the M-H chain 
+%\begin{equation}
+$\rho_{MH  }(x,dy)$ is defined by\\
+ \vspace{3mm}
+$\rho_{MH  }(x,dy)=q(x,y)\alpha(x,y)dy+\Bigg[1-\int_{R^{d}}q(x,y)\alpha(x,y)\delta_{x}(dy)\Bigg]$
+%\end{equation}
+
+\pause
+\item  Since $\rho_{MH  }(x,y)$ is reversible by construction ,it follows that M-H kernel has $\pi(x)$ as its invariant density.
+\pause
+\item If the candidate generating density is symmetric thus $q(x,y)=q(y,x)$ then \\
+$\alpha(x,y)=\frac{\pi(y)}{\pi(x)}$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{figure}[h!]
+  
+  \centering
+    \includegraphics[width=10cm,height=5cm]{met1.png}
+\caption{Calculating probabilities of move with symmetric Candidate-Generating Function}
+\label{fig:awesome_image}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Algorithm}
+\begin{itemize}
+\pause
+\item Iniatialize with arbitrary value $x^{(0)}$
+\pause
+\item Repeat for $j=1,2\cdots N$
+\pause
+\item Generate y from $q(x^{(j)},.)$ and $u$ from $U(0,1)$
+
+\pause
+\item $u\leq \alpha(x^{(j)},y)$,set $x^{(j+1)}=y$ 
+\item Else set $x^{(j+1)}=x^{(j)}$ 
+\pause
+\item Return values ${x^{(1)},x^{(2)},\cdots,x^{(N)}}$
+\vspace{5mm}
+\item The regularity condition required for the draws to be regarded as a sample from the target density is irreducibility and aperiodicity
+\end{itemize}
+\end{frame}
+
+
+\section{Implementation Issues:Choice of $q(x,y)$}
+
+\begin{frame}
+\frametitle{Implementation Issues:Choice of $q(x,y)$}
+\begin{itemize}
+\item Random Walk\\
+$q(x,y)=q_{1}(y-x)$
+
+The proposal sate $y$ for a given current state $x$,is given by $y=x+z$ where $z$ is the increment  $\sim q_{1}$\\
+The possible choice of $q_{1}$  include Multivariate normal and t -distributions,
+$\alpha(x,y)=\textrm{min}\Bigg[\frac{\pi(y)}{\pi(x)},1\Bigg] $
+
+\pause
+\item Independence Sampler
+$q(x,y)$ is chosen to be independent to $x$ ie $q(x,y)=q_{2}(y)$
+
+$q_{2}(y) \sim  N_{m}(\mu,\Sigma)$ and multivariate t
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Implementation Issues:Choice of $q(x,y)$}
+\begin{itemize}
+\item third method specifies the candiate- generating density Eg. $\pi(t)=\psi(t)h(t)$
+where $h(t)$ is a density that can be sampled and $\psi(t)$ is uniformly  bounded then set\\
+ $q(x,y)=h(y)$\\
+$\alpha(x,y)=\textrm{min}\Bigg[\frac{\psi(y)}{\psi(x)},1\Bigg] $
+
+\pause
+\item Fourth method is to use A-R method with pseudo dominating density
+
+
+\pause
+\item Fifth method is represented by a vector of autoregressive process of order 1\\
+$y=a +B(x-a)+z$,$z \sim q$ density
+Then $q(x,y)=q(y-a-B(x-a)$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Applications of The M-H Algorithm}
+\begin{itemize}
+\item An M-H  Acceptance-Rejection Algorithm
+$\pi(x)=\frac{f(x)}{K}$
+$f(x)\leq ch(x)$
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Applications of The M-H Algorithm}
+\begin{itemize}
+\item Block-at-a-Time Algorithm
+Another interesting situation arises when the M-H algorithm is applied in turn to subblocks of the
+vector $x$,rather than simultaneously to all elements of the vector.Hastings(1970) discussed in his paper that block-at-a -time algorithm 
+ can often simplify  the search for a suitable generating density and gives rise to several intersting hybrid algorithms
+obtained by combining M-H updates
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+The central idea behind these algorithms may be illustrated with two blocks,$x=(x_{1},x_{2})$,where $x_{1} \in  \Re^{d}$.
+Suppose that there exist a conditional transition kernel $p_{1}(x_{1},dy_{1} \mid x_{2})$ with the property that,
+for a fixed value of $x_{2}$,$\pi_{1 \mid 2}^{*}(.\mid x_{2})$ is its invariant distribution with density $\pi_{1 \mid 2}(.\mid x_{2})$,
+that is
+
+
+$\pi_{1 \mid 2}^{*}(dy_{1}\mid x_{2})=\int p_{1}(x_{1},dy_{1}\mid x_{2})\pi_{1 \mid 2}(x_{1}\mid x_{2})dx_{1}$
+%$p_{1}(x_{1},dy_{1}\mid x_{2})=\pi _{1 \mid 2}^{*}(dy_{1} \mid x_{2})$
+\end{frame}
+
+
+\begin{frame}
+The kernels formed by multiplying the conditional kernels has $\pi^{*}(.,.)$ as its invariant distribution
+$\int \int p_{1}(x_{1},dy_{1}\mid x_{2})p_{2}(x_{2},dy_{2}\mid y_{1})\pi(x_{1},x_{2})dx_{1}dx_{2}$
+$=\int p_{2}(x_{2},dy_{2}\mid y_{1})\bigg[   \int p_{1}(x_{1},dy_{1}\mid x_{2}) \pi_{1 \mid 2}(x_{1}\mid x_{2})dx_{1} \bigg] \pi_{2}(x_{2})dx_{2}$
+
+$=\int p_{2}(x_{2},dy_{2}\mid y_{1})\pi_{1 \mid 2}^{*}(.\mid x_{2})\pi_{2}(x_{2})dx_{2}$
+
+$=\int p_{2}(x_{2},dy_{2}\mid y_{1})\frac{\pi_{2 \mid 1}(x_{2}\mid y_{1})\pi_{1 }^{*}(dy_{1})}{\pi_{2}(x_{2})}\pi_{2}(x_{2})dx_{2}$
+
+
+$= \pi_{1}^{*}(dy_{1}) \int p_{2}(x_{2},dy_{2}\mid y_{1}) \pi_{2 \mid 1}(x_{2}\mid y_{1})dx_{2}$
+
+
+$=\pi^{*}(dy_{1})\pi_{2 \mid 1}^{*}(dy_{2} \mid y_{1})$
+
+$=\pi^{*}(dy_{1},dy_{2})$
+
+\end{frame}
+
+
+
+\begin{frame}
+\begin{itemize}
+
+\item Gibbs Sampler
+The algorithm can be obtained by letting the transition  kernel\\
+ %$ P_{1}(x_{1},dy_{1} \mid x_{2})= \pi_{1\mid2}^{*}(dy_{1}\midx_{2}) $
+%and $ P_{2}(x_{2},dy_{2}\midy_{})=\pi_{2\mid1}^{*}(dy_{2}\midy_{1}) $
+$p_{1}(x_{1},dy_{1}\mid x_{2})=\pi _{1 \mid 2}^{*}(dy_{1} \mid x_{2})$\\
+
+and
+
+
+
+$p_{2}(x_{2},dy_{2}\mid y_{1})=\pi _{2 \mid 1}^{*}(dy_{2} \mid y_{1})$ \\
+\vspace{3mm}
+
+The case in which all full conditional  kernels are sampled by independent algorithms
+in a fixed order
+
+all full conditional kernels 
+\end{itemize}
+
+\end{frame}
+
+
+%\section{}
+\begin{frame}
+Thank you for your attention
+\end{frame}
+\end{document}

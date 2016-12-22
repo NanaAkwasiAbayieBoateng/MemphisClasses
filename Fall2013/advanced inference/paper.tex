@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage[pdftex]{graphicx}
+
+\oddsidemargin .27in \evensidemargin .3in \textwidth 7.7in
+\topmargin -.25in \textheight 8.75in
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\def\RR{\mathbb{R}}
+\def\NN{\mathbb{N}}
+\def\ZZ{\mathbb{Z}}
+\def\CC{\mathbb{C}}
+\def\st{\mathop{\: | \:}\nolimits}
+
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}}
+{\mbox{\boldmath$\scriptstyle#1$}}
+{\mbox{\boldmath$\scriptscriptstyle#1$}}}
+
+\def\aa{\vec{a}}
+\def\bb{\vec{b}}
+\def\cc{\vec{c}}
+\def\ee{\vec{e}}
+\def\pp{\vec{p}}
+\def\xx{\vec{x}}
+\def\yy{\vec{y}}
+\def\zz{\vec{z}}
+\def\PP{\vec{P}}
+\def\SS{\vec{S}}
+\def\aalpha{\vec{\alpha}}
+\def\bbeta{\vec{\beta}}
+\def\ggamma{\vec{\gamma}}
+\def\llambda{\vec{\lambda}}
+\def\nnu{\vec{\nu}}
+
+\def\cD{\mathcal{D}}
+\def\cF{\mathcal{F}}
+\def\cG{\mathcal{G}}
+\def\cI{\mathcal{I}}
+\def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}}
+\def\cN{\mathcal{N}}
+\def\cO{\mathcal{O}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+\def\cS{\mathcal{S}}
+\def\cX{\mathcal{X}}
+
+\title{ Survival Analysis}
+\author{Nana.~Boateng\footnotemark[1], Will .Terry\footnotemark[2], Jiang\footnotemark[3] and Jingnan
+Zhao\footnotemark[7]}
+
+\date{\today}
+
+\begin{document}
+\maketitle \thispagestyle{empty}
+\begin{abstract}
+
+
+
+\end{abstract}
+
+\fnsymbol{footnote}
+
+\footnotetext[1]{Department of  Mathematics, University of Memphis}
+\footnotetext[2]{Department of  Mathematics, University of Memphis}
+
+\section{Introduction}
+Survival analysis examines and models the time it takes for events to occur.A typical event waiting to occur is death.In most cases it focuses on techniques  and   distibutionof survival times   forr positive random variables such as
+\begin{itemize}
+\item time to death
+\item time to onset of remission of a disease
+\item duration of hospital stay
+\item viral load measurements
+\end{itemize}
+There are various kinds of survival studies which include clinical trials,prospective and retrospective cohort  studies and retrospective 
+correlative studies
+\section{Analysis}
+
+\section{Cox proportional-hazards regression model}
+Cox proportional-hazards regression model examines the relationship
+between survival and one or more predictors, usually termed covariates
+
+
+\begin{equation}
+P(t) = Pr(T \leq t)
+\end{equation}
+The Cox model, in contrast, leaves the baseline hazard function α $(t) = log h_{0}(t)$ unspecified:
+\begin{equation}
+log h_{i}(t) =\alpha α(t) +\beta _{1}x_{i1} + \beta_{2}x_{ik} + · · · + \beta_{k}x_{ik}
+\end{equation}
+\begin{thebibliography}{100}
+\bibitem{BS73}
+Bahadur,R.R.$(1996)$",A  Representation of the Joint Distribution of Responses to $n$ Dichotonomous Items," in \textit{ Studies in Item Analysis and Prediction},ed.H.Solomon,,Stanford,CA:Stanford University Press
+
+
+\end{thebibliography}
+
+
+
+\end{document}

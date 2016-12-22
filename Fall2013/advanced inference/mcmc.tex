@@ -1,0 +1,217 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+% By  using hyperref={pdfpagelabels=false} you get rid off:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+
+\usepackage{lmodern}
+% Using lmondern and you get rid off this:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+
+% If \titel{…} \author{…} come after \begin{document} 
+% you get the following warnig:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% So it is here before \begin{document}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{fix-cm}
+
+\title{Understanding The Metropolis-Hastings Algorithm}   
+\author{Nana Boateng 
+} 
+\date{\today} 
+% additional usepackage{beamerthemeshadow} is used
+
+\usepackage{beamerthemeshadow}
+%\usetheme{CambridgeUS}
+    \usepackage[latin1]{inputenc}
+    \usefonttheme{professionalfonts}
+    \usepackage{times}
+    \usepackage{tikz}
+    \usepackage{amsmath}
+    \usepackage{verbatim}
+    \usepackage[T1]{fontenc}
+    \usepackage{mathtools}
+    \usepackage{fix-cm}
+    \usetikzlibrary{arrows,shapes}
+    \DeclareMathOperator*{\Max}{Max}
+
+\usepackage{graphicx}% http;//ctan.org/pkg/graphicx
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{lstautogobble}
+
+\lstset{basicstyle=\ttfamily,
+  mathescape=true,
+  escapeinside=||,
+  autogobble}
+% Let us first define a custom Verbatim environment, that saves us a lot of writing
+  \DefineVerbatimEnvironment{VerbatimTest}{Verbatim}%
+    {showspaces,showtabs,commandchars=\\\{\}}% showspaces and showtabs only for visualizing
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=SAS,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
+\lstset{language=SAS,caption={Descriptive Caption Text},label=DescriptiveLabel}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{color}
+
+
+
+
+
+%\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+%\titleformat{\subsection}[hang]{\bfseries}{}{1em}{}
+
+\setcounter{secnumdepth}{1}
+
+% allows use of "@" in control sequence names
+\makeatletter
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+% this creates a custom and simpler ruled box style
+\newcommand\floatc@simplerule[2]{{\@fs@cfont #1 #2}\par}
+\newcommand\fs@simplerule{\def\@fs@cfont{\bfseries}\let\@fs@capt\floatc@simplerule
+  \def\@fs@pre{\hrule height.8pt depth0pt \kern4pt}%
+  \def\@fs@post{\kern4pt\hrule height.8pt depth0pt \kern4pt \relax}%
+  \def\@fs@mid{\kern8pt}%
+  \let\@fs@iftopcapt\iftrue}
+
+
+
+
+
+\def\aa{\vec{a}}
+\def\bb{\vec{b}}
+\def\cc{\vec{c}}
+\def\ee{\vec{e}}
+\def\pp{\vec{p}}
+\def\xx{\vec{x}}
+\def\yy{\vec{y}}
+\def\zz{\vec{z}}
+\def\PP{\vec{P}}
+\def\SS{\vec{S}}
+\def\aalpha{\vec{\alpha}}
+\def\bbeta{\vec{\beta}}
+\def\ggamma{\vec{\gamma}}
+\def\llambda{\vec{\lambda}}
+\def\nnu{\vec{\nu}}
+
+\def\cD{\mathcal{D}}
+\def\cF{\mathcal{F}}
+\def\cG{\mathcal{G}}
+\def\cI{\mathcal{I}}
+\def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}}
+\def\cN{\mathcal{N}}
+\def\cO{\mathcal{O}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+\def\cS{\mathcal{S}}
+\def\cX{\mathcal{X}}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+%\usepackage{statrep}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame} 
+
+\begin{frame}
+\frametitle{Table of contents}
+\tableofcontents
+\end{frame}
+ 
+
+
+\section{Introduction} 
+
+%\begin{frame}
+%\frametitle{Background }
+%\begin{itemize}
+%\item Developed by Metropolis,Rosenbluth,Rosenbluth,Teller and Teller(1953)
+%\item  Developed by Nicholas Metropolis, Arianna W. Rosenbluth, Marshall N. Rosenbluth, Augusta H. Teller, and Edward %Teller(1953)
+%\item Generalized by Hastings in 1970
+%\item The main idea behind the Metropolis-Hastings algorithm  is to simulate an egordic Markov chain such that the  stationary %distribution  of this chain coincides with the target distribution
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}
+%\begin{itemize}
+%\item Assume we want to generate a random variable $X$ taking values $\mathcal{X}=\{1,\cdots,m\}$ according to a target %distribution $\{\pi_{i}\}$,with \\
+%\vspace{10mm}
+$\pi_{i}=\frac{b_{i}}{C}$, \hspace{10mm}$i \in \mathcal{X}$
+%\end{frame}
+
+%\end {itemize}
+%where it is assumed that all $\{b_{i}\}$ are strictly positive,$m$ is large,and the normalization constant 
+%$C=\sum_{i=1}^m b_{i}$ is difficult to calculate.
+%\end{frame}
+\end{document}
