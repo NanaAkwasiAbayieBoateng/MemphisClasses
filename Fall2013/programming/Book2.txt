@@ -1,0 +1,17 @@
+Survival.Times.of.Mice(Days)	
+52	ControlGoup
+104	ControlGoup
+146	ControlGoup
+10	ControlGoup
+50	ControlGoup
+31	ControlGoup
+40	ControlGoup
+27	ControlGoup
+46	ControlGoup
+94	TreatmentGroup
+197	TreatmentGroup
+16	TreatmentGroup
+38	TreatmentGroup
+99	TreatmentGroup
+141	TreatmentGroup
+23	TreatmentGroup

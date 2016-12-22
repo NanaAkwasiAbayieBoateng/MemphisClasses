@@ -1,0 +1,13 @@
+Response	Treatment
+6.1	control
+5.9	control
+5.8	control
+5.4	control
+6.3	preheated
+6.2	preheated
+5.8	preheated
+6.3	preheated
+7.1	prechilled
+8.2	prechilled
+7.3	prechilled
+6.9	prechilled
